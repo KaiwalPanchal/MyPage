@@ -4,11 +4,14 @@ import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
 import AnimatedLiquidBackground from "../components/liquid/AnimatedLiquidBackground"
 import { portfolioData } from "../data/portfolio"
+import WorkPopup from "@/components/WorkPopup"
 
 export default function Home() {
 
   const [activeSection, setActiveSection] = useState("")
   const [opacity, setOpacity] = useState(1)
+  const [selectedWork, setSelectedWork] = useState<typeof portfolioData.work[0] | null>(null)
+  const [popupPosition, setPopupPosition] = useState({ x: 0, y: 0 })
   const sectionsRef = useRef<(HTMLElement | null)[]>([])
 
 
@@ -155,6 +158,11 @@ export default function Home() {
               {portfolioData.work.map((job, index) => (
                 <div
                   key={index}
+                  onClick={(e) => {
+
+                    setPopupPosition({ x: e.clientX, y: e.clientY })
+                    setSelectedWork(job)
+                  }}
                   className="group grid lg:grid-cols-12 gap-4 sm:gap-8 p-6 sm:p-8 border border-white/10 rounded-xl hover:border-white/20 transition-all duration-500 hover:shadow-2xl cursor-pointer backdrop-blur-xl bg-white/5 shadow-lg shadow-black/5"
                 >
                   <div className="lg:col-span-2">
@@ -184,6 +192,7 @@ export default function Home() {
                 </div>
               ))}
             </div>
+
           </div>
         </section>
 
@@ -347,7 +356,13 @@ export default function Home() {
         </section>
       </main>
 
-      <div className="fixed bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background via-background/80 to-transparent pointer-events-none"></div>
-    </div>
+
+      <WorkPopup
+        isOpen={!!selectedWork}
+        onClose={() => setSelectedWork(null)}
+        work={selectedWork}
+        position={popupPosition}
+      />
+    </div >
   )
 }

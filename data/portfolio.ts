@@ -4,7 +4,7 @@ export const portfolioData = {
         surname: "Panchal",
         year: "2026",
         profession: "Machine Learning/AI engineer",
-        bio: "Machine Learning Engineer building intelligent systems at the intersection of computer vision, natural language processing, and scalable deployment.",
+        bio: "building intelligent systems at the intersection of computer vision, natural language processing, and scalable deployment.",
         availability: "Available for work",
         location: "India",
         currentJob: {
@@ -21,6 +21,8 @@ export const portfolioData = {
             company: "Sylvr",
             description: "Architected multi-agent system ingesting market signals and PESTEL data to automate strategic analysis frameworks.",
             tech: ["AI", "NLP", "OCR", "Web Scraping"],
+            website: "https://sylvr.io/",
+            linkedin: "https://in.linkedin.com/company/sylvr-by-50een"
         },
         {
             year: "2024",
@@ -28,6 +30,8 @@ export const portfolioData = {
             company: "Town Plan Map",
             description: "Achieved 10x inference optimization and built end-to-end pipeline for CAD/PDF data extraction.",
             tech: ["Machine Learning", "Computer Vision", "NLP"],
+            website: "https://townplanmap.com/",
+            linkedin: "https://in.linkedin.com/company/town-plan-map"
         },
         {
             year: "2024",
@@ -35,6 +39,8 @@ export const portfolioData = {
             company: "Office Solutions PVT LTD",
             description: "Deployed NLP-powered query interface enabling conversational analytics over 10M+ row datasets.",
             tech: ["GenAI", "Chatbots", "NLP", "BI Platforms"],
+            website: "https://innovationalofficesolution.com/",
+            linkedin: "https://www.linkedin.com/company/innovationalofficesolution"
         },
         {
             year: "2023",
@@ -42,6 +48,8 @@ export const portfolioData = {
             company: "Softcolon Technologies",
             description: "Engineered full-stack library management system with optimized data workflows.",
             tech: ["Web Development", "Full Stack"],
+            website: "https://www.softcolon.com/",
+            linkedin: "https://in.linkedin.com/company/softcolon"
         },
     ],
     thoughts: [
