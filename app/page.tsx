@@ -160,7 +160,7 @@ export default function Home() {
                   key={index}
                   onClick={(e) => {
 
-                    setPopupPosition({ x: e.clientX, y: e.clientY })
+                    setPopupPosition({ x: e.pageX, y: e.pageY })
                     setSelectedWork(job)
                   }}
                   className="group grid lg:grid-cols-12 gap-4 sm:gap-8 p-6 sm:p-8 border border-white/10 rounded-xl hover:border-white/20 transition-all duration-500 hover:shadow-2xl cursor-pointer backdrop-blur-xl bg-white/5 shadow-lg shadow-black/5"

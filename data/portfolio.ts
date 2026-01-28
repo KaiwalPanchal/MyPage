@@ -81,14 +81,13 @@ export const portfolioData = {
     connect: {
         email: "test@example.com",
         socials: [
-            { name: "GitHub", handle: "@felixmacaspac", url: "#" },
-            { name: "v0.dev", handle: "@felixmacaspac", url: "#" },
-            { name: "HubSpot Community", handle: "@felixmacaspac", url: "#" },
-            { name: "LinkedIn", handle: "felixmacaspac", url: "#" },
+            { name: "GitHub", handle: "@KaiwalPanchal", url: "https://github.com/KaiwalPanchal" },
+            { name: "X", handle: "@KaiwalPanchal", url: "https://x.com/KaiwalPanchal" },
+            { name: "LinkedIn", handle: "kaiwalpanchal", url: "https://in.linkedin.com/in/kaiwalpanchal" },
         ]
     },
     footer: {
-        copyright: "© 2025 Felix Macaspac. All rights reserved.",
-        builtWith: "Built with v0.dev by Felix Macaspac"
+        copyright: "© 2026 Kaiwal Panchal. All rights reserved.",
+        builtWith: "Built by Kaiwal Panchal"
     }
 };

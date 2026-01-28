@@ -54,7 +54,7 @@ export default function WorkPopup({ isOpen, onClose, work, position }: WorkPopup
     return (
         <div
             ref={popupRef}
-            className={`fixed z-50 flex items-center gap-2 p-2 rounded-full border border-white/10 bg-black/80 backdrop-blur-xl shadow-2xl transition-all duration-300 ease-out`}
+            className={`absolute z-50 flex items-center gap-2 p-2 rounded-full border border-white/10 bg-black/80 backdrop-blur-xl shadow-2xl transition-all duration-300 ease-out`}
             style={{
                 left: `${position.x}px`,
                 top: `${position.y}px`,
