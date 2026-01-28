@@ -1,4 +1,7 @@
 const nextConfig = {
+  output: 'export',
+  basePath: '/MyPage',
+  assetPrefix: '/MyPage',
   eslint: {
     ignoreDuringBuilds: true,
   },

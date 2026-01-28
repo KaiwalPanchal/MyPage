@@ -11,6 +11,7 @@ const geist = Geist({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://KaiwalPanchal.github.io/MyPage'),
   title: "Kaiwal Panchal - Machine Learning/AI engineer",
   description: "Machine Learning/AI engineer specialized in intelligent systems, CV, NLP, and scalable deployment.",
   generator: "v0.app",
