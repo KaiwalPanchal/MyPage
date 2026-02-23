@@ -9,7 +9,7 @@ const speedEase = cubicBezier(0.65, 0, 0.88, 0.77);
 
 const templates = {
     Prism: {
-        color1: "#060a0dff",
+        color1: "#010305ff",
         color2: "#a8b8c8",
         color3: "#e8f0f8",
         rotation: -50,
