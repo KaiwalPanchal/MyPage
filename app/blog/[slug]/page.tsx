@@ -2,7 +2,7 @@
 import { getPostBySlug, getAllPosts } from "@/lib/blog"
 import Image from "next/image"
 import Link from "next/link"
-import ReactMarkdown from "react-markdown"
+import MarkdownRenderer from "@/components/markdown-renderer"
 import { ArrowLeft } from "lucide-react"
 import { notFound } from "next/navigation"
 
@@ -70,7 +70,7 @@ export default function BlogPost({ params }: Props) {
                 </div>
 
                 <article className="prose prose-invert prose-lg max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-a:text-orange-500 prose-img:rounded-xl">
-                    <ReactMarkdown>{post.content}</ReactMarkdown>
+                    <MarkdownRenderer content={post.content} />
                 </article>
             </main>
         </div>
