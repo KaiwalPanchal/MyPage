@@ -2,7 +2,14 @@
 
 import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
-import AnimatedLiquidBackground from "./liquid/AnimatedLiquidBackground"
+import { motion, useScroll, useTransform } from "framer-motion"
+import dynamic from "next/dynamic"
+
+const AnimatedLiquidBackground = dynamic(
+    () => import("./liquid/AnimatedLiquidBackground"),
+    { ssr: false } // No SSR since it's WebGL
+)
+
 import { portfolioData } from "../data/portfolio"
 import WorkPopup from "@/components/WorkPopup"
 import type { Post } from "@/lib/blog"
@@ -13,28 +20,24 @@ interface HomeClientProps {
 
 export default function HomeClient({ posts }: HomeClientProps) {
     const [activeSection, setActiveSection] = useState("")
-    const [opacity, setOpacity] = useState(1)
     const [selectedWork, setSelectedWork] = useState<typeof portfolioData.work[0] | null>(null)
     const [popupPosition, setPopupPosition] = useState({ x: 0, y: 0 })
     const sectionsRef = useRef<(HTMLElement | null)[]>([])
+    const [windowHeight, setWindowHeight] = useState(typeof window !== "undefined" ? window.innerHeight : 1000)
 
     useEffect(() => {
-        const handleScroll = () => {
-            const scrollY = window.scrollY
-            const windowHeight = window.innerHeight
-            const newOpacity = Math.max(0.7, 1 - (scrollY / (windowHeight * 0.7)) * 0.3)
-            setOpacity(newOpacity)
-        }
-
-        handleScroll()
-
-        window.addEventListener("scroll", handleScroll, { passive: true })
-        window.addEventListener("resize", handleScroll)
-        return () => {
-            window.removeEventListener("scroll", handleScroll)
-            window.removeEventListener("resize", handleScroll)
-        }
+        setWindowHeight(window.innerHeight)
+        const handleResize = () => setWindowHeight(window.innerHeight)
+        window.addEventListener("resize", handleResize)
+        return () => window.removeEventListener("resize", handleResize)
     }, [])
+
+    const { scrollY } = useScroll()
+    const opacity = useTransform(
+        scrollY,
+        [0, windowHeight * 0.7],
+        [1, 0.7]
+    )
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -43,6 +46,7 @@ export default function HomeClient({ posts }: HomeClientProps) {
                     if (entry.isIntersecting) {
                         entry.target.classList.add("animate-fade-in-up")
                         setActiveSection(entry.target.id)
+                        observer.unobserve(entry.target)
                     }
                 })
             },
@@ -58,12 +62,12 @@ export default function HomeClient({ posts }: HomeClientProps) {
 
     return (
         <div className="min-h-screen bg-background text-foreground relative">
-            <div
+            <motion.div
                 className="fixed inset-0 z-0 transition-opacity duration-100 ease-out pointer-events-none"
-                style={{ opacity: opacity }}
+                style={{ opacity }}
             >
                 <AnimatedLiquidBackground preset="Prism" />
-            </div>
+            </motion.div>
 
             <nav className="fixed left-8 top-1/2 -translate-y-1/2 z-10 hidden lg:block">
                 <div className="flex flex-col gap-4">

@@ -1,6 +1,7 @@
 import Image from "next/image"
 import { AlertTriangle } from "lucide-react"
 import type { Metadata } from "next"
+
 import Link from "next/link"
 import { getAllPosts } from "@/lib/blog"
 
