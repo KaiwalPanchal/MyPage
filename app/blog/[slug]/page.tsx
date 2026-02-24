@@ -7,9 +7,9 @@ import { ArrowLeft } from "lucide-react"
 import { notFound } from "next/navigation"
 
 interface Props {
-    params: {
+    params: Promise<{
         slug: string
-    }
+    }>
 }
 
 export async function generateStaticParams() {
@@ -19,8 +19,9 @@ export async function generateStaticParams() {
     }))
 }
 
-export default function BlogPost({ params }: Props) {
-    const post = getPostBySlug(params.slug)
+export default async function BlogPost({ params }: Props) {
+    const { slug } = await params
+    const post = getPostBySlug(slug)
 
     if (!post) {
         return notFound()

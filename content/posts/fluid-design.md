@@ -5,7 +5,7 @@ description: "Exploring the principles of fluid typography and layout in modern 
 image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1000"
 author:
   name: "Kaiwal"
-  image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200"
+  image: "/MyPage/images/kaiwal.jpg"
 category: "Design"
 ---
 

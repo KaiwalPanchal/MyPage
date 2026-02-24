@@ -5,7 +5,7 @@ description: "During my internship at a consulting tech firm, I discovered that 
 image: "/MyPage/blog/dedup-hero.png"
 author:
   name: "Kaiwal"
-  image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200"
+  image: "/MyPage/images/kaiwal.jpg"
 category: "Data Engineering"
 ---
 
