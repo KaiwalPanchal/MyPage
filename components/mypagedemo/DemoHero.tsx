@@ -219,7 +219,7 @@ export default function DemoHero({ theme = "cyan", isReady = true }: DemoHeroPro
         Forward Deployed &amp; Applied AI Engineer building intelligent systems at Sylvr
       </p>
       <p className="DemoHero-tagline DemoHero-taglineRight" data-subsplit="true">
-        Unapologetic nerd driven by craft, curiosity, and a relentless bias to ship
+        Too curious to leave a system unexplored
       </p>
     </section>
   );
