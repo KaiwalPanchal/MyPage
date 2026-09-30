@@ -11,9 +11,8 @@ interface DemoHeroProps {
 
 export default function DemoHero({ theme = "cyan", isReady = true }: DemoHeroProps) {
   const heroRef = useRef<HTMLElement | null>(null);
-  const centerBlockRef = useRef<HTMLDivElement | null>(null);
   const heroFlareRef = useRef<HTMLDivElement | null>(null);
-  const scrambleRef = useRef<HTMLSpanElement | null>(null);
+  const scrambleRef = useRef<HTMLParagraphElement | null>(null);
   const ctaRef = useRef<HTMLAnchorElement | null>(null);
   const [isScrambling, setIsScrambling] = useState(false);
 
@@ -59,72 +58,41 @@ export default function DemoHero({ theme = "cyan", isReady = true }: DemoHeroPro
     const taglines = hero.querySelectorAll<HTMLElement>("[data-subsplit]");
     const cta = ctaRef.current;
     const scrambleEl = scrambleRef.current;
-    const centerBlock = centerBlockRef.current;
     const heroFlare = heroFlareRef.current;
 
     if (prefersReduced) {
       if (heroFlare) heroFlare.style.display = "none";
-      splitLines.forEach((el) => {
-        el.style.opacity = "1";
-      });
+      splitLines.forEach((el) => { el.style.opacity = "1"; });
       if (scrambleEl) scrambleEl.style.opacity = "1";
-      if (cta) {
-        cta.style.opacity = "1";
-        cta.style.transform = "none";
-      }
-      taglines.forEach((el) => {
-        el.style.opacity = "0.85";
-        el.style.filter = "none";
-      });
+      if (cta) { cta.style.opacity = "1"; cta.style.transform = "none"; }
+      taglines.forEach((el) => { el.style.opacity = "0.7"; el.style.filter = "none"; });
       return;
     }
 
-    // Wrap chars inside word containers to allow natural responsive wrapping
+    // Wrap chars for per-character stagger animation
     const lineChars: HTMLElement[][] = [];
     splitLines.forEach((line) => {
       const text = line.textContent || "";
       line.innerHTML = "";
       line.style.opacity = "1";
       const chars: HTMLElement[] = [];
-      const words = text.trim().split(/\s+/);
-
-      words.forEach((word, wordIdx) => {
-        const wordSpan = document.createElement("span");
-        wordSpan.style.display = "inline-block";
-        wordSpan.style.whiteSpace = "nowrap";
-
-        for (const ch of word) {
-          const charSpan = document.createElement("span");
-          charSpan.textContent = ch;
-          charSpan.style.display = "inline-block";
-          charSpan.style.transform = "translateY(115%)";
-          charSpan.style.opacity = "0";
-          wordSpan.appendChild(charSpan);
-          chars.push(charSpan);
-        }
-
-        line.appendChild(wordSpan);
-
-        if (wordIdx < words.length - 1) {
-          const space = document.createTextNode(" ");
-          line.appendChild(space);
-        }
-      });
-
+      for (const ch of text) {
+        const span = document.createElement("span");
+        span.textContent = ch === " " ? "\u00A0" : ch;
+        span.style.display = "inline-block";
+        span.style.transform = "translateY(115%)";
+        span.style.opacity = "0";
+        line.appendChild(span);
+        chars.push(span);
+      }
       lineChars.push(chars);
     });
 
-    if (cta) {
-      gsap.set(cta, { autoAlpha: 0, scale: 0.92 });
-    }
-    taglines.forEach((t) => {
-      gsap.set(t, { autoAlpha: 0, filter: "blur(14px)" });
-    });
-    if (scrambleEl) {
-      gsap.set(scrambleEl, { autoAlpha: 0 });
-    }
+    if (cta) gsap.set(cta, { autoAlpha: 0, scale: 0.9 });
+    taglines.forEach((t) => gsap.set(t, { autoAlpha: 0, filter: "blur(16px)" }));
+    if (scrambleEl) gsap.set(scrambleEl, { autoAlpha: 0 });
 
-    // Entrance radial flare & dynamic 3D upward glide of hero as preloader curtain lifts
+    // Entrance flare
     if (heroFlare) {
       gsap.fromTo(
         heroFlare,
@@ -133,46 +101,38 @@ export default function DemoHero({ theme = "cyan", isReady = true }: DemoHeroPro
       );
     }
 
-    if (centerBlock) {
-      gsap.fromTo(
-        centerBlock,
-        { y: 85, scale: 0.94, filter: "blur(14px)", opacity: 0 },
-        { y: 0, scale: 1, filter: "blur(0px)", opacity: 1, duration: 1.25, ease: "power4.out" }
-      );
-    }
-
     const tl = gsap.timeline({ delay: 0.2 });
 
-    // Animate lines sequentially
-    const delays = [0, 0.32, 0.65];
+    // Lines
+    const delays = [0, 0.35, 0.7];
     lineChars.forEach((chars, i) => {
-      const d = delays[i] ?? 0.65;
+      const d = delays[i] ?? 0.7;
       tl.to(
         chars,
         {
           yPercent: -115,
           opacity: 1,
           ease: "power4.out",
-          duration: 0.85,
-          stagger: 0.03,
+          duration: 0.9,
+          stagger: 0.035,
           clearProps: "transform",
         },
         d
       );
     });
 
-    // Intro Scramble on "PRODUCTION"
+    // Intro scramble
     if (scrambleEl) {
-      tl.set(scrambleEl, { autoAlpha: 1 }, 0.8);
-      tl.add(() => triggerScramble(1.1), 0.8);
+      tl.set(scrambleEl, { autoAlpha: 1 }, 0.85);
+      tl.add(() => triggerScramble(1.1), 0.85);
     }
 
-    // CTA Reveal
+    // CTA
     if (cta) {
       tl.to(
         cta,
         { autoAlpha: 1, scale: 1, duration: 0.45, ease: "back.out(2)" },
-        1.85
+        1.95
       );
     }
 
@@ -180,14 +140,16 @@ export default function DemoHero({ theme = "cyan", isReady = true }: DemoHeroPro
     tl.to(
       taglines,
       {
-        autoAlpha: 0.85,
+        autoAlpha: 0.7,
         filter: "blur(0px)",
-        duration: 1.0,
+        duration: 1.1,
         ease: "power2.out",
-        stagger: 0.12,
+        stagger: 0.14,
       },
-      1.85
+      1.95
     );
+
+    return () => { tl.kill(); };
   }, [isReady]);
 
   return (
@@ -206,73 +168,59 @@ export default function DemoHero({ theme = "cyan", isReady = true }: DemoHeroPro
       <div className="DemoHero-bottomFade" />
       <div className="DemoHero-bottomHighlight" />
 
-      {/* Hero Center Block with Soft Ambient Contrast Scrim */}
-      <div ref={centerBlockRef} className="DemoHero-centerBlock">
-        {/* Soft Ambient Contrast Scrim ensuring solid 100% typography readability */}
-        <div className="DemoHero-ambientScrim" aria-hidden="true" />
-
-        <div className="DemoHero-banner">
-          <div className="DemoHero-line">
-            <span className="DemoHero-lineSans" data-split="true">
-              Engineering Intelligence
-            </span>
-          </div>
-
-          <div className="DemoHero-line">
-            <span className="DemoHero-lineDisplay" data-split="true">
-              from research
-            </span>
-            <span className="DemoHero-lineSans" data-split="true">
-              to deterministic
-            </span>
-          </div>
-
-          <div className="DemoHero-line">
-            <span
-              ref={scrambleRef}
-              className="DemoHero-lineSans DemoHero-scrambleWord cursor-pointer select-none"
-              data-scramble="true"
-              onMouseEnter={() => triggerScramble(0.5)}
-              onClick={() => triggerScramble(0.5)}
-              data-cursor-label="SCRAMBLE"
-              title="Click or hover to scramble"
-            >
-              PRODUCTION
-            </span>
-          </div>
-        </div>
-
-        {/* Sub-row with tagline and CTA */}
-        <div className="DemoHero-subRow">
-          <p className="DemoHero-tagline" data-subsplit="true">
-            Forward Deployed &amp; Applied AI Engineer. Unapologetic nerd driven by uncompromising craft, deep technical curiosity, and a relentless bias to get shit done. Leading AI systems at Sylvr.
-          </p>
-
-          <a
-            ref={ctaRef}
-            className="DemoHero-cta"
-            href="mailto:kaiwalextra@gmail.com"
-            data-cursor-label="CONTACT"
-          >
-            <span className="DemoHero-ctaInner">
-              Initialize Contact
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M7 17L17 7" />
-                <path d="M7 7h10v10" />
-              </svg>
-            </span>
-          </a>
-        </div>
+      {/* kstoimenov pattern: text floats absolutely over shader — no scrim, no panel */}
+      <div className="DemoHero-banner" aria-hidden="true">
+        <p
+          className="DemoHero-lineSans"
+          data-split="true"
+          style={{ "--l": "26%", "--t": "18.5rem" } as React.CSSProperties}
+        >
+          Engineering Intelligence
+        </p>
+        <p
+          className="DemoHero-lineDisplay"
+          data-split="true"
+          style={{ "--l": "52%", "--t": "24rem" } as React.CSSProperties}
+        >
+          from research
+        </p>
+        <p
+          className="DemoHero-lineSans"
+          data-split="true"
+          style={{ "--l": "25%", "--t": "29.5rem" } as React.CSSProperties}
+        >
+          to deterministic
+        </p>
+        <p
+          ref={scrambleRef}
+          className="DemoHero-lineSans DemoHero-scrambleWord"
+          data-scramble="true"
+          style={{ "--l": "46%", "--t": "35rem" } as React.CSSProperties}
+          onMouseEnter={() => triggerScramble(0.5)}
+          onClick={() => triggerScramble(0.5)}
+          data-cursor-label="SCRAMBLE"
+        >
+          PRODUCTION
+        </p>
       </div>
+
+      {/* CTA pill */}
+      <a
+        ref={ctaRef}
+        className="DemoHero-cta"
+        href="mailto:kaiwalextra@gmail.com"
+        data-cursor-label="CONTACT"
+      >
+        <span className="DemoHero-ctaInner">Initialize Contact</span>
+      </a>
+
+      {/* Taglines at bottom */}
+      <p className="DemoHero-tagline DemoHero-taglineLeft" data-subsplit="true">
+        Forward Deployed &amp; Applied AI Engineer building intelligent systems at Sylvr
+      </p>
+      <p className="DemoHero-tagline DemoHero-taglineRight" data-subsplit="true">
+        Unapologetic nerd driven by craft, curiosity, and a relentless bias to ship
+      </p>
     </section>
   );
 }
