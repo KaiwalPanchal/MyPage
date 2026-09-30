@@ -6,6 +6,7 @@ import DemoCursor from "@/components/mypagedemo/DemoCursor";
 import DemoHero from "@/components/mypagedemo/DemoHero";
 import DemoAbout from "@/components/mypagedemo/DemoAbout";
 import DemoExperience from "@/components/mypagedemo/DemoExperience";
+import DemoMetrics from "@/components/mypagedemo/DemoMetrics";
 import DemoBlog from "@/components/mypagedemo/DemoBlog";
 import DemoParallaxQuote from "@/components/mypagedemo/DemoParallaxQuote";
 import DemoFooterReveal from "@/components/mypagedemo/DemoFooterReveal";
@@ -34,7 +35,10 @@ export default function MyPageDemo() {
         {/* Vertical Job Experience Stack with Hairline Dividers, Sliding Text & Silver Grain Highlights */}
         <DemoExperience />
 
-        {/* Technical Articles & Publications (from MyPage) */}
+        {/* Effect 3: Staggered Sliding Metrics Cards (Data Display) */}
+        <DemoMetrics />
+
+        {/* Technical Articles & Publications (Staggered Sliding Card Deck) */}
         <DemoBlog />
 
         {/* Effect 4: Parallax Drifting Typography + Floating Tech Badges */}

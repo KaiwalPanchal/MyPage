@@ -5,17 +5,19 @@ import React, { useEffect, useRef, useState } from "react";
 const METRICS_DATA = [
   {
     val: "4",
-    label: "Stage",
-    desc: "News intelligence pipeline with automated\nPESTEL clustering & brandOS ingestion",
+    label: "Stages",
+    desc: "Autonomous intelligence pipeline with automated\nPESTEL clustering & brandOS ingestion",
     delay: "0.00s",
     labelDelay: "0.20s",
+    labelOffset: "6.5rem",
   },
   {
     val: "3",
-    label: "Tier",
+    label: "Tiers",
     desc: "Deterministic source-quote verification\nengine eliminating LLM hallucinations",
     delay: "0.12s",
     labelDelay: "0.32s",
+    labelOffset: "6.5rem",
   },
   {
     val: "<1s",
@@ -23,6 +25,7 @@ const METRICS_DATA = [
     desc: "Sub-second production inference via\nopen-weights Gemma & Claude Haiku",
     delay: "0.24s",
     labelDelay: "0.44s",
+    labelOffset: "12rem",
   },
   {
     val: "100k+",
@@ -30,6 +33,7 @@ const METRICS_DATA = [
     desc: "Extracted across municipal vector CAD drawings,\nzoning PDFs & unstructured feeds",
     delay: "0.36s",
     labelDelay: "0.56s",
+    labelOffset: "16.5rem",
   },
 ];
 
@@ -47,7 +51,7 @@ export default function DemoMetrics() {
           setInView(true);
         }
       },
-      { threshold: 0.25 }
+      { threshold: 0.15 }
     );
     observer.observe(el);
     return () => observer.disconnect();
@@ -59,35 +63,37 @@ export default function DemoMetrics() {
       className={`DemoMetrics-metrics ${inView ? "DemoMetrics-inView" : ""}`}
       id="metrics"
     >
-      {METRICS_DATA.map((item, idx) => (
-        <div key={idx} className="DemoMetrics-card" data-interactive="true">
-          <div className="DemoMetrics-valueWrap">
-            <p className="DemoMetrics-value">
-              <span
-                className="DemoMetrics-slide"
-                style={{ transitionDelay: item.delay }}
+      <div className="DemoMetrics-inner">
+        {METRICS_DATA.map((item, idx) => (
+          <div key={idx} className="DemoMetrics-card" data-interactive="true">
+            <div className="DemoMetrics-valueWrap">
+              <p className="DemoMetrics-value">
+                <span
+                  className="DemoMetrics-slide"
+                  style={{ transitionDelay: item.delay }}
+                >
+                  {item.val}
+                </span>
+              </p>
+              <p
+                className="DemoMetrics-valueLabel"
+                style={{
+                  left: item.labelOffset,
+                  top: "0.625rem",
+                }}
               >
-                {item.val}
-              </span>
-            </p>
-            <p
-              className="DemoMetrics-valueLabel"
-              style={{
-                left: item.val.length > 2 ? "13rem" : "9.5rem",
-                top: "0.75rem",
-              }}
-            >
-              <span
-                className="DemoMetrics-slide"
-                style={{ transitionDelay: item.labelDelay }}
-              >
-                {item.label}
-              </span>
-            </p>
+                <span
+                  className="DemoMetrics-slide"
+                  style={{ transitionDelay: item.labelDelay }}
+                >
+                  {item.label}
+                </span>
+              </p>
+            </div>
+            <p className="DemoMetrics-desc">{item.desc}</p>
           </div>
-          <p className="DemoMetrics-desc">{item.desc}</p>
-        </div>
-      ))}
+        ))}
+      </div>
     </section>
   );
 }
