@@ -2,6 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Geist } from "next/font/google"
 import "./globals.css"
+import "./mypagedemo/mypagedemo.css"
 import { Analytics } from "@vercel/analytics/next"
 
 const geist = Geist({
@@ -12,8 +13,8 @@ const geist = Geist({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://KaiwalPanchal.github.io/MyPage'),
-  title: "Kaiwal Panchal - Machine Learning/AI engineer",
-  description: "Machine Learning/AI engineer specialized in intelligent systems, CV, NLP, and scalable deployment.",
+  title: "Kaiwal Panchal — Forward Deployed & Applied AI Engineer",
+  description: "Applied AI Engineer & Lead Engineer at Sylvr. Building production LLM systems, deterministic grounding guardrails, and cost-aware multi-agent architectures.",
   generator: "v0.app",
   icons: {
     icon: "/favicon.ico",

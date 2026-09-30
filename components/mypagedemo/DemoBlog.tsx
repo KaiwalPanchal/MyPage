@@ -78,10 +78,10 @@ export default function DemoBlog({ posts = DEFAULT_POSTS }: { posts?: BlogPostIt
         <div className="DemoBlog-header">
           <div className="DemoBlog-headerCol">
             <h2 className="DemoBlog-title">
-              Technical <em>Articles</em>
+              My 2 <em>Cents</em>
             </h2>
             <p className="DemoBlog-subtitle">
-              Deep dives into applied AI pipelines, spatial geometry extraction, and graphics engineering
+              Opinions, deep dives, and war stories from building AI pipelines, spatial systems, and creative interfaces
             </p>
           </div>
           <Link href="/blog" className="DemoBlog-viewAll" data-cursor-label="ALL">

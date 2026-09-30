@@ -47,13 +47,13 @@ vec3 field(vec2 uv, float theme){
   colG=mix(colG,gB,0.07*smoothstep(0.65,1.0,f));
   colG=mix(colG,vec3(0.0),smoothstep(0.10,0.0,f)*0.2);
 
-  // Theme 0.0 = Frosted Metallic Silver with faint ice-blue hint (Prism signature #a8b8c8 / #e8f0f8)
+  // Theme 0.0 = Frosted Metallic Silver with faint ice-blue hint (calibrated for high text contrast)
   vec3 s0=vec3(0.015, 0.022, 0.035); // Deep slate obsidian
-  vec3 s1=vec3(0.26, 0.32, 0.40);    // Frosted brushed steel silver with cool ice-blue hint
-  vec3 s2=vec3(0.88, 0.92, 0.97);    // Luminous platinum white with ice reflection
+  vec3 s1=vec3(0.20, 0.25, 0.32);    // Frosted brushed steel silver with cool ice-blue hint
+  vec3 s2=vec3(0.65, 0.72, 0.80);    // Luminous platinum silver highlight (calibrated contrast floor)
   vec3 sA=vec3(0.05, 0.07, 0.10);    // Deep titanium shadow
-  vec3 sB=vec3(0.62, 0.70, 0.78);    // Brushed silver caustic wave highlight
-  vec3 sC=vec3(0.18, 0.22, 0.27);    // Mid chrome
+  vec3 sB=vec3(0.48, 0.55, 0.64);    // Brushed silver caustic wave highlight
+  vec3 sC=vec3(0.14, 0.18, 0.23);    // Mid chrome
 
   vec3 colS=mix(s0,s1,smoothstep(0.15,0.6,f));
   colS=mix(colS,s2,smoothstep(0.72,1.02,f));
@@ -190,22 +190,6 @@ export default function DemoShader({
         gl.uniform1f(uTheme, theme === "green" ? 1.0 : 0.0);
 
         gl.drawArrays(gl.TRIANGLES, 0, 3);
-
-        const parent = canvas.parentElement;
-        if (parent) {
-          const t = (prefersReduced ? 0.4 : elapsed) * 0.3;
-          const mX = curMouse[0] - 0.5;
-          const phase = t * 0.7 + mX * 2.0;
-          const yr = Math.sin(0.5 * 2.3 - t * 0.6) + 0.6 * Math.sin(0.5 * 1.1 + t * 0.35 + 1.7);
-          const rawX1 = (Math.PI * 0.5 - yr * 1.4 - phase) / 8.5;
-          const waveX1 = ((rawX1 % 1.0) + 1.0) % 1.0;
-          const waveX2 = (waveX1 + 0.739) % 1.0;
-
-          parent.style.setProperty("--wave-x1", `${(waveX1 * 100).toFixed(1)}%`);
-          parent.style.setProperty("--wave-x2", `${(waveX2 * 100).toFixed(1)}%`);
-          parent.style.setProperty("--mouse-x", `${(curMouse[0] * 100).toFixed(1)}%`);
-          parent.style.setProperty("--mouse-y", `${((1.0 - curMouse[1]) * 100).toFixed(1)}%`);
-        }
       }
       animationFrameId = requestAnimationFrame(render);
     };

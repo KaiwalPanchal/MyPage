@@ -354,77 +354,15 @@
   justify-content: center;
 }
 
-/* Dual-Layer Text Stack: Base Frosted Silver + Inverted Obsidian Masked to Highlight */
-.DemoHero-textStack {
-  display: grid;
-  grid-template-columns: 100%;
-  grid-template-rows: 100%;
-  position: relative;
-  width: 100%;
-}
-
-.DemoHero-textLayer {
-  grid-column: 1;
-  grid-row: 1;
-  width: 100%;
-}
-
-.DemoHero-layerBase {
-  position: relative;
-  z-index: 1;
-}
-
-.DemoHero-layerInverted {
-  position: relative;
-  z-index: 2;
+/* Solid frosted panel — tight behind text block only, no bloom or spread */
+.DemoHero-ambientScrim {
+  position: absolute;
+  inset: -2rem -3rem;
+  border-radius: 1.5rem;
+  background: rgba(3, 5, 8, 0.68);
+  backdrop-filter: blur(2px);
   pointer-events: none;
-  user-select: none;
-  -webkit-mask-image:
-    radial-gradient(
-      ellipse 440px 260px at var(--mouse-x, 72%) var(--mouse-y, 50%),
-      #000000 0%,
-      rgba(0, 0, 0, 0.8) 40%,
-      transparent 80%
-    ),
-    linear-gradient(
-      90deg,
-      transparent calc(var(--wave-x1, 35%) - 18%),
-      rgba(0, 0, 0, 0.45) calc(var(--wave-x1, 35%) - 9%),
-      #000000 var(--wave-x1, 35%),
-      rgba(0, 0, 0, 0.45) calc(var(--wave-x1, 35%) + 9%),
-      transparent calc(var(--wave-x1, 35%) + 18%)
-    ),
-    linear-gradient(
-      90deg,
-      transparent calc(var(--wave-x2, 80%) - 18%),
-      rgba(0, 0, 0, 0.45) calc(var(--wave-x2, 80%) - 9%),
-      #000000 var(--wave-x2, 80%),
-      rgba(0, 0, 0, 0.45) calc(var(--wave-x2, 80%) + 9%),
-      transparent calc(var(--wave-x2, 80%) + 18%)
-    );
-  mask-image:
-    radial-gradient(
-      ellipse 440px 260px at var(--mouse-x, 72%) var(--mouse-y, 50%),
-      #000000 0%,
-      rgba(0, 0, 0, 0.8) 40%,
-      transparent 80%
-    ),
-    linear-gradient(
-      90deg,
-      transparent calc(var(--wave-x1, 35%) - 18%),
-      rgba(0, 0, 0, 0.45) calc(var(--wave-x1, 35%) - 9%),
-      #000000 var(--wave-x1, 35%),
-      rgba(0, 0, 0, 0.45) calc(var(--wave-x1, 35%) + 9%),
-      transparent calc(var(--wave-x1, 35%) + 18%)
-    ),
-    linear-gradient(
-      90deg,
-      transparent calc(var(--wave-x2, 80%) - 18%),
-      rgba(0, 0, 0, 0.45) calc(var(--wave-x2, 80%) - 9%),
-      #000000 var(--wave-x2, 80%),
-      rgba(0, 0, 0, 0.45) calc(var(--wave-x2, 80%) + 9%),
-      transparent calc(var(--wave-x2, 80%) + 18%)
-    );
+  z-index: 0;
 }
 
 .DemoHero-banner {
@@ -435,6 +373,7 @@
   flex-direction: column;
   gap: 0.4rem;
   position: relative;
+  z-index: 1;
   pointer-events: none;
 }
 
@@ -447,23 +386,23 @@
   padding-bottom: 0.1em;
 }
 
-/* Base layer text: Crisp luminous frosted silver/white on dark background */
-.DemoHero-layerBase .DemoHero-lineSans {
+/* Solid, monolithic, crystal-clear typography */
+.DemoHero-lineSans {
   font-family: var(--font-sans);
   font-weight: 300;
   color: #ffffff;
-  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.75);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8), 0 4px 20px rgba(0, 0, 0, 0.9);
 }
 
-.DemoHero-layerBase .DemoHero-lineDisplay {
+.DemoHero-lineDisplay {
   font-family: var(--font-display);
   font-style: italic;
   font-weight: 400;
   color: #f8fafc;
-  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.75);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8), 0 4px 20px rgba(0, 0, 0, 0.9);
 }
 
-.DemoHero-layerBase .DemoHero-scrambleWord {
+.DemoHero-scrambleWord {
   display: inline-block;
   color: #ffffff;
   font-style: normal;
@@ -472,57 +411,11 @@
   letter-spacing: 0.03em;
   transition: transform 0.2s ease-out;
   pointer-events: auto;
-  text-shadow: 0 2px 24px rgba(255, 255, 255, 0.18);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8), 0 4px 24px rgba(255, 255, 255, 0.2);
 }
 
-.DemoHero-layerBase .DemoHero-scrambleWord:hover {
+.DemoHero-scrambleWord:hover {
   transform: scale(1.03);
-}
-
-.DemoHero-layerBase .DemoHero-tagline {
-  color: #c4d3e2;
-  font-size: 1.125rem;
-  font-weight: 300;
-  line-height: 1.65;
-  max-width: 42rem;
-  letter-spacing: -0.01em;
-  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.85);
-}
-
-/* Inverted layer text: Deep obsidian on luminous caustic wave highlight */
-.DemoHero-layerInverted .DemoHero-lineSans {
-  font-family: var(--font-sans);
-  font-weight: 300;
-  color: #030508;
-  text-shadow: 0 0 1px rgba(255, 255, 255, 0.35);
-}
-
-.DemoHero-layerInverted .DemoHero-lineDisplay {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 400;
-  color: #050810;
-  text-shadow: 0 0 1px rgba(255, 255, 255, 0.35);
-}
-
-.DemoHero-layerInverted .DemoHero-scrambleWord {
-  display: inline-block;
-  color: #020407;
-  font-style: normal;
-  font-family: var(--font-sans);
-  font-weight: 500;
-  letter-spacing: 0.03em;
-  text-shadow: 0 0 1px rgba(255, 255, 255, 0.4);
-}
-
-.DemoHero-layerInverted .DemoHero-tagline {
-  color: #060a12;
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1.65;
-  max-width: 42rem;
-  letter-spacing: -0.01em;
-  text-shadow: 0 0 1px rgba(255, 255, 255, 0.25);
 }
 
 .DemoHero-subRow {
@@ -532,6 +425,17 @@
   margin-top: 3.5rem;
   gap: 2.5rem;
   position: relative;
+  z-index: 1;
+}
+
+.DemoHero-tagline {
+  color: #c4d3e2;
+  font-size: 1.125rem;
+  font-weight: 300;
+  line-height: 1.65;
+  max-width: 42rem;
+  letter-spacing: -0.01em;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9), 0 2px 14px rgba(0, 0, 0, 0.95);
 }
 
 .DemoHero-cta {

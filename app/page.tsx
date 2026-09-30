@@ -1,7 +1,5 @@
-import { getLatestPosts } from "@/lib/blog"
-import HomeClient from "@/components/HomeClient"
+import PortfolioView from "@/components/mypagedemo/PortfolioView";
 
-export default async function Home() {
-  const posts = getLatestPosts(4)
-  return <HomeClient posts={posts} />
+export default function Home() {
+  return <PortfolioView />;
 }
