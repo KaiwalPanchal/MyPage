@@ -351,7 +351,22 @@
   justify-content: center;
 }
 
-/* kstoimenov pattern: banner fills hero, lines float absolutely â€” no scrim, no panel */
+/* Name nameplate - top left, always visible */
+.DemoHero-name {
+  position: absolute;
+  top: 4rem;
+  left: 10%;
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 0.875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-headline);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* kstoimenov pattern: banner fills hero, lines float absolutely - no scrim, no panel */
 .DemoHero-banner {
   color: var(--text-headline);
   white-space: nowrap;
@@ -362,7 +377,7 @@
   pointer-events: none;
 }
 
-/* lineSans / lineDisplay â€” positioned via --l / --t CSS custom props */
+/* lineSans / lineDisplay - positioned via --l / --t CSS custom props */
 .DemoHero-lineSans {
   left: var(--ml, var(--l));
   top: var(--mt, var(--t));
@@ -382,11 +397,12 @@
   overflow: hidden;
 }
 
-/* Scramble word hover */
+/* Scramble - uppercase, clickable */
 .DemoHero-scrambleWord {
   cursor: pointer;
   pointer-events: auto;
   user-select: none;
+  letter-spacing: 0.02em;
   transition: opacity 0.15s;
 }
 
@@ -394,12 +410,12 @@
   opacity: 0.85;
 }
 
-/* CTA pill â€” same as kstoimenov: thin white border, transparent bg, flips on hover */
+/* CTA pill */
 .DemoHero-cta {
   display: inline-flex;
   position: absolute;
-  top: 37rem;
-  left: 79%;
+  top: 43.5rem;
+  left: 72%;
   transform: translate(-50%);
   z-index: 10;
   text-decoration: none;
@@ -432,17 +448,17 @@
   transform: scale(0.97);
 }
 
-/* Taglines â€” bottom corners, low opacity, blur-in on entry */
+/* Taglines - bottom corners */
 .DemoHero-tagline {
-  text-align: center;
+  text-align: left;
   color: var(--text-headline);
   opacity: 0.7;
   will-change: filter, opacity;
-  font-size: 1.125rem;
+  font-size: 1.05rem;
   font-weight: 300;
-  line-height: 1.625rem;
+  line-height: 1.6;
   position: absolute;
-  top: 50rem;
+  top: 53rem;
 }
 
 .DemoHero-taglineLeft {
@@ -452,8 +468,8 @@
 }
 
 .DemoHero-taglineRight {
-  width: 16.5rem;
-  left: 60.5%;
+  width: 18rem;
+  left: 60%;
 }
 
 @media (max-width: 768px) {
@@ -461,16 +477,21 @@
     height: 100svh;
     min-height: 640px;
   }
-  .DemoHero-banner {
-    font-size: 45px;
+  .DemoHero-name {
+    font-size: 11px;
+    top: 56px;
+    left: 16px;
   }
-  .DemoHero-banner p:first-child  { --ml: calc(50% - 164px); --mt: 192px; }
-  .DemoHero-banner p:nth-child(2) { --ml: 180px; --mt: 240px; }
-  .DemoHero-banner p:nth-child(3) { --ml: 16px;  --mt: 292px; }
-  .DemoHero-banner p:nth-child(4) { --ml: 80px;  --mt: 344px; }
+  .DemoHero-banner {
+    font-size: 36px;
+  }
+  .DemoHero-banner p:nth-child(1) { --ml: 16px;             --mt: 148px; }
+  .DemoHero-banner p:nth-child(2) { --ml: calc(50% - 70px); --mt: 196px; }
+  .DemoHero-banner p:nth-child(3) { --ml: calc(50% - 40px); --mt: 246px; }
+  .DemoHero-banner p:nth-child(4) { --ml: 16px;             --mt: 246px; }
 
   .DemoHero-cta {
-    top: 460px;
+    top: 360px;
     left: 16px;
     right: 16px;
     transform: none;
@@ -485,23 +506,21 @@
     font-size: 18px;
   }
   .DemoHero-tagline {
-    font-size: 14px;
-    line-height: 1.4;
+    font-size: 13px;
+    line-height: 1.45;
   }
   .DemoHero-taglineLeft {
-    width: 220px;
-    top: 590px;
+    width: 210px;
+    top: 490px;
     left: 16px;
   }
   .DemoHero-taglineRight {
     width: 160px;
-    top: 648px;
+    top: 560px;
     right: 16px;
     left: auto;
   }
 }
-
-
 /* ==========================================================================
    Effect 2: About Section (Fluid Semantic Flow â€” 100% Collision-Free)
    ========================================================================== */
