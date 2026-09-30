@@ -1,4 +1,4 @@
-/* /mypagedemo Scoped Design System & Typography */
+﻿/* /mypagedemo Scoped Design System & Typography */
 /* Theme: Frosted Metallic Silver with a subtle hint of ice-blue */
 
 @font-face {
@@ -351,7 +351,7 @@
   justify-content: center;
 }
 
-/* kstoimenov pattern: banner fills hero, lines float absolutely — no scrim, no panel */
+/* kstoimenov pattern: banner fills hero, lines float absolutely â€” no scrim, no panel */
 .DemoHero-banner {
   color: var(--text-headline);
   white-space: nowrap;
@@ -362,7 +362,7 @@
   pointer-events: none;
 }
 
-/* lineSans / lineDisplay — positioned via --l / --t CSS custom props */
+/* lineSans / lineDisplay â€” positioned via --l / --t CSS custom props */
 .DemoHero-lineSans {
   left: var(--ml, var(--l));
   top: var(--mt, var(--t));
@@ -394,7 +394,7 @@
   opacity: 0.85;
 }
 
-/* CTA pill — same as kstoimenov: thin white border, transparent bg, flips on hover */
+/* CTA pill â€” same as kstoimenov: thin white border, transparent bg, flips on hover */
 .DemoHero-cta {
   display: inline-flex;
   position: absolute;
@@ -432,7 +432,7 @@
   transform: scale(0.97);
 }
 
-/* Taglines — bottom corners, low opacity, blur-in on entry */
+/* Taglines â€” bottom corners, low opacity, blur-in on entry */
 .DemoHero-tagline {
   text-align: center;
   color: var(--text-headline);
@@ -503,7 +503,7 @@
 
 
 /* ==========================================================================
-   Effect 2: About Section (Fluid Semantic Flow — 100% Collision-Free)
+   Effect 2: About Section (Fluid Semantic Flow â€” 100% Collision-Free)
    ========================================================================== */
 .DemoAbout-about {
   background: var(--bg);
@@ -1565,39 +1565,57 @@
 /* ==========================================================================
    Effect 5: Footer & Back-To-Top Button
    ========================================================================== */
+/* ==========================================================================
+   Footer (Connect) â€” Card Deck matching My 2 Cents
+   ========================================================================== */
 .DemoFooter-footer {
   background: var(--bg);
-  justify-content: center;
-  height: 60rem;
-  margin-bottom: 6.25rem;
-  display: flex;
+  padding: 8rem 2rem 4rem;
   position: relative;
 }
 
 .DemoFooter-inner {
-  width: 120rem;
-  height: 100%;
-  position: relative;
+  max-width: 90rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+/* Header row */
+.DemoFooter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.DemoFooter-headerCol {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .DemoFooter-headingMask {
-  position: absolute;
-  top: 5.5rem;
-  left: 17.125rem;
   overflow: hidden;
 }
 
 .DemoFooter-heading {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
+  font-weight: 300;
   color: var(--text-headline);
-  white-space: nowrap;
-  will-change: transform;
-  font-size: 10.625rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.35;
+  font-size: clamp(2.75rem, 5vw, 5rem);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
   transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
   transform: translateY(120%);
+}
+
+.DemoFooter-heading em {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
 }
 
 .DemoFooter-inView .DemoFooter-heading {
@@ -1605,14 +1623,11 @@
 }
 
 .DemoFooter-mission {
-  width: 31rem;
   color: var(--text-large);
-  font-size: 1.125rem;
+  font-size: 1.05rem;
   font-weight: 300;
-  line-height: 1.625rem;
-  position: absolute;
-  top: 24.1875rem;
-  left: 17.125rem;
+  line-height: 1.65;
+  max-width: 32rem;
 }
 
 .DemoFooter-writeLink {
@@ -1629,125 +1644,285 @@
   opacity: 0.9;
 }
 
+/* CTA pill */
 .DemoFooter-contact {
-  width: 13.5rem;
-  height: 4.5625rem;
-  color: var(--text-headline);
-  white-space: nowrap;
-  border: 0.09375rem solid #fff;
-  border-radius: 4.125rem;
-  justify-content: center;
+  display: inline-flex;
   align-items: center;
   gap: 0.625rem;
-  padding: 1.5rem 1.5rem 1.375rem;
-  font-size: 1.35rem;
+  white-space: nowrap;
+  color: var(--text-headline);
+  border: 0.09375rem solid rgba(255, 255, 255, 0.7);
+  border-radius: 4.125rem;
+  padding: 1.25rem 1.75rem;
+  font-size: 1.15rem;
   font-weight: 300;
-  transition: background 0.3s, color 0.3s, border-color 0.3s;
-  display: flex;
-  position: absolute;
-  top: 23.5rem;
-  left: 90.125rem;
   text-decoration: none;
+  flex-shrink: 0;
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
 }
 
 .DemoFooter-contact:hover {
   color: #05070a;
-  background: var(--text-headline);
+  background: #fff;
+  border-color: #fff;
 }
 
 .DemoFooter-contactArrow {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.25rem;
+  height: 1.25rem;
   transition: transform 0.3s;
 }
 
 .DemoFooter-contact:hover .DemoFooter-contactArrow {
-  transform: translate(0.1875rem, -0.1875rem);
+  transform: translate(0.2rem, -0.2rem);
 }
 
-.DemoFooter-socialRow {
-  border: 0.0417rem solid var(--stroke);
-  border-radius: 0.78125rem;
-  display: flex;
-  position: absolute;
-  top: 31.25rem;
-  left: 13.3125rem;
-  overflow: hidden;
+/* Card grid â€” same structure as DemoBlog */
+.DemoFooter-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--stroke);
+  border-bottom: 1px solid var(--stroke);
 }
 
 .DemoFooter-card {
-  border-left: 0.0417rem solid var(--stroke);
+  border-right: 1px solid var(--stroke);
+  padding: 4rem 2.5rem 3rem;
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 18.6875rem;
-  height: 18.6875rem;
-  padding: 3.1667rem;
-  transition: background-color 0.3s, border-color 0.3s;
-  display: flex;
+  gap: 2.5rem;
   text-decoration: none;
+  color: inherit;
+  transition: background-image 0.35s ease, border-color 0.35s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .DemoFooter-card:first-child {
-  border-left: none;
+  border-left: 1px solid var(--stroke);
 }
 
-.DemoFooter-card:hover {
-  background-image: var(--accent-noise), var(--accent-grad);
-  background-blend-mode: overlay, normal;
-  background-size: 200px 200px, cover;
+@media (hover: hover) and (pointer: fine) {
+  .DemoFooter-card:hover {
+    background-image: var(--accent-noise), var(--accent-grad);
+    background-blend-mode: overlay, normal;
+    background-size: 200px 200px, cover;
+    border-color: rgba(255, 255, 255, 0.4);
+  }
 }
 
-.DemoFooter-cardIcon {
-  color: var(--text-headline);
-  width: 2.5rem;
-  height: 2.75rem;
-  transition: color 0.3s, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+/* Index row */
+.DemoFooter-indexRow {
   display: flex;
-  align-items: center;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
-.DemoFooter-card:hover .DemoFooter-cardIcon {
-  color: #05070a;
-  transform: scale(1.1);
+.DemoFooter-valueWrap {
+  position: relative;
+  display: flex;
+  align-items: baseline;
 }
 
-.DemoFooter-cardLabel {
-  letter-spacing: 0.01125rem;
-  color: var(--text-headline);
-  font-size: 1.1rem;
+.DemoFooter-indexNum {
+  font-size: clamp(4rem, 5.5vw, 6.5rem);
   font-weight: 300;
-  line-height: 1.21875rem;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  color: var(--text-headline);
+  overflow: hidden;
   transition: color 0.3s;
 }
 
-.DemoFooter-card:hover .DemoFooter-cardLabel {
-  color: #05070a;
+.DemoFooter-valueLabel {
+  position: absolute;
+  top: 0.4rem;
+  left: 7.5rem;
+  white-space: nowrap;
+  font-size: 0.8rem;
+  font-family: var(--font-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent-bright);
+  overflow: hidden;
+  transition: color 0.3s;
+}
+
+.DemoFooter-cardIconWrap {
+  color: var(--text-headline);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  transition: color 0.3s, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Staggered slide mechanism â€” identical to DemoBlog */
+.DemoFooter-slide {
+  will-change: transform;
+  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  display: inline-block;
+  transform: translateY(115%);
+}
+
+.DemoFooter-inView .DemoFooter-slide {
+  transform: translateY(0);
+}
+
+/* Content block */
+.DemoFooter-contentBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.DemoFooter-titleWrap,
+.DemoFooter-descWrap {
+  overflow: hidden;
+}
+
+.DemoFooter-cardTitle {
+  font-size: clamp(1.5rem, 2vw, 2rem);
+  font-weight: 300;
+  line-height: 1.2;
+  color: var(--text-headline);
+  letter-spacing: -0.02em;
+  transition: color 0.3s;
+}
+
+.DemoFooter-cardHandle {
+  font-size: 0.9rem;
+  color: var(--accent-bright);
+  font-family: var(--font-sans);
+  letter-spacing: 0.02em;
+  margin-bottom: 0.5rem;
+  transition: color 0.3s;
+}
+
+.DemoFooter-cardExcerpt {
+  color: var(--text-large);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  transition: color 0.3s;
+}
+
+/* Card footer â€” tags + arrow circle */
+.DemoFooter-cardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--stroke);
+  padding-top: 1.25rem;
+  transition: border-color 0.3s;
+}
+
+.DemoFooter-tagGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.DemoFooter-techTag {
+  font-size: 0.75rem;
+  color: var(--text-large);
+  border: 1px solid var(--stroke-bright);
+  padding: 0.25rem 0.6rem;
+  border-radius: 9999px;
+  background: rgba(18, 24, 34, 0.5);
+  transition: all 0.3s;
+}
+
+.DemoFooter-readMore {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--accent-bright);
+  font-size: 0.9rem;
+  transition: color 0.3s;
+  white-space: nowrap;
+}
+
+.DemoFooter-readLabel {
   font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+.DemoFooter-arrowCircle {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: 1px solid var(--stroke-bright);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease-out;
+  flex-shrink: 0;
+}
+
+/* Hover inversion â€” same as DemoBlog */
+@media (hover: hover) and (pointer: fine) {
+  .DemoFooter-card:hover .DemoFooter-indexNum,
+  .DemoFooter-card:hover .DemoFooter-valueLabel,
+  .DemoFooter-card:hover .DemoFooter-cardHandle,
+  .DemoFooter-card:hover .DemoFooter-cardTitle,
+  .DemoFooter-card:hover .DemoFooter-readMore {
+    color: #05070a;
+  }
+  .DemoFooter-card:hover .DemoFooter-cardExcerpt {
+    color: #1a222d;
+  }
+  .DemoFooter-card:hover .DemoFooter-cardIconWrap {
+    color: #05070a;
+    transform: scale(1.1);
+  }
+  .DemoFooter-card:hover .DemoFooter-cardFooter {
+    border-color: rgba(5, 7, 10, 0.2);
+  }
+  .DemoFooter-card:hover .DemoFooter-techTag {
+    border-color: rgba(5, 7, 10, 0.3);
+    background: rgba(255, 255, 255, 0.3);
+    color: #05070a;
+  }
+  .DemoFooter-card:hover .DemoFooter-arrowCircle {
+    border-color: rgba(5, 7, 10, 0.4);
+    background: #05070a;
+    color: var(--silver-bright);
+    transform: translate(2px, -2px);
+  }
+}
+
+/* Bottom bar */
+.DemoFooter-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+  padding-top: 1rem;
+  border-top: 1px solid var(--stroke);
 }
 
 .DemoFooter-copyright {
   color: var(--text-body);
-  white-space: nowrap;
-  font-size: 1.125rem;
+  font-size: 1rem;
   font-weight: 300;
-  line-height: normal;
-  position: absolute;
-  top: 55.125rem;
-  left: 17.125rem;
 }
 
 .DemoFooter-legal {
-  color: var(--text-body);
-  white-space: nowrap;
+  display: flex;
   align-items: center;
   gap: 1.5rem;
-  font-size: 1.125rem;
+  color: var(--text-body);
+  font-size: 1rem;
   font-weight: 300;
-  line-height: normal;
-  display: flex;
-  position: absolute;
-  top: 55.125rem;
-  left: 84.6875rem;
+}
+
+.DemoFooter-legal a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s;
 }
 
 .DemoFooter-legal a:hover {
@@ -1755,121 +1930,85 @@
 }
 
 .DemoFooter-logoBtn {
-  width: 3.5rem;
-  height: 3.5rem;
+  width: 3rem;
+  height: 3rem;
   border-radius: 50%;
   border: 1px solid var(--stroke);
   background: rgba(18, 24, 34, 0.6);
-  position: absolute;
-  top: 54.25rem;
-  left: 50%;
-  transform: translate(-50%);
   display: flex;
   align-items: center;
   justify-content: center;
   transition: background-color 0.3s, border-color 0.3s, transform 0.2s;
   color: var(--text-headline);
+  flex-shrink: 0;
 }
 
 .DemoFooter-logoBtn:hover {
   background: var(--accent-bright);
   border-color: var(--accent-bright);
   color: #05070a;
-  transform: translate(-50%) translateY(-3px);
+  transform: translateY(-3px);
 }
 
 .DemoFooter-arrowUp {
-  width: 1.5rem;
-  height: 1.5rem;
-  transition: transform 0.2s;
+  width: 1.25rem;
+  height: 1.25rem;
 }
 
-@media (max-width: 768px) {
-  .DemoFooter-footer {
-    height: auto;
-    margin-bottom: 40px;
-  }
-  .DemoFooter-inner {
-    flex-direction: column;
-    width: 100%;
-    height: auto;
-    padding: 48px 16px 96px;
-    display: flex;
-  }
-  .DemoFooter-headingMask {
-    position: static;
-  }
-  .DemoFooter-heading {
-    font-size: 44px;
-    line-height: normal;
-  }
-  .DemoFooter-mission {
-    width: 100%;
-    margin-top: 20px;
-    font-size: 16px;
-    line-height: 24px;
-    position: static;
-  }
-  .DemoFooter-contact {
-    gap: 10px;
-    width: 100%;
-    height: 54px;
-    margin-top: 20px;
-    font-size: 18px;
-    position: static;
-  }
-  .DemoFooter-socialRow {
-    border: none;
-    border-radius: 0;
+@media (max-width: 900px) {
+  .DemoFooter-grid {
     grid-template-columns: 1fr 1fr;
-    margin-top: 36px;
-    display: grid;
-    position: static;
-    overflow: visible;
   }
   .DemoFooter-card {
-    border: 0.0625rem solid var(--stroke);
-    width: auto;
-    height: 140px;
-    padding: 16px;
-  }
-  .DemoFooter-card:first-child {
-    border-left: 0.0625rem solid var(--stroke);
-    border-top-left-radius: 12px;
-  }
-  .DemoFooter-card:nth-child(2) {
-    border-top-right-radius: 12px;
+    border-left: 1px solid var(--stroke);
+    border-bottom: 1px solid var(--stroke);
+    padding: 3rem 1.5rem 2rem;
   }
   .DemoFooter-card:nth-child(2n) {
-    border-left: none;
+    border-right: none;
   }
   .DemoFooter-card:nth-child(n + 3) {
     border-top: none;
   }
-  .DemoFooter-cardIcon {
-    width: 28px;
-    height: 28px;
+}
+
+@media (max-width: 640px) {
+  .DemoFooter-footer {
+    padding: 5rem 1.25rem 3rem;
   }
-  .DemoFooter-logoBtn {
-    order: 5;
-    align-self: center;
-    margin-top: 40px;
-    position: relative;
-    top: auto;
-    left: auto;
-    transform: none;
+  .DemoFooter-grid {
+    grid-template-columns: 1fr;
   }
-  .DemoFooter-copyright {
-    text-align: center;
-    white-space: normal;
-    order: 6;
-    margin-top: 28px;
-    position: static;
+  .DemoFooter-card {
+    border-right: 1px solid var(--stroke);
+    border-left: 1px solid var(--stroke);
+    border-bottom: 1px solid var(--stroke);
+    border-top: none;
+    padding: 2.5rem 1.25rem 2rem;
+    gap: 2rem;
+  }
+  .DemoFooter-card:first-child {
+    border-top: 1px solid var(--stroke);
+  }
+  .DemoFooter-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .DemoFooter-contact {
+    width: 100%;
+    justify-content: center;
+  }
+  .DemoFooter-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
   }
   .DemoFooter-legal {
-    order: 7;
-    justify-content: center;
-    margin-top: 14px;
-    position: static;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .DemoFooter-logoBtn {
+    align-self: center;
   }
 }
+
