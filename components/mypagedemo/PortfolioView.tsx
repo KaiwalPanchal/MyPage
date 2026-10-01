@@ -10,18 +10,20 @@ import DemoBlog from "@/components/mypagedemo/DemoBlog";
 import DemoParallaxQuote from "@/components/mypagedemo/DemoParallaxQuote";
 import DemoFooterReveal from "@/components/mypagedemo/DemoFooterReveal";
 import DemoFooter from "@/components/mypagedemo/DemoFooter";
+import SecretGameLayer from "@/components/circle-game/SecretGameLayer";
 
 export default function PortfolioView() {
   const [theme] = useState<"cyan" | "green">("cyan");
   const [isLoaded, setIsLoaded] = useState(false);
 
   return (
-    <div className="mypagedemo-root" data-mypage-theme={theme}>
-      {/* Fast Glowing Preloader with Upward Curtain Slide */}
-      <DemoPreloader onComplete={() => setIsLoaded(true)} />
+    <SecretGameLayer>
+      <div className="mypagedemo-root" data-mypage-theme={theme}>
+        {/* Fast Glowing Preloader with Upward Curtain Slide */}
+        <DemoPreloader onComplete={() => setIsLoaded(true)} />
 
-      {/* Precision Centered Trailing Cursor */}
-      <DemoCursor />
+        {/* Precision Centered Trailing Cursor */}
+        <DemoCursor />
 
       {/* Main Experience Flow */}
       <main>
@@ -47,5 +49,6 @@ export default function PortfolioView() {
         <DemoFooter />
       </main>
     </div>
+  </SecretGameLayer>
   );
 }

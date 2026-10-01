@@ -3,7 +3,8 @@ import type { Metadata } from "next"
 import { Geist } from "next/font/google"
 import "./globals.css"
 import "./mypagedemo/mypagedemo.css"
-import { Analytics } from "@vercel/analytics/next"
+import "lenis/dist/lenis.css"
+import SmoothScroll from "@/components/SmoothScroll"
 
 const geist = Geist({
   subsets: ["latin"],
@@ -15,7 +16,6 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://KaiwalPanchal.github.io/MyPage'),
   title: "Kaiwal Panchal — Forward Deployed & Applied AI Engineer",
   description: "Applied AI Engineer & Lead Engineer at Sylvr. Building production LLM systems, deterministic grounding guardrails, and cost-aware multi-agent architectures.",
-  generator: "v0.app",
   icons: {
     icon: "/favicon.ico",
     apple: "/apple-touch-icon.png",
@@ -31,8 +31,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${geist.variable} dark`}>
       <body className="font-sans antialiased">
-        {children}
-        <Analytics />
+        <SmoothScroll>
+          {children}
+        </SmoothScroll>
       </body>
     </html>
   )

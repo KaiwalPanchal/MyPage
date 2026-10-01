@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
+import HiddenSnackToken from "@/components/circle-game/HiddenSnackToken";
 
 const TICKS = Array.from({ length: 28 }, (_, e) => {
   const isMajor = e % 7 === 0;
@@ -240,6 +241,11 @@ export default function DemoAbout() {
           ))}
         </div>
         <div ref={railCapRef} className="DemoAbout-railCap" />
+
+        {/* Hidden Snack Token for DevTools & Curious Observers */}
+        <div style={{ position: "absolute", bottom: "-24px", left: "0", opacity: 0.6 }}>
+          <HiddenSnackToken />
+        </div>
       </div>
     </section>
   );

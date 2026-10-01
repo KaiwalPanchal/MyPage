@@ -16,7 +16,6 @@ export default function DemoCursor() {
 
     let mouseX = -100;
     let mouseY = -100;
-    let isHovering = false;
 
     // Direct hardware-accelerated positioning with exact center alignment
     const onMouseMove = (e: MouseEvent) => {
@@ -51,9 +50,8 @@ export default function DemoCursor() {
       const target = e.target as HTMLElement | null;
       if (!target) return;
 
-      const interactive = target.closest("a, button, [data-interactive]");
+      const interactive = target.closest("a, button, [data-interactive], [data-cursor-label]");
       if (interactive) {
-        isHovering = true;
         gsap.to(disc, {
           scale: 1.35,
           duration: 0.3,
@@ -73,9 +71,8 @@ export default function DemoCursor() {
       const target = e.target as HTMLElement | null;
       if (!target) return;
 
-      const interactive = target.closest("a, button, [data-interactive]");
+      const interactive = target.closest("a, button, [data-interactive], [data-cursor-label]");
       if (interactive) {
-        isHovering = false;
         gsap.to(disc, {
           scale: 1,
           duration: 0.25,

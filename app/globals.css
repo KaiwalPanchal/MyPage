@@ -120,6 +120,12 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  html.lenis,
+  html.lenis body {
+    height: auto;
+    scroll-behavior: auto !important;
+  }
 }
 
 @layer utilities {

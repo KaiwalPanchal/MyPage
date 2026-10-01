@@ -141,7 +141,7 @@
   }
 }
 
-@media (hover: none) or (pointer: coarse) {
+@media (hover: none) and (pointer: coarse) {
   .DemoCursor-wrap {
     display: none !important;
   }
@@ -227,6 +227,7 @@
   position: absolute;
   transition: opacity 0.2s, visibility 0.2s;
 }
+
 
 /* ==========================================================================
    Effect: 100-Bar Neon Preloader Overlay & Lifting Curtain

@@ -1,7 +1,9 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { portfolioData } from "@/data/portfolio";
+import FooterHiddenGlyph from "@/components/circle-game/FooterHiddenGlyph";
 
 interface SocialCard {
   index: string;
@@ -274,7 +276,10 @@ export default function DemoFooter() {
             <a href="#about">About</a>
             <a href="#works">Works</a>
             <a href="#blog">My 2 Cents</a>
+            <Link href="/archive">Archive</Link>
           </nav>
+          {/* Secret Abyss Coordinate Glyph & Circle Hiding Spot */}
+          <FooterHiddenGlyph />
           <button
             type="button"
             className="DemoFooter-logoBtn"
