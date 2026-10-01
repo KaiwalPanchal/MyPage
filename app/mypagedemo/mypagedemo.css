@@ -37,6 +37,22 @@
   line-gap-override: 0.0%;
   size-adjust: 106.63%;
 }
+@font-face {
+  font-family: 'Instrument Serif';
+  src: url(/MyPage/fonts/InstrumentSerif-Regular.woff2) format("woff2"),
+       url(/fonts/InstrumentSerif-Regular.woff2) format("woff2");
+  font-display: swap;
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Instrument Serif';
+  src: url(/MyPage/fonts/InstrumentSerif-Italic.woff2) format("woff2"),
+       url(/fonts/InstrumentSerif-Italic.woff2) format("woff2");
+  font-display: swap;
+  font-weight: 400;
+  font-style: italic;
+}
 
 :root {
   --bg: #05070a;
@@ -68,6 +84,7 @@
 
   --font-sans: "lausanne", "lausanne Fallback", system-ui, -apple-system, sans-serif;
   --font-display: "manier", "manier Fallback", Georgia, serif;
+  --font-serif: "Instrument Serif", "manier", Georgia, serif;
 }
 
 [data-mypage-theme="green"] {
@@ -272,12 +289,14 @@
 }
 
 /* ==========================================================================
-   Hero Section (kstoimenov Authentic Style & Typographic Floating Banner)
+   Hero Section (Full Viewport Height & Editorial Typographic Composition)
    ========================================================================== */
 .DemoHero-hero {
   background: var(--bg);
   isolation: isolate;
-  height: 67.5rem;
+  height: 100svh;
+  min-height: 100svh;
+  height: 100vh;
   position: relative;
   overflow: hidden;
 }
@@ -292,12 +311,14 @@
 
 .DemoHero-bottomHighlight {
   background: linear-gradient(to top, var(--bg) 5.135%, transparent);
-  height: 6.75rem;
+  height: clamp(4rem, 8vh, 6.75rem);
   position: absolute;
-  top: 60.8125rem;
+  bottom: 0;
+  top: auto;
   left: 0;
   right: 0;
   pointer-events: none;
+  z-index: 1;
 }
 
 .DemoHero-bottomFade {
@@ -309,12 +330,14 @@
     color-mix(in srgb, var(--bg) 8%, transparent) 62%,
     transparent 100%
   );
-  height: 21.375rem;
+  height: clamp(10rem, 22vh, 18rem);
   position: absolute;
-  top: 46.1875rem;
+  bottom: 0;
+  top: auto;
   left: 0;
   right: 0;
   pointer-events: none;
+  z-index: 1;
 }
 
 /* Entrance Radial Gradient Bloom (Frosted Silver) */
@@ -340,29 +363,38 @@
   filter: blur(40px);
 }
 
-/* Name in top left — kstoimenov nameplate */
+/* Name in top left — bespoke signature nameplate with editorial serif */
 .DemoHero-name {
   position: absolute;
-  top: 3.8rem;
+  top: clamp(2rem, 4.5vh, 3.5rem);
   left: 18%;
-  font-family: var(--font-sans);
-  font-weight: 300;
-  font-size: 0.95rem;
-  letter-spacing: 0.16em;
-  text-transform: lowercase;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.6rem, 2.5vw, 2.6rem);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
   color: var(--text-headline);
   overflow: hidden;
-  pointer-events: none;
-  z-index: 2;
+  pointer-events: auto;
+  z-index: 10;
   margin: 0;
+  padding-bottom: 0.25em;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+  user-select: none;
 }
 
-/* kstoimenov banner: fills hero, text lines float absolutely over shader */
+.DemoHero-name:hover {
+  color: #ffffff;
+  text-shadow: 0 0 24px rgba(255, 255, 255, 0.45);
+}
+
+/* Floating banner: fills hero, text lines float absolutely over shader */
 .DemoHero-banner {
   color: var(--text-headline);
   white-space: nowrap;
-  font-size: clamp(3rem, 4.3vw, 5.75rem);
-  line-height: normal;
+  font-size: clamp(2.4rem, 3.8vw, 5.25rem);
+  line-height: 1.15;
   position: absolute;
   inset: 0;
   pointer-events: none;
@@ -376,6 +408,7 @@
   font-weight: 300;
   position: absolute;
   overflow: hidden;
+  padding-bottom: 0.1em;
 }
 
 .DemoHero-lineDisplay {
@@ -386,6 +419,7 @@
   font-weight: 400;
   position: absolute;
   overflow: hidden;
+  padding-bottom: 0.15em;
 }
 
 /* Scramble - clickable interactive line */
@@ -401,19 +435,19 @@
   opacity: 0.85;
 }
 
-/* CTA pill — kstoimenov iconic oval pill button */
+/* CTA pill — oval pill button aligned alongside Line 5 */
 .DemoHero-cta {
   display: inline-flex;
   position: absolute;
-  top: 41.25rem;
-  left: 60%;
-  transform: translate(-50%);
+  top: clamp(21.2rem, 50vh, 34rem);
+  left: clamp(58%, 62vw, 68%);
+  transform: translateY(-50%);
   z-index: 10;
   text-decoration: none;
 }
 
 .DemoHero-ctaInner {
-  width: 13.5rem;
+  width: clamp(12rem, 14vw, 15rem);
   color: var(--text-headline);
   white-space: nowrap;
   background: transparent;
@@ -421,8 +455,8 @@
   border-radius: 4.125rem;
   justify-content: center;
   align-items: center;
-  padding: 1.5rem 1.5rem 1.375rem;
-  font-size: 1.35rem;
+  padding: clamp(0.85rem, 1.3vh, 1.35rem) clamp(1.2rem, 1.5vw, 1.8rem);
+  font-size: clamp(1.1rem, 1.25vw, 1.35rem);
   font-weight: 300;
   transition: background 0.3s, color 0.3s, transform 0.16s cubic-bezier(0.22, 1, 0.36, 1);
   display: flex;
@@ -437,41 +471,42 @@
   transform: scale(0.97);
 }
 
-/* Taglines — bottom balanced columns in kstoimenov style */
+/* Taglines — bottom balanced columns pinned above viewport fold */
 .DemoHero-tagline {
   text-align: left;
   color: var(--text-headline);
   opacity: 0.7;
   will-change: filter, opacity;
-  font-size: 1.05rem;
+  font-size: clamp(0.92rem, 1.05vw, 1.125rem);
   font-weight: 300;
-  line-height: 1.6;
+  line-height: 1.55;
   position: absolute;
-  top: 51rem;
+  bottom: clamp(1.8rem, 5vh, 3.8rem);
+  top: auto;
 }
 
 .DemoHero-taglineLeft {
   text-wrap: balance;
-  width: 23rem;
+  width: clamp(18rem, 24vw, 26rem);
   left: 18%;
 }
 
 .DemoHero-taglineRight {
-  width: 19rem;
+  width: clamp(15rem, 20vw, 22rem);
   left: 56%;
 }
 
 /* Responsive Breakpoints */
 @media (max-width: 1024px) {
   .DemoHero-banner {
-    font-size: clamp(2.4rem, 4vw, 4rem);
+    font-size: clamp(2.1rem, 3.6vw, 3.6rem);
   }
   .DemoHero-lineSans[style*="--l: 44%"],
   .DemoHero-lineDisplay[style*="--l: 44%"] {
-    --l: 38% !important;
+    --l: 36% !important;
   }
   .DemoHero-cta {
-    left: 65%;
+    left: 64%;
   }
 }
 
@@ -481,21 +516,22 @@
     min-height: 640px;
   }
   .DemoHero-name {
-    font-size: 13px;
-    top: 48px;
+    font-size: 1.45rem;
+    top: 24px;
     left: 20px;
+    padding-bottom: 4px;
   }
   .DemoHero-banner {
-    font-size: 32px;
+    font-size: clamp(24px, 6.2vw, 32px);
   }
-  .DemoHero-banner p:nth-child(1) { --ml: 20px; --mt: 110px; }
-  .DemoHero-banner p:nth-child(2) { --ml: 50px; --mt: 156px; }
-  .DemoHero-banner p:nth-child(3) { --ml: 50px; --mt: 202px; }
-  .DemoHero-banner p:nth-child(4) { --ml: 20px; --mt: 256px; }
-  .DemoHero-banner p:nth-child(5) { --ml: 20px; --mt: 298px; font-size: 24px; }
+  .DemoHero-banner p:nth-child(1) { --ml: 20px; --mt: 86px; }
+  .DemoHero-banner p:nth-child(2) { --ml: 45px; --mt: 130px; }
+  .DemoHero-banner p:nth-child(3) { --ml: 45px; --mt: 174px; }
+  .DemoHero-banner p:nth-child(4) { --ml: 20px; --mt: 226px; }
+  .DemoHero-banner p:nth-child(5) { --ml: 20px; --mt: 268px; font-size: clamp(19px, 5.2vw, 24px); }
 
   .DemoHero-cta {
-    top: 360px;
+    top: 326px;
     left: 20px;
     right: 20px;
     transform: none;
@@ -505,31 +541,33 @@
     background: #fff;
     border-radius: 66px;
     width: 100%;
-    height: 56px;
-    padding: 0 24px;
-    font-size: 18px;
+    height: 52px;
+    padding: 0 20px;
+    font-size: 17px;
   }
   .DemoHero-tagline {
     font-size: 13px;
     line-height: 1.45;
+    position: absolute;
+    bottom: auto;
   }
   .DemoHero-taglineLeft {
     width: calc(100% - 40px);
-    top: 445px;
+    top: 405px;
     left: 20px;
   }
   .DemoHero-taglineRight {
     width: calc(100% - 40px);
-    top: 515px;
+    top: 475px;
     left: 20px;
   }
   .DemoHero-bottomFade {
-    height: 340px;
+    height: 280px;
     top: auto;
     bottom: 0;
   }
   .DemoHero-bottomHighlight {
-    height: 108px;
+    height: 90px;
     top: auto;
     bottom: 0;
   }

@@ -178,7 +178,7 @@ export default function DemoHero({ theme = "cyan", isReady = true }: DemoHeroPro
         <p
           className="DemoHero-lineSans"
           data-split="true"
-          style={{ "--l": "18%", "--t": "17rem" } as React.CSSProperties}
+          style={{ "--l": "18%", "--t": "clamp(6.8rem, 16vh, 10.5rem)" } as React.CSSProperties}
         >
           Infinite agents. Infinite tokens.
         </p>
@@ -187,7 +187,7 @@ export default function DemoHero({ theme = "cyan", isReady = true }: DemoHeroPro
         <p
           className="DemoHero-lineDisplay"
           data-split="true"
-          style={{ "--l": "44%", "--t": "23rem" } as React.CSSProperties}
+          style={{ "--l": "44%", "--t": "clamp(10.2rem, 24vh, 16rem)" } as React.CSSProperties}
         >
           Eventually, one builds
         </p>
@@ -196,7 +196,7 @@ export default function DemoHero({ theme = "cyan", isReady = true }: DemoHeroPro
         <p
           className="DemoHero-lineDisplay"
           data-split="true"
-          style={{ "--l": "44%", "--t": "29rem" } as React.CSSProperties}
+          style={{ "--l": "44%", "--t": "clamp(13.6rem, 32vh, 21.5rem)" } as React.CSSProperties}
         >
           something great.
         </p>
@@ -205,7 +205,7 @@ export default function DemoHero({ theme = "cyan", isReady = true }: DemoHeroPro
         <p
           className="DemoHero-lineSans"
           data-split="true"
-          style={{ "--l": "18%", "--t": "36rem" } as React.CSSProperties}
+          style={{ "--l": "18%", "--t": "clamp(17.6rem, 41.5vh, 28rem)" } as React.CSSProperties}
         >
           Thank God
         </p>
@@ -215,7 +215,7 @@ export default function DemoHero({ theme = "cyan", isReady = true }: DemoHeroPro
           ref={scrambleRef}
           className="DemoHero-lineSans DemoHero-scrambleWord"
           data-scramble="true"
-          style={{ "--l": "18%", "--t": "42rem" } as React.CSSProperties}
+          style={{ "--l": "18%", "--t": "clamp(21.2rem, 50vh, 34rem)" } as React.CSSProperties}
           onMouseEnter={() => triggerScramble(0.5)}
           onClick={() => triggerScramble(0.5)}
           data-cursor-label="SCRAMBLE"
