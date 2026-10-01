@@ -25,12 +25,12 @@ export default function DemoHero({ theme = "cyan", isReady = true }: DemoHeroPro
   const [isScrambling, setIsScrambling] = useState(false);
   const [fontIdx, setFontIdx] = useState(0);
 
-  const triggerScramble = (duration: number = 0.9) => {
+  const triggerScramble = (duration: number = 0.8) => {
     const scrambleEl = scrambleRef.current;
     if (!scrambleEl || isScrambling) return;
     setIsScrambling(true);
-    const target = "I DON'T NEED INFINITY";
-    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_'λΣθΩ ";
+    const target = "and making the two interact.";
+    const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_'λΣθΩ .,";
     const obj = { p: 0 };
     gsap.to(obj, {
       p: 1,
@@ -75,7 +75,7 @@ export default function DemoHero({ theme = "cyan", isReady = true }: DemoHeroPro
         cta.style.transform = "none";
       }
       taglines.forEach((el) => {
-        el.style.opacity = "0.7";
+        el.style.opacity = "0.85";
         el.style.filter = "none";
       });
       return;
@@ -101,21 +101,21 @@ export default function DemoHero({ theme = "cyan", isReady = true }: DemoHeroPro
     });
 
     if (cta) gsap.set(cta, { autoAlpha: 0, scale: 0.9 });
-    taglines.forEach((t) => gsap.set(t, { autoAlpha: 0, filter: "blur(16px)" }));
+    taglines.forEach((t) => gsap.set(t, { autoAlpha: 0, filter: "blur(8px)" }));
     if (scrambleEl) gsap.set(scrambleEl, { autoAlpha: 0 });
 
     if (heroFlare) {
       gsap.fromTo(
         heroFlare,
         { opacity: 0.95, scale: 0.65 },
-        { opacity: 0, scale: 1.35, duration: 1.6, ease: "power3.out" }
+        { opacity: 0, scale: 1.35, duration: 1.5, ease: "power3.out" }
       );
     }
 
-    const tl = gsap.timeline({ delay: 0.2 });
+    const tl = gsap.timeline({ delay: 0.15 });
 
-    // Animate lines: name=0, line1=0.25, line2=0.48, line3=0.68, line4=0.88
-    const delays = [0, 0.25, 0.48, 0.68, 0.88];
+    // Animate lines: line1=0.15, line2=0.35, line3=0.55
+    const delays = [0.15, 0.35, 0.55];
     lineChars.forEach((chars, i) => {
       tl.to(
         chars,
@@ -123,36 +123,37 @@ export default function DemoHero({ theme = "cyan", isReady = true }: DemoHeroPro
           yPercent: -115,
           opacity: 1,
           ease: "power4.out",
-          duration: 0.9,
-          stagger: 0.03,
+          duration: 0.85,
+          stagger: 0.025,
           clearProps: "transform",
         },
-        delays[i] ?? 0.88
+        delays[i] ?? 0.55
       );
     });
 
-    // Intro scramble on line 5
+    // Scramble on line 4
     if (scrambleEl) {
-      tl.set(scrambleEl, { autoAlpha: 1 }, 1.05);
-      tl.add(() => triggerScramble(1.1), 1.05);
+      tl.set(scrambleEl, { autoAlpha: 1 }, 0.75);
+      tl.add(() => triggerScramble(0.85), 0.75);
     }
 
-    // CTA
+    // CTA button entrance — smooth back pop
     if (cta) {
-      tl.to(cta, { autoAlpha: 1, scale: 1, duration: 0.45, ease: "back.out(2)" }, 1.85);
+      tl.to(cta, { autoAlpha: 1, scale: 1, duration: 0.45, ease: "back.out(2)" }, 1.25);
     }
 
-    // Sub-taglines at bottom
+    // Role tagline & sub-taglines — crisp fade-in without remaining blur
     tl.to(
       taglines,
       {
-        autoAlpha: 0.7,
+        autoAlpha: 0.85,
         filter: "blur(0px)",
-        duration: 1.1,
+        duration: 0.75,
         ease: "power2.out",
-        stagger: 0.14,
+        stagger: 0.1,
+        clearProps: "filter",
       },
-      1.85
+      1.05
     );
 
     return () => {
@@ -163,7 +164,7 @@ export default function DemoHero({ theme = "cyan", isReady = true }: DemoHeroPro
   return (
     <section className="DemoHero-hero" id="home" ref={heroRef}>
       <h1 className="sr-only">
-        Kaiwal Panchal — Applied AI &amp; Forward Deployed Engineer. Infinite agents. Infinite tokens. Eventually one builds something great. Thank God I DON&apos;T NEED INFINITY.
+        Kaiwal Panchal — Applied AI &amp; Forward Deployed Engineer. Hey, I’m Kaiwal. I like computers, weird ideas, and making the two interact.
       </h1>
 
       {/* Living Fluted Caustic Glass Wave Shader */}
@@ -176,49 +177,42 @@ export default function DemoHero({ theme = "cyan", isReady = true }: DemoHeroPro
       <div className="DemoHero-bottomFade" />
       <div className="DemoHero-bottomHighlight" />
 
-      {/* Animated K monogram — top center (kstoimenov placement) */}
+      {/* Animated K monogram — top left masthead */}
       <DemoLogo isReady={isReady} />
 
-      {/* Name in top left — interactive font switcher on click */}
+      {/* Role tagline — top right */}
       <p
-        className={`DemoHero-name ${FONT_OPTIONS[fontIdx].className}`}
-        data-split="true"
-        aria-hidden="true"
-        onClick={() => setFontIdx((prev) => (prev + 1) % FONT_OPTIONS.length)}
-        title={`Click to cycle font: ${FONT_OPTIONS[fontIdx].label}`}
-        data-cursor-label="FONT"
+        className="DemoHero-tagline DemoHero-taglineTop"
+        data-subsplit="true"
+        style={{ opacity: isReady ? undefined : 0 }}
       >
-        Kaiwal Panchal
-      </p>
-
-      {/* Role tagline — top right, level with the name */}
-      <p className="DemoHero-tagline DemoHero-taglineTop" data-subsplit="true">
         Forward Deployed &amp; Applied AI Engineer building intelligent systems at Sylvr
       </p>
 
       {/* Hero Center Stage — centered by height & width relative to screen */}
-      <div className="DemoHero-stage" aria-hidden="true">
-        {/* Line 1 — sans, left */}
+      <div
+        className="DemoHero-stage"
+        aria-hidden="true"
+        style={{ opacity: isReady ? 1 : 0 }}
+      >
+        {/* Line 1 — sans, left anchor */}
         <p className="DemoHero-lineSans" data-split="true">
-          Infinite agents. Infinite tokens.
+          Hey, I’m Kaiwal.
         </p>
 
-        {/* Lines 2 & 3 — indented block relative to the centered stage */}
+        {/* Lines 2 & 3 — indented staircase */}
         <div className="DemoHero-indentGroup">
-          <p className="DemoHero-lineDisplay" data-split="true" style={{ "--ml": "3.4em" } as React.CSSProperties}>
-            Eventually, one builds
+          <p className="DemoHero-lineDisplay" data-split="true" style={{ "--ml": "2.4em" } as React.CSSProperties}>
+            I like computers,
           </p>
-          <p className="DemoHero-lineDisplay" data-split="true" style={{ "--ml": "5.6em" } as React.CSSProperties}>
-            something great.
+          <p className="DemoHero-lineDisplay" data-split="true" style={{ "--ml": "4.6em" } as React.CSSProperties}>
+            weird ideas,
           </p>
         </div>
 
-        {/* Lines 4 & 5 + CTA lockup */}
+        {/* Line 4 — conclusion with scramble */}
         <div className="DemoHero-conclusionGroup">
-          <p className="DemoHero-lineSans" data-split="true">
-            Thank God
-          </p>
-          <div className="DemoHero-infinityRow" style={{ "--ml": "2.4em" } as React.CSSProperties}>
+          <div className="DemoHero-infinityRow" style={{ "--ml": "0em" } as React.CSSProperties}>
             <p
               ref={scrambleRef}
               className="DemoHero-lineSans DemoHero-scrambleWord"
@@ -227,22 +221,24 @@ export default function DemoHero({ theme = "cyan", isReady = true }: DemoHeroPro
               onClick={() => triggerScramble(0.5)}
               data-cursor-label="SCRAMBLE"
             >
-              I DON&apos;T NEED INFINITY
+              and making the two interact.
             </p>
-            <div className="DemoHero-ctaCluster">
-              <a
-                ref={ctaRef}
-                className="DemoHero-cta"
-                href="mailto:kaiwalextra@gmail.com"
-                data-cursor-label="CONTACT"
-              >
-                <span className="DemoHero-ctaInner">Initialize Contact</span>
-              </a>
-              <p className="DemoHero-tagline DemoHero-taglineCta" data-subsplit="true">
-                Suspiciously obsessed with making things work.
-              </p>
-            </div>
           </div>
+        </div>
+
+        {/* Bottom row: Line 6 tagline on left, Initialize Contact button on right */}
+        <div className="DemoHero-ctaRow">
+          <p className="DemoHero-tagline DemoHero-taglineCta" data-subsplit="true">
+            Suspiciously obsessed with making things work.
+          </p>
+          <a
+            ref={ctaRef}
+            className="DemoHero-cta"
+            href="mailto:kaiwalextra@gmail.com"
+            data-cursor-label="CONTACT"
+          >
+            <span className="DemoHero-ctaInner">Initialize Contact</span>
+          </a>
         </div>
       </div>
     </section>

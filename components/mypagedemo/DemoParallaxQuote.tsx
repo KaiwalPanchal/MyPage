@@ -4,69 +4,121 @@ import React, { useEffect, useRef } from "react";
 
 const BADGES = [
   {
-    name: "Python 3.12",
-    top: "3rem",
-    left: "15rem",
-    drift: 220,
-    icon: (
-      <svg className="DemoQuote-badgeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M12 2v20M2 12h20" />
-      </svg>
-    ),
-  },
-  {
-    name: "LangGraph Multi-Agent",
-    top: "5rem",
-    left: "95rem",
-    drift: -240,
-    icon: (
-      <svg className="DemoQuote-badgeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <circle cx="12" cy="12" r="10" /><path d="m4.93 4.93 4.24 4.24M14.83 14.83l4.24 4.24" />
-      </svg>
-    ),
-  },
-  {
-    name: "FastAPI Streaming",
-    top: "17rem",
-    left: "8rem",
+    name: "LLM Routing",
+    top: "2.5rem",
+    left: "14rem",
     drift: 180,
     icon: (
-      <svg className="DemoQuote-badgeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+      <svg className="DemoQuote-badgeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="6" cy="18" r="3" />
+        <circle cx="6" cy="6" r="3" />
+        <circle cx="18" cy="6" r="3" />
+        <path d="M6 9v3a3 3 0 0 0 3 3h6" />
+        <path d="M18 9v9" />
       </svg>
     ),
   },
   {
-    name: "MongoDB Atlas",
-    top: "22rem",
-    left: "105rem",
-    drift: -200,
+    name: "Context Engineering",
+    top: "3.5rem",
+    left: "46rem",
+    drift: -210,
     icon: (
-      <svg className="DemoQuote-badgeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M12 2C6.5 2 2 6.5 2 12c0 4.5 3 8 7 9.5 0-3 1-5 2-8-2 0-3-2-3-4 0-3 2.5-5.5 5.5-5.5" />
+      <svg className="DemoQuote-badgeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <polygon points="12 2 2 7 12 12 22 7 12 2" />
+        <polyline points="2 17 12 22 22 17" />
+        <polyline points="2 12 12 17 22 12" />
       </svg>
     ),
   },
   {
-    name: "Gemma & Claude Routing",
-    top: "32rem",
-    left: "22rem",
+    name: "Model Context Protocol (MCP)",
+    top: "5rem",
+    left: "75rem",
+    drift: -160,
+    icon: (
+      <svg className="DemoQuote-badgeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="2" y="2" width="6" height="6" rx="1" />
+        <rect x="16" y="2" width="6" height="6" rx="1" />
+        <rect x="9" y="16" width="6" height="6" rx="1" />
+        <path d="M5 8v3a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8" />
+        <path d="M12 13v3" />
+      </svg>
+    ),
+  },
+  {
+    name: "Finetuning",
+    top: "14.5rem",
+    left: "13rem",
     drift: 190,
     icon: (
-      <svg className="DemoQuote-badgeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <circle cx="12" cy="12" r="3" /><path d="M12 2v4M12 18v4M2 12h4M18 12h4" />
+      <svg className="DemoQuote-badgeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <line x1="4" y1="21" x2="4" y2="14" />
+        <line x1="4" y1="10" x2="4" y2="3" />
+        <line x1="12" y1="21" x2="12" y2="12" />
+        <line x1="12" y1="8" x2="12" y2="3" />
+        <line x1="20" y1="21" x2="20" y2="16" />
+        <line x1="20" y1="12" x2="20" y2="3" />
+        <line x1="1" y1="14" x2="7" y2="14" />
+        <line x1="9" y1="8" x2="15" y2="8" />
+        <line x1="17" y1="16" x2="23" y2="16" />
       </svg>
     ),
   },
   {
-    name: "Docker Containers",
-    top: "34rem",
-    left: "88rem",
-    drift: 160,
+    name: "LLM Evals",
+    top: "15rem",
+    left: "48rem",
+    drift: -180,
     icon: (
-      <svg className="DemoQuote-badgeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <rect x="2" y="2" width="20" height="20" rx="5" />
-        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+      <svg className="DemoQuote-badgeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M9 11l3 3L22 4" />
+        <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+      </svg>
+    ),
+  },
+  {
+    name: "Guardrails",
+    top: "19.5rem",
+    left: "77rem",
+    drift: -210,
+    icon: (
+      <svg className="DemoQuote-badgeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+        <path d="m9 12 2 2 4-4" />
+      </svg>
+    ),
+  },
+  {
+    name: "MLOps",
+    top: "28rem",
+    left: "12rem",
+    drift: 170,
+    icon: (
+      <svg className="DemoQuote-badgeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M18.178 8c5.096 0 5.096 8 0 8-5.095 0-7.133-8-12.229-8-5.096 0-5.096 8 0 8 5.096 0 7.134-8 12.23-8z" />
+      </svg>
+    ),
+  },
+  {
+    name: "AWS",
+    top: "34rem",
+    left: "40rem",
+    drift: 200,
+    icon: (
+      <svg className="DemoQuote-badgeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" />
+      </svg>
+    ),
+  },
+  {
+    name: "Observability",
+    top: "33rem",
+    left: "74rem",
+    drift: -170,
+    icon: (
+      <svg className="DemoQuote-badgeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
       </svg>
     ),
   },

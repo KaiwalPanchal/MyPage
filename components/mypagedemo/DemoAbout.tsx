@@ -23,27 +23,37 @@ interface Segment {
 }
 
 const PARAGRAPHS: { segments: Segment[]; glyph?: GlyphKind }[] = [
-  { segments: [{ text: "I like making things." }], glyph: "pop" },
   {
     segments: [
-      { text: "Usually it starts with a stupidly simple question —", trail: true },
-      { text: "“wait, could I build that?”", em: true, trail: true },
-      {
-        text: "— and ends somewhere between a prototype, a slightly over-engineered system, and a README explaining why I did it that way.",
-      },
+      { text: "It usually starts with a stupidly simple question:", trail: true },
+      { text: '"wait, can I actually build that?"', em: true, trail: true },
+      { text: "Three hours later I'm deep in a problem nobody asked me to solve." },
     ],
     glyph: "spin",
   },
   {
     segments: [
       {
-        text: "I build with AI, code, hardware, data, music, and whatever else happens to be interesting that week. I like pulling things apart, figuring out where they break, and then building something to make sure they don’t.",
+        text: "I like taking things apart, figuring out how they work, and putting them back together slightly differently. AI, code, hardware, music, data, 2am ideas. I'm bad at leaving a rabbit hole alone.",
       },
     ],
     glyph: "burst",
   },
-  { segments: [{ text: "Half of it is useful. Some of it is completely unnecessary." }] },
-  { segments: [{ text: "I enjoy both equally." }] },
+  {
+    segments: [
+      {
+        text: "I build the thing, then I build the thing that checks the thing. I benchmark stuff that doesn't need benchmarking and worry about edge cases that will probably never happen.",
+      },
+    ],
+    glyph: "pop",
+  },
+  {
+    segments: [
+      {
+        text: "Sometimes the result is genuinely useful. Sometimes it's completely unnecessary. I enjoy both equally.",
+      },
+    ],
+  },
 ];
 
 function Glyph({ kind }: { kind: GlyphKind }) {

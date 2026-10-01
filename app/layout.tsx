@@ -17,7 +17,10 @@ export const metadata: Metadata = {
   title: "Kaiwal Panchal — Forward Deployed & Applied AI Engineer",
   description: "Applied AI Engineer & Lead Engineer at Sylvr. Building production LLM systems, deterministic grounding guardrails, and cost-aware multi-agent architectures.",
   icons: {
-    icon: "/favicon.ico",
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
     apple: "/apple-touch-icon.png",
   },
   manifest: "/MyPage/site.webmanifest",
