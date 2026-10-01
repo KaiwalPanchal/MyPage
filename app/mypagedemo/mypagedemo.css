@@ -272,7 +272,7 @@
 }
 
 /* ==========================================================================
-   Hero Section (Sculptural Responsive Typography & Editorial Cascade)
+   Hero Section (Exact Editorial Typography Lockup & Balanced Columns)
    ========================================================================== */
 .DemoHero-hero {
   background: var(--bg);
@@ -353,15 +353,15 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: clamp(1.2rem, 3.2vh, 2.5rem) clamp(1.25rem, 4vw, 4rem);
+  padding: clamp(1.2rem, 3.2vh, 2.5rem) clamp(1.25rem, 4.5vw, 4.5rem);
   pointer-events: none;
 }
 
-/* Top Meta Bar */
+/* Top Header Bar */
 .DemoHero-topBar {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   width: 100%;
   gap: 1.5rem;
 }
@@ -405,31 +405,31 @@
   animation: DemoHero-pulse 2.5s infinite ease-in-out;
 }
 
-.DemoHero-topRole {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  text-align: right;
-  gap: 0.2rem;
-}
-
-.DemoHero-topRoleTitle {
+.DemoHero-statusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   font-family: var(--font-sans);
-  font-size: 0.85rem;
-  font-weight: 300;
-  letter-spacing: 0.04em;
-  color: var(--silver);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  color: #94a3b8;
+  text-transform: uppercase;
+  background: rgba(18, 24, 34, 0.55);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  backdrop-filter: blur(12px);
 }
 
-.DemoHero-topRoleSub {
-  font-family: var(--font-sans);
-  font-size: 0.78rem;
-  font-weight: 300;
-  letter-spacing: 0.02em;
-  color: #64748b;
+.DemoHero-statusDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 10px #38bdf8;
 }
 
-/* Master Typographic Sculpture Stage (Vertically Centered) */
+/* Master Typographic Stage (Vertically Centered) */
 .DemoHero-stage {
   flex: 1;
   display: flex;
@@ -444,7 +444,7 @@
 .DemoHero-composition {
   display: flex;
   flex-direction: column;
-  gap: clamp(0.2rem, 0.8vh, 0.75rem);
+  gap: clamp(0.2rem, 0.8vh, 0.65rem);
   width: 100%;
 }
 
@@ -461,12 +461,9 @@
   margin-left: 0;
 }
 
-.DemoHero-lineWrap2 {
-  margin-left: clamp(2rem, 7vw, 8.5rem);
-}
-
-.DemoHero-lineWrap3 {
-  margin-left: clamp(4rem, 14vw, 17rem);
+/* Indented Lines: Eventually, one builds / something great. share the exact same axis */
+.DemoHero-lineWrapIndent {
+  margin-left: clamp(2.5rem, 8vw, 10rem);
 }
 
 /* Swiss Grotesque Sans Headline */
@@ -522,57 +519,51 @@
   opacity: 0;
 }
 
-/* Harmonic Foundation Row (Kicker + Scramble + CTA) */
+/* Resolution Block: "Thank God" + Scramble + CTA */
+.DemoHero-resolutionBlock {
+  margin-top: clamp(1.2rem, 2.8vh, 2.6rem);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.35rem, 0.9vh, 0.75rem);
+  width: fit-content;
+  max-width: 100%;
+}
+
+/* "Thank God" Phrase */
+.DemoHero-thankGod {
+  font-family: var(--font-sans);
+  font-size: clamp(1.35rem, 2.3vw, 2.2rem);
+  font-weight: 300;
+  letter-spacing: -0.015em;
+  line-height: 1.1;
+  margin: 0;
+  color: #cbd5e1;
+  white-space: nowrap;
+  filter: drop-shadow(0 2px 16px rgba(0, 0, 0, 0.8));
+  user-select: none;
+}
+
 .DemoHero-actionRow {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   gap: clamp(0.75rem, 1.8vw, 1.75rem);
-  margin-left: clamp(1rem, 3.5vw, 4rem);
-  margin-top: clamp(1.2rem, 2.4vh, 2.25rem);
   pointer-events: auto;
   width: fit-content;
   max-width: 100%;
 }
 
-/* Kicker Tag */
-.DemoHero-kicker {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.4rem 0.85rem;
-  border-radius: 9999px;
-  background: rgba(18, 24, 34, 0.7);
-  border: 1px solid rgba(148, 163, 184, 0.22);
-  backdrop-filter: blur(12px);
-  font-family: var(--font-sans);
-  font-size: clamp(0.72rem, 0.95vw, 0.85rem);
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  color: #94a3b8;
-  user-select: none;
-}
-
-.DemoHero-kickerPrefix {
-  color: #38bdf8;
-  font-weight: 600;
-}
-
-.DemoHero-kickerText {
-  color: #cbd5e1;
-}
-
 /* Interactive Cryptographic Scramble Word */
 .DemoHero-scrambleText {
   font-family: var(--font-sans);
-  font-size: clamp(1.15rem, 2.1vw, 1.85rem);
+  font-size: clamp(1.25rem, 2.2vw, 2.05rem);
   font-weight: 500;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: #ffffff;
   cursor: pointer;
   user-select: none;
-  padding: 0.2rem 0;
+  padding: 0.15rem 0;
   border-bottom: 2px solid rgba(56, 189, 248, 0.45);
   transition: border-color 0.25s, text-shadow 0.25s, transform 0.25s;
   white-space: nowrap;
@@ -595,7 +586,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
-  padding: clamp(0.65rem, 1.2vh, 0.85rem) clamp(1.2rem, 1.8vw, 1.65rem);
+  padding: clamp(0.6rem, 1.1vh, 0.8rem) clamp(1.15rem, 1.6vw, 1.55rem);
   border-radius: 9999px;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.35);
@@ -634,46 +625,38 @@
   transform: scale(0.97);
 }
 
-/* Bottom Meta Bar */
+/* Dual Balanced Editorial Columns (Bottom Tier) */
 .DemoHero-bottomBar {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   width: 100%;
-  gap: 1.5rem;
+  gap: 2rem;
+  pointer-events: auto;
 }
 
-.DemoHero-telemetry {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
+.DemoHero-colLeft {
+  max-width: 28rem;
+}
+
+.DemoHero-colRight {
+  max-width: 24rem;
+  text-align: right;
+}
+
+.DemoHero-colText {
   font-family: var(--font-sans);
-  font-size: 0.74rem;
-  letter-spacing: 0.14em;
-  color: #64748b;
-  text-transform: uppercase;
-  font-weight: 400;
-}
-
-.DemoHero-telemetryIcon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  border: 1px solid rgba(148, 163, 184, 0.25);
+  font-size: clamp(0.9rem, 1.15vw, 1.08rem);
+  line-height: 1.55;
   color: #94a3b8;
-  font-size: 0.75rem;
-  animation: DemoHero-bounce 2.2s infinite ease-in-out;
+  font-weight: 300;
+  margin: 0;
+  letter-spacing: 0.01em;
 }
 
-.DemoHero-philosophyQuote {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: clamp(0.9rem, 1.1vw, 1.05rem);
+.DemoHero-colTextRight {
   color: var(--silver);
-  letter-spacing: 0.01em;
+  text-align: right;
 }
 
 @keyframes DemoHero-pulse {
@@ -687,32 +670,17 @@
   }
 }
 
-@keyframes DemoHero-bounce {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(4px);
-  }
-}
-
 /* Responsive Breakpoints */
 @media (max-width: 1024px) {
-  .DemoHero-lineWrap2 {
-    margin-left: clamp(1rem, 3.5vw, 3rem);
-  }
-  .DemoHero-lineWrap3 {
-    margin-left: clamp(2rem, 6vw, 5.5rem);
-  }
-  .DemoHero-actionRow {
-    margin-left: 0;
+  .DemoHero-lineWrapIndent {
+    margin-left: clamp(1.5rem, 5vw, 4.5rem);
   }
 }
 
 @media (max-width: 768px) {
   .DemoHero-hero {
     height: 100svh;
-    min-height: 540px;
+    min-height: 560px;
   }
   .DemoHero-frame {
     padding: max(1.15rem, env(safe-area-inset-top)) max(1.15rem, env(safe-area-inset-right)) max(1.15rem, env(safe-area-inset-bottom)) max(1.15rem, env(safe-area-inset-left));
@@ -722,16 +690,11 @@
     align-items: flex-start;
     gap: 0.4rem;
   }
-  .DemoHero-topRole {
-    align-items: flex-start;
-    text-align: left;
-  }
-  .DemoHero-topRoleSub {
+  .DemoHero-statusBadge {
     display: none;
   }
   .DemoHero-lineWrap1,
-  .DemoHero-lineWrap2,
-  .DemoHero-lineWrap3 {
+  .DemoHero-lineWrapIndent {
     margin-left: 0;
   }
   .DemoHero-lineSans {
@@ -742,13 +705,14 @@
     font-size: clamp(1.95rem, 7.8vw, 2.75rem);
     line-height: 1.12;
   }
+  .DemoHero-thankGod {
+    font-size: clamp(1.25rem, 5vw, 1.65rem);
+  }
   .DemoHero-actionRow {
-    margin-left: 0;
     flex-direction: column;
     align-items: flex-start;
     gap: 0.75rem;
     width: 100%;
-    margin-top: 1rem;
   }
   .DemoHero-scrambleText {
     font-size: clamp(1.1rem, 4.5vw, 1.35rem);
@@ -765,21 +729,19 @@
   .DemoHero-bottomBar {
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.45rem;
+    gap: 0.75rem;
   }
-  .DemoHero-telemetry {
-    font-size: 0.68rem;
+  .DemoHero-colLeft,
+  .DemoHero-colRight {
+    max-width: 100%;
+    text-align: left;
   }
-  .DemoHero-philosophyQuote {
-    font-size: 0.82rem;
+  .DemoHero-colTextRight {
+    text-align: left;
   }
 }
 
 @media (max-width: 480px) {
-  .DemoHero-kicker {
-    font-size: 0.7rem;
-    padding: 0.3rem 0.65rem;
-  }
   .DemoHero-lineSans {
     font-size: clamp(1.6rem, 6.5vw, 2.1rem);
   }

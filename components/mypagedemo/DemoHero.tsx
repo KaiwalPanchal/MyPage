@@ -16,7 +16,7 @@ export default function DemoHero({ theme = "cyan", isReady = true }: DemoHeroPro
   const ctaRef = useRef<HTMLAnchorElement | null>(null);
   const [isScrambling, setIsScrambling] = useState(false);
 
-  // Clear any old drag positions from previous tests
+  // Clear any old drag positions from previous sessions
   useEffect(() => {
     try {
       localStorage.removeItem("mypagedemo_hero_positions_v2");
@@ -121,8 +121,8 @@ export default function DemoHero({ theme = "cyan", isReady = true }: DemoHeroPro
 
     const tl = gsap.timeline({ delay: 0.25 });
 
-    // Deliberate editorial stagger across header nameplate, Line 1, Line 2, Line 3
-    const delays = [0.05, 0.25, 0.48, 0.7];
+    // Deliberate editorial stagger across header nameplate, Line 1, Line 2, Line 3, Thank God
+    const delays = [0.05, 0.24, 0.44, 0.62, 0.82];
     lineChars.forEach((chars, i) => {
       tl.to(
         chars,
@@ -134,7 +134,7 @@ export default function DemoHero({ theme = "cyan", isReady = true }: DemoHeroPro
           stagger: 0.022,
           clearProps: "transform",
         },
-        delays[i] ?? 0.7
+        delays[i] ?? 0.82
       );
     });
 
@@ -153,11 +153,11 @@ export default function DemoHero({ theme = "cyan", isReady = true }: DemoHeroPro
       tl.to(
         cta,
         { autoAlpha: 1, scale: 1, y: 0, duration: 0.55, ease: "back.out(1.8)" },
-        1.3
+        1.25
       );
     }
 
-    // Reveal perimeter metadata (subtitles, coordinates, philosophy)
+    // Reveal perimeter metadata & bottom editorial columns
     tl.to(
       fadeEls,
       {
@@ -168,7 +168,7 @@ export default function DemoHero({ theme = "cyan", isReady = true }: DemoHeroPro
         ease: "power2.out",
         stagger: 0.12,
       },
-      1.35
+      1.3
     );
 
     return () => {
@@ -179,7 +179,7 @@ export default function DemoHero({ theme = "cyan", isReady = true }: DemoHeroPro
   return (
     <section className="DemoHero-hero" id="home" ref={heroRef}>
       <h1 className="sr-only">
-        Kaiwal Panchal — Applied AI &amp; Forward Deployed Engineer. Infinite agents. Infinite tokens. Eventually one builds something great.
+        Kaiwal Panchal — Applied AI &amp; Forward Deployed Engineer. Infinite agents. Infinite tokens. Eventually one builds something great. Thank God I DON&apos;T NEED INFINITY.
       </h1>
 
       {/* Living Fluted Caustic Wave Shader Background */}
@@ -194,7 +194,7 @@ export default function DemoHero({ theme = "cyan", isReady = true }: DemoHeroPro
 
       {/* Hero Outer Frame (Anchors edges & perfectly centers content) */}
       <div className="DemoHero-frame">
-        {/* Top Meta Bar */}
+        {/* Top Header Bar */}
         <header className="DemoHero-topBar">
           <div className="DemoHero-identity">
             <p className="DemoHero-name" data-split="true" aria-hidden="true">
@@ -206,94 +206,99 @@ export default function DemoHero({ theme = "cyan", isReady = true }: DemoHeroPro
             </span>
           </div>
 
-          <div className="DemoHero-topRole" data-fade="true">
-            <span className="DemoHero-topRoleTitle">Forward Deployed &amp; Applied AI Engineer</span>
-            <span className="DemoHero-topRoleSub">Architecting deterministic systems @ Sylvr</span>
+          <div className="DemoHero-statusBadge" data-fade="true">
+            <span className="DemoHero-statusDot" />
+            <span className="DemoHero-statusText">AVAILABLE FOR HIGH-IMPACT SYSTEMS</span>
           </div>
         </header>
 
         {/* Centerpiece: Sculptural Editorial Typographic Cascade */}
         <div className="DemoHero-stage">
           <div className="DemoHero-composition" aria-hidden="true">
-            {/* Line 1: Swiss Grotesque Sans Anchor */}
+            {/* Line 1: Swiss Grotesque Sans Anchor (Left-aligned) */}
             <div className="DemoHero-lineWrap DemoHero-lineWrap1">
               <p className="DemoHero-lineSans" data-split="true">
                 Infinite agents. Infinite tokens.
               </p>
             </div>
 
-            {/* Line 2: Editorial Display Serif Italic (Graceful Inward Step) */}
-            <div className="DemoHero-lineWrap DemoHero-lineWrap2">
+            {/* Line 2: Editorial Display Serif Italic (Indented) */}
+            <div className="DemoHero-lineWrap DemoHero-lineWrapIndent">
               <p className="DemoHero-lineDisplay" data-split="true">
                 Eventually, one builds
               </p>
             </div>
 
-            {/* Line 3: Editorial Display Serif Italic (Sweeping Continuation) */}
-            <div className="DemoHero-lineWrap DemoHero-lineWrap3">
+            {/* Line 3: Editorial Display Serif Italic (Same Indent Alignment as Line 2) */}
+            <div className="DemoHero-lineWrap DemoHero-lineWrapIndent">
               <p className="DemoHero-lineDisplay" data-split="true">
                 something great.
               </p>
             </div>
 
-            {/* Line 4 / Foundation: Harmonic Action Row */}
-            <div className="DemoHero-actionRow">
-              <div className="DemoHero-kicker" data-fade="true">
-                <span className="DemoHero-kickerPrefix">//</span>
-                <span className="DemoHero-kickerText">THANK GOD</span>
-              </div>
+            {/* Resolution Block: "Thank God" + Scramble + CTA */}
+            <div className="DemoHero-resolutionBlock">
+              <p className="DemoHero-thankGod" data-split="true">
+                Thank God
+              </p>
 
-              <span
-                ref={scrambleRef}
-                className="DemoHero-scrambleText"
-                data-scramble="true"
-                onClick={() => triggerScramble(0.55)}
-                onMouseEnter={() => triggerScramble(0.55)}
-                data-cursor-label="SCRAMBLE"
-              >
-                I DON&apos;T NEED INFINITY
-              </span>
-
-              <a
-                ref={ctaRef}
-                className="DemoHero-cta"
-                href="mailto:kaiwalextra@gmail.com"
-                data-cursor-label="CONTACT"
-              >
-                <span className="DemoHero-ctaInner">
-                  <span>Initialize Contact</span>
-                  <svg
-                    className="DemoHero-ctaArrow"
-                    width="14"
-                    height="14"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    aria-hidden="true"
-                  >
-                    <line x1="7" y1="17" x2="17" y2="7" />
-                    <polyline points="7 7 17 7 17 17" />
-                  </svg>
+              <div className="DemoHero-actionRow">
+                <span
+                  ref={scrambleRef}
+                  className="DemoHero-scrambleText"
+                  data-scramble="true"
+                  onClick={() => triggerScramble(0.55)}
+                  onMouseEnter={() => triggerScramble(0.55)}
+                  data-cursor-label="SCRAMBLE"
+                >
+                  I DON&apos;T NEED INFINITY
                 </span>
-              </a>
+
+                <a
+                  ref={ctaRef}
+                  className="DemoHero-cta"
+                  href="mailto:kaiwalextra@gmail.com"
+                  data-cursor-label="CONTACT"
+                >
+                  <span className="DemoHero-ctaInner">
+                    <span>Initialize Contact</span>
+                    <svg
+                      className="DemoHero-ctaArrow"
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden="true"
+                    >
+                      <line x1="7" y1="17" x2="17" y2="7" />
+                      <polyline points="7 7 17 7 17 17" />
+                    </svg>
+                  </span>
+                </a>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Bottom Meta Bar */}
+        {/* Dual Balanced Editorial Columns (Bottom Tier) */}
         <footer className="DemoHero-bottomBar">
-          <div className="DemoHero-telemetry" data-fade="true">
-            <span className="DemoHero-telemetryIcon">↓</span>
-            <span className="DemoHero-telemetryText">SCROLL TO EXPLORE ARCHITECTURE</span>
+          <div className="DemoHero-colLeft" data-fade="true">
+            <p className="DemoHero-colText">
+              Forward Deployed &amp; Applied AI<br />
+              Engineer building intelligent<br />
+              systems at Sylvr
+            </p>
           </div>
 
-          <div className="DemoHero-philosophy" data-fade="true">
-            <span className="DemoHero-philosophyQuote">
-              &ldquo;Too curious to leave a system unexplored.&rdquo;
-            </span>
+          <div className="DemoHero-colRight" data-fade="true">
+            <p className="DemoHero-colText DemoHero-colTextRight">
+              Suspiciously obsessed with<br />
+              making things work.
+            </p>
           </div>
         </footer>
       </div>
