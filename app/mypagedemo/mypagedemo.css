@@ -445,7 +445,7 @@
   width: max-content;
   max-width: min(92vw, 84rem);
   color: var(--text-headline);
-  font-size: clamp(1.85rem, 3.2vw, 4.25rem);
+  font-size: clamp(1.85rem, 3.9vw, 5.25rem);
   line-height: 1.14;
   pointer-events: none;
   user-select: none;
@@ -475,7 +475,14 @@
 .DemoHero-indentGroup {
   display: flex;
   flex-direction: column;
-  padding-left: clamp(2.5rem, 11vw, 9.5rem);
+}
+
+.DemoHero-lineDisplay {
+  margin-left: var(--ml, 0);
+}
+
+.DemoHero-infinityRow {
+  margin-left: var(--ml, 0);
 }
 
 /* Pause and conclusion block (Thank God / I DON'T NEED INFINITY + CTA) */
@@ -538,39 +545,71 @@
   transform: scale(0.97);
 }
 
-/* Bottom Bar: Dual columns pinned at bottom left and bottom right */
+/* Bottom Bar: taglines placed at kstoimenov's 23.5% / 60.57% anchors, centered text */
 .DemoHero-bottomBar {
   position: absolute;
-  bottom: clamp(1.75rem, 3.8vh, 3rem);
-  left: clamp(1.5rem, 4vw, 4.5rem);
-  right: clamp(1.5rem, 4vw, 4.5rem);
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+  bottom: clamp(1.75rem, 6vh, 4.5rem);
+  left: 0;
+  right: 0;
   pointer-events: none;
   z-index: 5;
 }
 
 .DemoHero-tagline {
+  position: absolute;
+  bottom: 0;
   color: var(--text-headline);
   opacity: 0.7;
-  font-size: clamp(0.85rem, 0.95vw, 1.05rem);
+  font-size: clamp(0.85rem, 1.05vw, 1.15rem);
   font-weight: 300;
-  line-height: 1.55;
+  line-height: 1.5;
   margin: 0;
+  text-align: center;
+  text-wrap: balance;
   will-change: filter, opacity;
 }
 
 .DemoHero-taglineLeft {
-  max-width: clamp(18rem, 24vw, 27rem);
-  text-wrap: balance;
-  text-align: left;
+  left: 23.5%;
+  width: clamp(16rem, 22vw, 24rem);
 }
 
 .DemoHero-taglineRight {
-  max-width: clamp(14rem, 20vw, 22rem);
-  text-align: right;
-  text-wrap: balance;
+  left: 60.57%;
+  width: clamp(12rem, 16.3vw, 18rem);
+}
+
+/* Animated K monogram — top center */
+.DemoHero-logo {
+  position: absolute;
+  top: clamp(1.5rem, 3.2vh, 2.75rem);
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(2.75rem, 3.6vw, 3.75rem);
+  height: clamp(2.75rem, 3.6vw, 3.75rem);
+  color: var(--text-headline);
+  z-index: 10;
+  display: block;
+  pointer-events: auto;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.DemoHero-logoSvg {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  display: block;
+}
+
+.DemoHero-logoGlow {
+  position: absolute;
+  inset: -35%;
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--accent-bright) 45%, transparent) 0%, transparent 65%);
+  opacity: 0;
+  filter: blur(10px);
+  pointer-events: none;
 }
 
 /* Responsive Breakpoints */
@@ -578,9 +617,6 @@
   .DemoHero-stage {
     font-size: clamp(1.6rem, 3.2vw, 3.2rem);
     max-width: 94vw;
-  }
-  .DemoHero-indentGroup {
-    padding-left: clamp(1.5rem, 7vw, 5rem);
   }
   .DemoHero-infinityRow {
     gap: clamp(1rem, 2vw, 2rem);
@@ -604,9 +640,6 @@
     max-width: none;
     font-size: clamp(1.35rem, 5.5vw, 2rem);
   }
-  .DemoHero-indentGroup {
-    padding-left: clamp(1rem, 6vw, 2.5rem);
-  }
   .DemoHero-infinityRow {
     flex-direction: column;
     align-items: flex-start;
@@ -623,15 +656,22 @@
     padding: 0 1.5rem;
   }
   .DemoHero-bottomBar {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.6rem;
-    left: 1.25rem;
-    right: 1.25rem;
     bottom: 1.25rem;
   }
-  .DemoHero-taglineRight {
+  .DemoHero-tagline {
+    position: static;
     text-align: left;
+    width: auto;
+    max-width: 20rem;
+    margin: 0 1.25rem 0.6rem;
+  }
+  .DemoHero-logo {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+  .DemoHero-lineDisplay,
+  .DemoHero-infinityRow {
+    margin-left: calc(var(--ml, 0) * 0.45);
   }
 }
 /* ==========================================================================
@@ -655,9 +695,25 @@
   position: relative;
 }
 
+.DemoAbout-paragraph + .DemoAbout-paragraph {
+  margin-top: 1.6em;
+}
+
+.DemoAbout-lead {
+  font-size: clamp(2.4rem, 4.6vw, 4.5rem) !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.025em !important;
+}
+
+.DemoAbout-em {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+}
+
 .DemoAbout-paragraph {
   color: var(--text-headline);
-  font-size: clamp(1.85rem, 3.2vw, 3.125rem);
+  font-size: clamp(1.4rem, 2.5vw, 2.4rem);
   font-weight: 300;
   line-height: 1.48;
   letter-spacing: -0.015em;
@@ -776,8 +832,11 @@
     padding: 4.5rem 1.25rem;
   }
   .DemoAbout-paragraph {
-    font-size: clamp(1.25rem, 5.2vw, 1.55rem);
+    font-size: clamp(1.15rem, 4.8vw, 1.45rem);
     line-height: 1.55;
+  }
+  .DemoAbout-lead {
+    font-size: clamp(2rem, 9vw, 2.6rem) !important;
   }
   .DemoAbout-inlineGlyph {
     width: 1.35rem;

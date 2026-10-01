@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import DemoShader from "./DemoShader";
+import DemoLogo from "./DemoLogo";
 
 interface DemoHeroProps {
   theme?: "cyan" | "green";
@@ -175,6 +176,9 @@ export default function DemoHero({ theme = "cyan", isReady = true }: DemoHeroPro
       <div className="DemoHero-bottomFade" />
       <div className="DemoHero-bottomHighlight" />
 
+      {/* Animated K monogram — top center (kstoimenov placement) */}
+      <DemoLogo isReady={isReady} />
+
       {/* Name in top left — interactive font switcher on click */}
       <p
         className={`DemoHero-name ${FONT_OPTIONS[fontIdx].className}`}
@@ -196,10 +200,10 @@ export default function DemoHero({ theme = "cyan", isReady = true }: DemoHeroPro
 
         {/* Lines 2 & 3 — indented block relative to the centered stage */}
         <div className="DemoHero-indentGroup">
-          <p className="DemoHero-lineDisplay" data-split="true">
+          <p className="DemoHero-lineDisplay" data-split="true" style={{ "--ml": "3.4em" } as React.CSSProperties}>
             Eventually, one builds
           </p>
-          <p className="DemoHero-lineDisplay" data-split="true">
+          <p className="DemoHero-lineDisplay" data-split="true" style={{ "--ml": "5.6em" } as React.CSSProperties}>
             something great.
           </p>
         </div>
@@ -209,7 +213,7 @@ export default function DemoHero({ theme = "cyan", isReady = true }: DemoHeroPro
           <p className="DemoHero-lineSans" data-split="true">
             Thank God
           </p>
-          <div className="DemoHero-infinityRow">
+          <div className="DemoHero-infinityRow" style={{ "--ml": "2.4em" } as React.CSSProperties}>
             <p
               ref={scrambleRef}
               className="DemoHero-lineSans DemoHero-scrambleWord"
