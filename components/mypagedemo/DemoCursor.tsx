@@ -16,6 +16,68 @@ export default function DemoCursor() {
 
     let mouseX = -100;
     let mouseY = -100;
+    let lastHovered: HTMLElement | null = null;
+    let rafId: number | null = null;
+    let scrollTimeout: NodeJS.Timeout | null = null;
+
+    const updateHoverState = (x: number, y: number) => {
+      if (x < 0 || y < 0 || x > window.innerWidth || y > window.innerHeight) {
+        if (lastHovered) {
+          lastHovered.classList.remove("is-hovered");
+          lastHovered.removeAttribute("data-hovered");
+          lastHovered = null;
+        }
+        return;
+      }
+
+      const el = document.elementFromPoint(x, y) as HTMLElement | null;
+      const interactive = el?.closest(
+        "a, button, [data-interactive], [data-cursor-label], [data-scramble], .DemoExp-row, .DemoBlog-card, .DemoMetrics-card, .DemoFooter-card, .DemoHero-cta, .DemoHero-scrambleWord"
+      ) as HTMLElement | null;
+
+      if (interactive !== lastHovered) {
+        if (lastHovered) {
+          lastHovered.classList.remove("is-hovered");
+          lastHovered.removeAttribute("data-hovered");
+        }
+        if (interactive) {
+          interactive.classList.add("is-hovered");
+          interactive.setAttribute("data-hovered", "true");
+        }
+        lastHovered = interactive;
+      }
+
+      if (interactive) {
+        gsap.to(disc, {
+          scale: 1.35,
+          duration: 0.25,
+          ease: "back.out(2)",
+          overwrite: "auto",
+        });
+
+        const customLabel = interactive.getAttribute("data-cursor-label");
+        if (customLabel && label) {
+          label.textContent = customLabel;
+          label.style.opacity = "1";
+          label.style.visibility = "visible";
+        } else if (label) {
+          label.style.opacity = "0";
+          label.style.visibility = "hidden";
+        }
+      } else {
+        gsap.to(disc, {
+          scale: 1,
+          duration: 0.2,
+          ease: "power2.out",
+          overwrite: "auto",
+        });
+
+        if (label) {
+          label.style.opacity = "0";
+          label.style.visibility = "hidden";
+        }
+      }
+    };
 
     // Direct hardware-accelerated positioning with exact center alignment
     const onMouseMove = (e: MouseEvent) => {
@@ -35,69 +97,67 @@ export default function DemoCursor() {
       if (cursor.style.opacity !== "1") {
         cursor.style.opacity = "1";
       }
+
+      updateHoverState(mouseX, mouseY);
     };
 
-    const onMouseEnter = () => {
+    const onMouseEnter = (e: MouseEvent) => {
       if (cursor) cursor.style.opacity = "1";
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      updateHoverState(mouseX, mouseY);
     };
 
     const onMouseLeave = () => {
       if (cursor) cursor.style.opacity = "0";
+      if (lastHovered) {
+        lastHovered.classList.remove("is-hovered");
+        lastHovered.removeAttribute("data-hovered");
+        lastHovered = null;
+      }
+      if (disc) {
+        gsap.to(disc, { scale: 1, duration: 0.2, overwrite: "auto" });
+      }
+      if (label) {
+        label.style.opacity = "0";
+        label.style.visibility = "hidden";
+      }
+      mouseX = -100;
+      mouseY = -100;
     };
 
-    // Contextual hover listener
-    const onElementOver = (e: MouseEvent) => {
-      const target = e.target as HTMLElement | null;
-      if (!target) return;
-
-      const interactive = target.closest("a, button, [data-interactive], [data-cursor-label]");
-      if (interactive) {
-        gsap.to(disc, {
-          scale: 1.35,
-          duration: 0.3,
-          ease: "back.out(2)",
+    const onScrollOrWheel = () => {
+      if (mouseX < 0 || mouseY < 0) return;
+      if (rafId === null) {
+        rafId = requestAnimationFrame(() => {
+          rafId = null;
+          updateHoverState(mouseX, mouseY);
         });
-
-        const customLabel = interactive.getAttribute("data-cursor-label");
-        if (customLabel && label) {
-          label.textContent = customLabel;
-          label.style.opacity = "1";
-          label.style.visibility = "visible";
-        }
       }
-    };
-
-    const onElementOut = (e: MouseEvent) => {
-      const target = e.target as HTMLElement | null;
-      if (!target) return;
-
-      const interactive = target.closest("a, button, [data-interactive], [data-cursor-label]");
-      if (interactive) {
-        gsap.to(disc, {
-          scale: 1,
-          duration: 0.25,
-          ease: "power2.out",
-        });
-
-        if (label) {
-          label.style.opacity = "0";
-          label.style.visibility = "hidden";
-        }
-      }
+      if (scrollTimeout) clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        updateHoverState(mouseX, mouseY);
+      }, 100);
     };
 
     window.addEventListener("mousemove", onMouseMove, { passive: true });
     document.addEventListener("mouseenter", onMouseEnter);
     document.addEventListener("mouseleave", onMouseLeave);
-    document.addEventListener("mouseover", onElementOver);
-    document.addEventListener("mouseout", onElementOut);
+    window.addEventListener("scroll", onScrollOrWheel, { passive: true });
+    window.addEventListener("wheel", onScrollOrWheel, { passive: true });
 
     return () => {
       window.removeEventListener("mousemove", onMouseMove);
       document.removeEventListener("mouseenter", onMouseEnter);
       document.removeEventListener("mouseleave", onMouseLeave);
-      document.removeEventListener("mouseover", onElementOver);
-      document.removeEventListener("mouseout", onElementOut);
+      window.removeEventListener("scroll", onScrollOrWheel);
+      window.removeEventListener("wheel", onScrollOrWheel);
+      if (rafId !== null) cancelAnimationFrame(rafId);
+      if (scrollTimeout) clearTimeout(scrollTimeout);
+      if (lastHovered) {
+        lastHovered.classList.remove("is-hovered");
+        lastHovered.removeAttribute("data-hovered");
+      }
     };
   }, []);
 

@@ -20,15 +20,43 @@ const FONT_OPTIONS = [
 export default function DemoHero({ theme = "cyan", isReady = true }: DemoHeroProps) {
   const heroRef = useRef<HTMLElement | null>(null);
   const heroFlareRef = useRef<HTMLDivElement | null>(null);
+  const nameScrambleRef = useRef<HTMLSpanElement | null>(null);
+  const periodRef = useRef<HTMLSpanElement | null>(null);
   const scrambleRef = useRef<HTMLParagraphElement | null>(null);
   const ctaRef = useRef<HTMLAnchorElement | null>(null);
-  const [isScrambling, setIsScrambling] = useState(false);
-  const [fontIdx, setFontIdx] = useState(0);
+  const isNameScramblingRef = useRef(false);
+  const isScramblingRef = useRef(false);
+
+  const triggerNameScramble = (duration: number = 0.6) => {
+    const el = nameScrambleRef.current;
+    if (!el || isNameScramblingRef.current) return;
+    isNameScramblingRef.current = true;
+    const target = "Kaiwal";
+    const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_'λΣθΩ";
+    const obj = { p: 0 };
+    gsap.to(obj, {
+      p: 1,
+      duration,
+      ease: "power1.inOut",
+      onUpdate: () => {
+        const revealed = Math.floor(obj.p * target.length);
+        let str = target.slice(0, revealed);
+        for (let k = revealed; k < target.length; k++) {
+          str += chars[Math.floor(Math.random() * chars.length)];
+        }
+        if (el) el.textContent = str;
+      },
+      onComplete: () => {
+        if (el) el.textContent = target;
+        isNameScramblingRef.current = false;
+      },
+    });
+  };
 
   const triggerScramble = (duration: number = 0.8) => {
     const scrambleEl = scrambleRef.current;
-    if (!scrambleEl || isScrambling) return;
-    setIsScrambling(true);
+    if (!scrambleEl || isScramblingRef.current) return;
+    isScramblingRef.current = true;
     const target = "and making the two interact.";
     const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_'λΣθΩ .,";
     const obj = { p: 0 };
@@ -46,7 +74,7 @@ export default function DemoHero({ theme = "cyan", isReady = true }: DemoHeroPro
       },
       onComplete: () => {
         if (scrambleEl) scrambleEl.textContent = target;
-        setIsScrambling(false);
+        isScramblingRef.current = false;
       },
     });
   };
@@ -62,6 +90,8 @@ export default function DemoHero({ theme = "cyan", isReady = true }: DemoHeroPro
     const taglines = hero.querySelectorAll<HTMLElement>("[data-subsplit]");
     const cta = ctaRef.current;
     const scrambleEl = scrambleRef.current;
+    const nameScrambleEl = nameScrambleRef.current;
+    const periodEl = periodRef.current;
     const heroFlare = heroFlareRef.current;
 
     if (prefersReduced) {
@@ -69,7 +99,15 @@ export default function DemoHero({ theme = "cyan", isReady = true }: DemoHeroPro
       splitLines.forEach((el) => {
         el.style.opacity = "1";
       });
-      if (scrambleEl) scrambleEl.style.opacity = "1";
+      if (nameScrambleEl) {
+        nameScrambleEl.style.opacity = "1";
+        nameScrambleEl.textContent = "Kaiwal";
+      }
+      if (periodEl) periodEl.style.opacity = "1";
+      if (scrambleEl) {
+        scrambleEl.style.opacity = "1";
+        scrambleEl.textContent = "and making the two interact.";
+      }
       if (cta) {
         cta.style.opacity = "1";
         cta.style.transform = "none";
@@ -102,6 +140,8 @@ export default function DemoHero({ theme = "cyan", isReady = true }: DemoHeroPro
 
     if (cta) gsap.set(cta, { autoAlpha: 0, scale: 0.9 });
     taglines.forEach((t) => gsap.set(t, { autoAlpha: 0, filter: "blur(8px)" }));
+    if (nameScrambleEl) gsap.set(nameScrambleEl, { autoAlpha: 0 });
+    if (periodEl) gsap.set(periodEl, { autoAlpha: 0 });
     if (scrambleEl) gsap.set(scrambleEl, { autoAlpha: 0 });
 
     if (heroFlare) {
@@ -114,8 +154,8 @@ export default function DemoHero({ theme = "cyan", isReady = true }: DemoHeroPro
 
     const tl = gsap.timeline({ delay: 0.15 });
 
-    // Animate lines: line1=0.15, line2=0.35, line3=0.55
-    const delays = [0.15, 0.35, 0.55];
+    // Animate lines: line1 ("Hey, I'm ") = 0.15, line2 = 0.45, line3 = 0.65
+    const delays = [0.15, 0.45, 0.65];
     lineChars.forEach((chars, i) => {
       tl.to(
         chars,
@@ -127,14 +167,23 @@ export default function DemoHero({ theme = "cyan", isReady = true }: DemoHeroPro
           stagger: 0.025,
           clearProps: "transform",
         },
-        delays[i] ?? 0.55
+        delays[i] ?? 0.65
       );
     });
 
+    // Scramble on name "Kaiwal" in line 1
+    if (nameScrambleEl) {
+      tl.set(nameScrambleEl, { autoAlpha: 1 }, 0.28);
+      tl.add(() => triggerNameScramble(0.65), 0.28);
+    }
+    if (periodEl) {
+      tl.to(periodEl, { autoAlpha: 1, duration: 0.35 }, 0.4);
+    }
+
     // Scramble on line 4
     if (scrambleEl) {
-      tl.set(scrambleEl, { autoAlpha: 1 }, 0.75);
-      tl.add(() => triggerScramble(0.85), 0.75);
+      tl.set(scrambleEl, { autoAlpha: 1 }, 0.85);
+      tl.add(() => triggerScramble(0.85), 0.85);
     }
 
     // CTA button entrance — smooth back pop
@@ -196,8 +245,20 @@ export default function DemoHero({ theme = "cyan", isReady = true }: DemoHeroPro
         style={{ opacity: isReady ? 1 : 0 }}
       >
         {/* Line 1 — sans, left anchor */}
-        <p className="DemoHero-lineSans" data-split="true">
-          Hey, I’m Kaiwal.
+        <p className="DemoHero-lineSans">
+          <span data-split="true">Hey, I’m&nbsp;</span>
+          <span
+            ref={nameScrambleRef}
+            className="DemoHero-scrambleWord"
+            data-scramble="true"
+            onMouseEnter={() => triggerNameScramble(0.5)}
+            onClick={() => triggerNameScramble(0.5)}
+            data-cursor-label="SCRAMBLE"
+            style={{ display: "inline-block" }}
+          >
+            Kaiwal
+          </span>
+          <span ref={periodRef} style={{ display: "inline-block" }}>.</span>
         </p>
 
         {/* Lines 2 & 3 — indented staircase */}

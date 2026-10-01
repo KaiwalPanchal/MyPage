@@ -499,7 +499,8 @@
   transition: opacity 0.15s;
 }
 
-.DemoHero-scrambleWord:hover {
+.DemoHero-scrambleWord:hover,
+.DemoHero-scrambleWord.is-hovered {
   opacity: 0.85;
 }
 
@@ -526,7 +527,8 @@
   display: flex;
 }
 
-.DemoHero-cta:hover .DemoHero-ctaInner {
+.DemoHero-cta:hover .DemoHero-ctaInner,
+.DemoHero-cta.is-hovered .DemoHero-ctaInner {
   color: #05070a;
   background: #fff;
 }
@@ -945,7 +947,8 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .DemoExp-row:hover {
+  .DemoExp-row:hover,
+  .DemoExp-row.is-hovered {
     background-image: var(--accent-noise), var(--accent-grad);
     background-blend-mode: overlay, normal;
     background-size: 200px 200px, cover;
@@ -979,7 +982,9 @@
 
 @media (hover: hover) and (pointer: fine) {
   .DemoExp-row:hover .DemoExp-year,
-  .DemoExp-row:hover .DemoExp-currentBadge {
+  .DemoExp-row.is-hovered .DemoExp-year,
+  .DemoExp-row:hover .DemoExp-currentBadge,
+  .DemoExp-row.is-hovered .DemoExp-currentBadge {
     color: #05070a;
   }
 }
@@ -1021,10 +1026,13 @@
 
 @media (hover: hover) and (pointer: fine) {
   .DemoExp-row:hover .DemoExp-role,
-  .DemoExp-row:hover .DemoExp-company {
+  .DemoExp-row.is-hovered .DemoExp-role,
+  .DemoExp-row:hover .DemoExp-company,
+  .DemoExp-row.is-hovered .DemoExp-company {
     color: #05070a;
   }
-  .DemoExp-row:hover .DemoExp-desc {
+  .DemoExp-row:hover .DemoExp-desc,
+  .DemoExp-row.is-hovered .DemoExp-desc {
     color: #1a222d;
   }
 }
@@ -1054,13 +1062,15 @@
   transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.DemoExp-row:hover .DemoExp-arrowWrap {
+.DemoExp-row:hover .DemoExp-arrowWrap,
+.DemoExp-row.is-hovered .DemoExp-arrowWrap {
   border-color: rgba(5, 7, 10, 0.4);
   background: #05070a;
   color: var(--silver-bright);
 }
 
-.DemoExp-row:hover .DemoExp-arrowIcon {
+.DemoExp-row:hover .DemoExp-arrowIcon,
+.DemoExp-row.is-hovered .DemoExp-arrowIcon {
   transform: translate(2px, -2px);
 }
 
@@ -1082,7 +1092,8 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .DemoExp-row:hover .DemoExp-techBadge {
+  .DemoExp-row:hover .DemoExp-techBadge,
+  .DemoExp-row.is-hovered .DemoExp-techBadge {
     border-color: rgba(5, 7, 10, 0.3);
     background: rgba(255, 255, 255, 0.25);
     color: #05070a;
@@ -1182,7 +1193,8 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .DemoMetrics-card:hover {
+  .DemoMetrics-card:hover,
+  .DemoMetrics-card.is-hovered {
     background-image: var(--accent-noise), var(--accent-grad);
     background-blend-mode: overlay, normal;
     background-size: 200px 200px, cover;
@@ -1200,7 +1212,9 @@
 
 @media (hover: hover) and (pointer: fine) {
   .DemoMetrics-card:hover .DemoMetrics-valueWrap,
-  .DemoMetrics-card:hover .DemoMetrics-desc {
+  .DemoMetrics-card.is-hovered .DemoMetrics-valueWrap,
+  .DemoMetrics-card:hover .DemoMetrics-desc,
+  .DemoMetrics-card.is-hovered .DemoMetrics-desc {
     color: #05070a;
   }
 }
@@ -1336,7 +1350,8 @@
   white-space: nowrap;
 }
 
-.DemoBlog-viewAll:hover {
+.DemoBlog-viewAll:hover,
+.DemoBlog-viewAll.is-hovered {
   color: var(--accent-bright);
 }
 
@@ -1367,7 +1382,8 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .DemoBlog-card:hover {
+  .DemoBlog-card:hover,
+  .DemoBlog-card.is-hovered {
     background-image: var(--accent-noise), var(--accent-grad);
     background-blend-mode: overlay, normal;
     background-size: 200px 200px, cover;
@@ -1530,25 +1546,35 @@
 /* Hover Inversion */
 @media (hover: hover) and (pointer: fine) {
   .DemoBlog-card:hover .DemoBlog-indexNum,
+  .DemoBlog-card.is-hovered .DemoBlog-indexNum,
   .DemoBlog-card:hover .DemoBlog-valueLabel,
+  .DemoBlog-card.is-hovered .DemoBlog-valueLabel,
   .DemoBlog-card:hover .DemoBlog-cardTitle,
+  .DemoBlog-card.is-hovered .DemoBlog-cardTitle,
   .DemoBlog-card:hover .DemoBlog-cardTitle em,
-  .DemoBlog-card:hover .DemoBlog-readMore {
+  .DemoBlog-card.is-hovered .DemoBlog-cardTitle em,
+  .DemoBlog-card:hover .DemoBlog-readMore,
+  .DemoBlog-card.is-hovered .DemoBlog-readMore {
     color: #05070a;
   }
   .DemoBlog-card:hover .DemoBlog-cardExcerpt,
-  .DemoBlog-card:hover .DemoBlog-metaRight {
+  .DemoBlog-card.is-hovered .DemoBlog-cardExcerpt,
+  .DemoBlog-card:hover .DemoBlog-metaRight,
+  .DemoBlog-card.is-hovered .DemoBlog-metaRight {
     color: #1a222d;
   }
-  .DemoBlog-card:hover .DemoBlog-cardFooter {
+  .DemoBlog-card:hover .DemoBlog-cardFooter,
+  .DemoBlog-card.is-hovered .DemoBlog-cardFooter {
     border-color: rgba(5, 7, 10, 0.2);
   }
-  .DemoBlog-card:hover .DemoBlog-techTag {
+  .DemoBlog-card:hover .DemoBlog-techTag,
+  .DemoBlog-card.is-hovered .DemoBlog-techTag {
     border-color: rgba(5, 7, 10, 0.3);
     background: rgba(255, 255, 255, 0.3);
     color: #05070a;
   }
-  .DemoBlog-card:hover .DemoBlog-arrowCircle {
+  .DemoBlog-card:hover .DemoBlog-arrowCircle,
+  .DemoBlog-card.is-hovered .DemoBlog-arrowCircle {
     border-color: rgba(5, 7, 10, 0.4);
     background: #05070a;
     color: var(--silver-bright);
@@ -1629,7 +1655,8 @@
   transition: border-color 0.3s;
 }
 
-.DemoQuote-badge:hover {
+.DemoQuote-badge:hover,
+.DemoQuote-badge.is-hovered {
   border-color: var(--accent-bright);
 }
 
@@ -1846,7 +1873,8 @@
   display: inline;
 }
 
-.DemoFooter-writeLink:hover {
+.DemoFooter-writeLink:hover,
+.DemoFooter-writeLink.is-hovered {
   color: var(--accent-bright);
   opacity: 0.9;
 }
@@ -1868,7 +1896,8 @@
   transition: background 0.3s, color 0.3s, border-color 0.3s;
 }
 
-.DemoFooter-contact:hover {
+.DemoFooter-contact:hover,
+.DemoFooter-contact.is-hovered {
   color: #05070a;
   background: #fff;
   border-color: #fff;
@@ -1880,11 +1909,12 @@
   transition: transform 0.3s;
 }
 
-.DemoFooter-contact:hover .DemoFooter-contactArrow {
+.DemoFooter-contact:hover .DemoFooter-contactArrow,
+.DemoFooter-contact.is-hovered .DemoFooter-contactArrow {
   transform: translate(0.2rem, -0.2rem);
 }
 
-/* Card grid â€” same structure as DemoBlog */
+/* Card grid — same structure as DemoBlog */
 .DemoFooter-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -1911,7 +1941,8 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .DemoFooter-card:hover {
+  .DemoFooter-card:hover,
+  .DemoFooter-card.is-hovered {
     background-image: var(--accent-noise), var(--accent-grad);
     background-blend-mode: overlay, normal;
     background-size: 200px 200px, cover;
@@ -2068,31 +2099,41 @@
   flex-shrink: 0;
 }
 
-/* Hover inversion â€” same as DemoBlog */
+/* Hover inversion — same as DemoBlog */
 @media (hover: hover) and (pointer: fine) {
   .DemoFooter-card:hover .DemoFooter-indexNum,
+  .DemoFooter-card.is-hovered .DemoFooter-indexNum,
   .DemoFooter-card:hover .DemoFooter-valueLabel,
+  .DemoFooter-card.is-hovered .DemoFooter-valueLabel,
   .DemoFooter-card:hover .DemoFooter-cardHandle,
+  .DemoFooter-card.is-hovered .DemoFooter-cardHandle,
   .DemoFooter-card:hover .DemoFooter-cardTitle,
-  .DemoFooter-card:hover .DemoFooter-readMore {
+  .DemoFooter-card.is-hovered .DemoFooter-cardTitle,
+  .DemoFooter-card:hover .DemoFooter-readMore,
+  .DemoFooter-card.is-hovered .DemoFooter-readMore {
     color: #05070a;
   }
-  .DemoFooter-card:hover .DemoFooter-cardExcerpt {
+  .DemoFooter-card:hover .DemoFooter-cardExcerpt,
+  .DemoFooter-card.is-hovered .DemoFooter-cardExcerpt {
     color: #1a222d;
   }
-  .DemoFooter-card:hover .DemoFooter-cardIconWrap {
+  .DemoFooter-card:hover .DemoFooter-cardIconWrap,
+  .DemoFooter-card.is-hovered .DemoFooter-cardIconWrap {
     color: #05070a;
     transform: scale(1.1);
   }
-  .DemoFooter-card:hover .DemoFooter-cardFooter {
+  .DemoFooter-card:hover .DemoFooter-cardFooter,
+  .DemoFooter-card.is-hovered .DemoFooter-cardFooter {
     border-color: rgba(5, 7, 10, 0.2);
   }
-  .DemoFooter-card:hover .DemoFooter-techTag {
+  .DemoFooter-card:hover .DemoFooter-techTag,
+  .DemoFooter-card.is-hovered .DemoFooter-techTag {
     border-color: rgba(5, 7, 10, 0.3);
     background: rgba(255, 255, 255, 0.3);
     color: #05070a;
   }
-  .DemoFooter-card:hover .DemoFooter-arrowCircle {
+  .DemoFooter-card:hover .DemoFooter-arrowCircle,
+  .DemoFooter-card.is-hovered .DemoFooter-arrowCircle {
     border-color: rgba(5, 7, 10, 0.4);
     background: #05070a;
     color: var(--silver-bright);
@@ -2132,7 +2173,8 @@
   transition: color 0.2s;
 }
 
-.DemoFooter-legal a:hover {
+.DemoFooter-legal a:hover,
+.DemoFooter-legal a.is-hovered {
   color: var(--accent-bright);
 }
 
@@ -2150,7 +2192,8 @@
   flex-shrink: 0;
 }
 
-.DemoFooter-logoBtn:hover {
+.DemoFooter-logoBtn:hover,
+.DemoFooter-logoBtn.is-hovered {
   background: var(--accent-bright);
   border-color: var(--accent-bright);
   color: #05070a;
