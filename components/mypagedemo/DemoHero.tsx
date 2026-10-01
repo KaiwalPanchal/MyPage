@@ -184,7 +184,7 @@ export default function DemoHero({ theme = "cyan", isReady = true }: DemoHeroPro
         title={`Click to cycle font: ${FONT_OPTIONS[fontIdx].label}`}
         data-cursor-label="FONT"
       >
-        kaiwal panchal
+        Kaiwal Panchal
       </p>
 
       {/* Hero Center Stage — centered by height & width relative to screen */}

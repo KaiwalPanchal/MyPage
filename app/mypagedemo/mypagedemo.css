@@ -392,8 +392,7 @@
   font-family: var(--font-sans);
   font-weight: 300;
   font-size: clamp(1.05rem, 1.35vw, 1.45rem);
-  letter-spacing: 0.16em;
-  text-transform: lowercase;
+  letter-spacing: 0.14em;
   color: var(--text-headline);
   overflow: hidden;
   pointer-events: auto;
@@ -407,7 +406,7 @@
 
 .DemoHero-name:hover {
   color: #ffffff;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.2em;
   text-shadow: 0 0 20px rgba(255, 255, 255, 0.45);
   transform: translateY(-1px);
 }
@@ -416,29 +415,25 @@
   font-family: var(--font-sans) !important;
   font-weight: 300 !important;
   font-style: normal !important;
-  letter-spacing: 0.16em !important;
-  text-transform: lowercase !important;
+  letter-spacing: 0.14em !important;
 }
 .font-syne {
   font-family: 'Syne', sans-serif !important;
   font-weight: 700 !important;
   font-style: normal !important;
   letter-spacing: -0.02em !important;
-  text-transform: lowercase !important;
 }
 .font-manier {
   font-family: var(--font-display) !important;
   font-weight: 400 !important;
   font-style: normal !important;
   letter-spacing: 0.02em !important;
-  text-transform: lowercase !important;
 }
 .font-cormorant {
   font-family: 'Cormorant Garamond', Georgia, serif !important;
   font-weight: 600 !important;
   font-style: normal !important;
   letter-spacing: 0.04em !important;
-  text-transform: lowercase !important;
 }
 
 /* Hero Center Stage: Center of text box is exact center of screen */
