@@ -191,6 +191,11 @@ export default function DemoHero({ theme = "cyan", isReady = true }: DemoHeroPro
         Kaiwal Panchal
       </p>
 
+      {/* Role tagline — top right, level with the name */}
+      <p className="DemoHero-tagline DemoHero-taglineTop" data-subsplit="true">
+        Forward Deployed &amp; Applied AI Engineer building intelligent systems at Sylvr
+      </p>
+
       {/* Hero Center Stage — centered by height & width relative to screen */}
       <div className="DemoHero-stage" aria-hidden="true">
         {/* Line 1 — sans, left */}
@@ -224,26 +229,21 @@ export default function DemoHero({ theme = "cyan", isReady = true }: DemoHeroPro
             >
               I DON&apos;T NEED INFINITY
             </p>
-            <a
-              ref={ctaRef}
-              className="DemoHero-cta"
-              href="mailto:kaiwalextra@gmail.com"
-              data-cursor-label="CONTACT"
-            >
-              <span className="DemoHero-ctaInner">Initialize Contact</span>
-            </a>
+            <div className="DemoHero-ctaCluster">
+              <a
+                ref={ctaRef}
+                className="DemoHero-cta"
+                href="mailto:kaiwalextra@gmail.com"
+                data-cursor-label="CONTACT"
+              >
+                <span className="DemoHero-ctaInner">Initialize Contact</span>
+              </a>
+              <p className="DemoHero-tagline DemoHero-taglineCta" data-subsplit="true">
+                Suspiciously obsessed with making things work.
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-
-      {/* Dual bottom editorial taglines — balanced in bottom bar */}
-      <div className="DemoHero-bottomBar">
-        <p className="DemoHero-tagline DemoHero-taglineLeft" data-subsplit="true">
-          Forward Deployed &amp; Applied AI Engineer building intelligent systems at Sylvr
-        </p>
-        <p className="DemoHero-tagline DemoHero-taglineRight" data-subsplit="true">
-          Suspiciously obsessed with making things work.
-        </p>
       </div>
     </section>
   );

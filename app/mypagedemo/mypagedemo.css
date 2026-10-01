@@ -545,38 +545,45 @@
   transform: scale(0.97);
 }
 
-/* Bottom Bar: taglines placed at kstoimenov's 23.5% / 60.57% anchors, centered text */
-.DemoHero-bottomBar {
-  position: absolute;
-  bottom: clamp(3.5rem, 11vh, 8rem);
-  left: 0;
-  right: 0;
-  pointer-events: none;
-  z-index: 5;
-}
-
+/* Taglines (shared) */
 .DemoHero-tagline {
-  position: absolute;
-  bottom: 0;
   color: var(--text-headline);
   opacity: 0.7;
   font-size: clamp(0.85rem, 1.05vw, 1.15rem);
   font-weight: 300;
   line-height: 1.5;
   margin: 0;
-  text-align: center;
   text-wrap: balance;
   will-change: filter, opacity;
 }
 
-.DemoHero-taglineLeft {
-  left: 23.5%;
-  width: clamp(16rem, 22vw, 24rem);
+/* Role tagline — top right, level with the name */
+.DemoHero-taglineTop {
+  position: absolute;
+  top: clamp(1.75rem, 3.8vh, 3rem);
+  right: clamp(1.5rem, 4vw, 4.5rem);
+  width: clamp(15rem, 22vw, 24rem);
+  text-align: right;
+  z-index: 10;
+  pointer-events: none;
 }
 
-.DemoHero-taglineRight {
-  left: 60.57%;
-  width: clamp(12rem, 16.3vw, 18rem);
+/* CTA + tagline lockup: button stays centred on the scramble line, tagline hangs beneath it */
+.DemoHero-ctaCluster {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+}
+
+.DemoHero-taglineCta {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 0.75rem;
+  width: max-content;
+  max-width: 18rem;
+  text-align: left;
+  white-space: normal;
 }
 
 /* Animated K monogram — top center */
@@ -628,7 +635,7 @@
     height: 100svh;
     min-height: 640px;
     align-items: flex-start;
-    padding-top: 5rem;
+    padding-top: 8.5rem;
   }
   .DemoHero-name {
     top: 1.25rem;
@@ -655,15 +662,22 @@
     font-size: 1rem;
     padding: 0 1.5rem;
   }
-  .DemoHero-bottomBar {
-    bottom: 1.25rem;
-  }
-  .DemoHero-tagline {
-    position: static;
-    text-align: left;
+  .DemoHero-taglineTop {
+    top: 4.6rem;
+    left: 1.25rem;
+    right: 1.25rem;
     width: auto;
-    max-width: 20rem;
-    margin: 0 1.25rem 0.6rem;
+    max-width: 21rem;
+    text-align: left;
+  }
+  .DemoHero-ctaCluster {
+    flex-direction: column;
+    width: 100%;
+  }
+  .DemoHero-taglineCta {
+    position: static;
+    margin-top: 0.75rem;
+    max-width: 100%;
   }
   .DemoHero-logo {
     width: 2.75rem;
