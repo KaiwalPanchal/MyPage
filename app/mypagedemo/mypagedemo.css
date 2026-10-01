@@ -272,17 +272,14 @@
 }
 
 /* ==========================================================================
-   Hero Section (Exact Editorial Typography Lockup & Balanced Columns)
+   Hero Section (kstoimenov Authentic Style & Typographic Floating Banner)
    ========================================================================== */
 .DemoHero-hero {
   background: var(--bg);
   isolation: isolate;
-  height: 100svh;
-  min-height: 580px;
+  height: 67.5rem;
   position: relative;
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
 }
 
 .DemoHero-shader {
@@ -294,31 +291,30 @@
 }
 
 .DemoHero-bottomHighlight {
-  background: linear-gradient(to top, var(--bg) 5%, transparent);
-  height: 8rem;
+  background: linear-gradient(to top, var(--bg) 5.135%, transparent);
+  height: 6.75rem;
   position: absolute;
-  bottom: 0;
+  top: 60.8125rem;
   left: 0;
   right: 0;
   pointer-events: none;
-  z-index: 2;
 }
 
 .DemoHero-bottomFade {
   background: linear-gradient(
     to top,
-    var(--bg) 15%,
-    color-mix(in srgb, var(--bg) 75%, transparent) 35%,
-    color-mix(in srgb, var(--bg) 25%, transparent) 60%,
+    var(--bg) 13.158%,
+    color-mix(in srgb, var(--bg) 75%, transparent) 30%,
+    color-mix(in srgb, var(--bg) 25%, transparent) 50%,
+    color-mix(in srgb, var(--bg) 8%, transparent) 62%,
     transparent 100%
   );
-  height: 24rem;
+  height: 21.375rem;
   position: absolute;
-  bottom: 0;
+  top: 46.1875rem;
   left: 0;
   right: 0;
   pointer-events: none;
-  z-index: 2;
 }
 
 /* Entrance Radial Gradient Bloom (Frosted Silver) */
@@ -344,358 +340,198 @@
   filter: blur(40px);
 }
 
-/* Full Viewport Frame with Architectural Edge Framing */
-.DemoHero-frame {
-  position: relative;
-  z-index: 5;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: clamp(1.2rem, 3.2vh, 2.5rem) clamp(1.25rem, 4.5vw, 4.5rem);
+/* Name in top left — kstoimenov nameplate */
+.DemoHero-name {
+  position: absolute;
+  top: 3.8rem;
+  left: 18%;
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 0.95rem;
+  letter-spacing: 0.16em;
+  text-transform: lowercase;
+  color: var(--text-headline);
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 2;
+  margin: 0;
+}
+
+/* kstoimenov banner: fills hero, text lines float absolutely over shader */
+.DemoHero-banner {
+  color: var(--text-headline);
+  white-space: nowrap;
+  font-size: clamp(3rem, 4.3vw, 5.75rem);
+  line-height: normal;
+  position: absolute;
+  inset: 0;
   pointer-events: none;
 }
 
-/* Top Header Bar */
-.DemoHero-topBar {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  width: 100%;
-}
-
-.DemoHero-name {
-  font-family: var(--font-sans);
-  font-weight: 400;
-  font-size: clamp(0.85rem, 1.1vw, 1rem);
-  letter-spacing: 0.12em;
-  color: var(--text-headline);
-  overflow: hidden;
-  display: inline-flex;
-  line-height: 1.2;
-  margin: 0;
-  user-select: none;
-}
-
-/* Master Typographic Stage (Vertically Centered) */
-.DemoHero-stage {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-  max-width: 90rem;
-  margin: 0 auto;
-  padding: 0.5rem 0;
-}
-
-.DemoHero-composition {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(0.2rem, 0.8vh, 0.65rem);
-  width: 100%;
-}
-
-/* Line Wrappers with Masked Character Revelations */
-.DemoHero-lineWrap {
-  overflow: hidden;
-  padding-bottom: 0.15em;
-  margin-bottom: -0.15em;
-  width: fit-content;
-  max-width: 100%;
-}
-
-.DemoHero-lineWrap1 {
-  margin-left: 0;
-}
-
-/* Indented Lines: Eventually, one builds / something great. share the exact same axis */
-.DemoHero-lineWrapIndent {
-  margin-left: clamp(2.5rem, 8vw, 10rem);
-}
-
-/* Swiss Grotesque Sans Headline */
+/* lineSans / lineDisplay - positioned via --l / --t CSS custom props */
 .DemoHero-lineSans {
+  left: var(--ml, var(--l));
+  top: var(--mt, var(--t));
   font-family: var(--font-sans);
   font-weight: 300;
-  font-size: clamp(2.25rem, 4.4vw, 5.25rem);
-  letter-spacing: -0.028em;
-  line-height: 1.05;
-  margin: 0;
-  background: linear-gradient(175deg, #ffffff 0%, #f1f5f9 45%, #cbd5e1 80%, #94a3b8 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 4px 24px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 40px rgba(196, 211, 226, 0.12));
-  user-select: none;
+  position: absolute;
+  overflow: hidden;
 }
 
-/* High-Contrast Editorial Display Serif Italic */
 .DemoHero-lineDisplay {
+  left: var(--ml, var(--l));
+  top: var(--mt, var(--t));
   font-family: var(--font-display);
   font-style: italic;
   font-weight: 400;
-  font-size: clamp(2.45rem, 4.8vw, 5.75rem);
-  letter-spacing: -0.018em;
-  line-height: 1.05;
-  margin: 0;
-  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 40%, #e2e8f0 70%, #94a3b8 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 4px 24px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 35px rgba(226, 232, 240, 0.16));
-  user-select: none;
-}
-
-.DemoHero-word {
-  display: inline-block;
-  white-space: nowrap;
-  vertical-align: baseline;
+  position: absolute;
   overflow: hidden;
-  padding-bottom: 0.12em;
-  margin-bottom: -0.12em;
 }
 
-.DemoHero-space {
-  display: inline-block;
-}
-
-.DemoHero-char {
-  display: inline-block;
-  will-change: transform, opacity;
-  transform: translateY(115%);
-  opacity: 0;
-}
-
-/* Resolution Block: "Thank God" + Scramble + CTA */
-.DemoHero-resolutionBlock {
-  margin-top: clamp(1.2rem, 2.8vh, 2.6rem);
-  display: flex;
-  flex-direction: column;
-  gap: clamp(0.35rem, 0.9vh, 0.75rem);
-  width: fit-content;
-  max-width: 100%;
-}
-
-/* "Thank God" Phrase */
-.DemoHero-thankGod {
-  font-family: var(--font-sans);
-  font-size: clamp(1.35rem, 2.3vw, 2.2rem);
-  font-weight: 300;
-  letter-spacing: -0.015em;
-  line-height: 1.1;
-  margin: 0;
-  color: #cbd5e1;
-  white-space: nowrap;
-  filter: drop-shadow(0 2px 16px rgba(0, 0, 0, 0.8));
-  user-select: none;
-}
-
-.DemoHero-actionRow {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: clamp(0.75rem, 1.8vw, 1.75rem);
-  pointer-events: auto;
-  width: fit-content;
-  max-width: 100%;
-}
-
-/* Interactive Cryptographic Scramble Word */
-.DemoHero-scrambleText {
-  font-family: var(--font-sans);
-  font-size: clamp(1.25rem, 2.2vw, 2.05rem);
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: #ffffff;
+/* Scramble - clickable interactive line */
+.DemoHero-scrambleWord {
   cursor: pointer;
+  pointer-events: auto;
   user-select: none;
-  padding: 0.15rem 0;
-  border-bottom: 2px solid rgba(56, 189, 248, 0.45);
-  transition: border-color 0.25s, text-shadow 0.25s, transform 0.25s;
-  white-space: nowrap;
+  letter-spacing: 0.02em;
+  transition: opacity 0.15s;
 }
 
-.DemoHero-scrambleText:hover {
-  border-color: #38bdf8;
-  text-shadow: 0 0 24px rgba(56, 189, 248, 0.8);
+.DemoHero-scrambleWord:hover {
+  opacity: 0.85;
 }
 
-/* Magnetic Frosted Glass Action Pill CTA */
+/* CTA pill — kstoimenov iconic oval pill button */
 .DemoHero-cta {
   display: inline-flex;
+  position: absolute;
+  top: 41.25rem;
+  left: 60%;
+  transform: translate(-50%);
+  z-index: 10;
   text-decoration: none;
-  pointer-events: auto;
-  margin-left: 0.25rem;
 }
 
 .DemoHero-ctaInner {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  padding: clamp(0.6rem, 1.1vh, 0.8rem) clamp(1.15rem, 1.6vw, 1.55rem);
-  border-radius: 9999px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  backdrop-filter: blur(16px);
-  color: #f8fafc;
-  font-family: var(--font-sans);
-  font-size: clamp(0.82rem, 1vw, 0.95rem);
-  font-weight: 400;
-  letter-spacing: 0.02em;
+  width: 13.5rem;
+  color: var(--text-headline);
   white-space: nowrap;
-  transition:
-    background 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-    color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-    border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  background: transparent;
+  border: 0.09375rem solid rgba(255, 255, 255, 0.85);
+  border-radius: 4.125rem;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem 1.5rem 1.375rem;
+  font-size: 1.35rem;
+  font-weight: 300;
+  transition: background 0.3s, color 0.3s, transform 0.16s cubic-bezier(0.22, 1, 0.36, 1);
+  display: flex;
 }
 
 .DemoHero-cta:hover .DemoHero-ctaInner {
-  background: #ffffff;
   color: #05070a;
-  border-color: #ffffff;
-  box-shadow: 0 0 35px rgba(255, 255, 255, 0.45), 0 8px 24px rgba(0, 0, 0, 0.45);
-  transform: translateY(-2px);
-}
-
-.DemoHero-ctaArrow {
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.DemoHero-cta:hover .DemoHero-ctaArrow {
-  transform: translate(2px, -2px);
+  background: #fff;
 }
 
 .DemoHero-cta:active .DemoHero-ctaInner {
   transform: scale(0.97);
 }
 
-/* Dual Balanced Editorial Columns (Bottom Tier) */
-.DemoHero-bottomBar {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  width: 100%;
-  gap: 2rem;
-  pointer-events: auto;
-}
-
-.DemoHero-colLeft {
-  max-width: 28rem;
-}
-
-.DemoHero-colRight {
-  max-width: 24rem;
-  text-align: right;
-}
-
-.DemoHero-colText {
-  font-family: var(--font-sans);
-  font-size: clamp(0.9rem, 1.15vw, 1.08rem);
-  line-height: 1.55;
-  color: #94a3b8;
+/* Taglines — bottom balanced columns in kstoimenov style */
+.DemoHero-tagline {
+  text-align: left;
+  color: var(--text-headline);
+  opacity: 0.7;
+  will-change: filter, opacity;
+  font-size: 1.05rem;
   font-weight: 300;
-  margin: 0;
-  letter-spacing: 0.01em;
+  line-height: 1.6;
+  position: absolute;
+  top: 51rem;
 }
 
-.DemoHero-colTextRight {
-  color: var(--silver);
-  text-align: right;
+.DemoHero-taglineLeft {
+  text-wrap: balance;
+  width: 23rem;
+  left: 18%;
 }
 
-@keyframes DemoHero-pulse {
-  0%, 100% {
-    opacity: 0.4;
-    transform: scale(0.9);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.2);
-  }
+.DemoHero-taglineRight {
+  width: 19rem;
+  left: 56%;
 }
 
 /* Responsive Breakpoints */
 @media (max-width: 1024px) {
-  .DemoHero-lineWrapIndent {
-    margin-left: clamp(1.5rem, 5vw, 4.5rem);
+  .DemoHero-banner {
+    font-size: clamp(2.4rem, 4vw, 4rem);
+  }
+  .DemoHero-lineSans[style*="--l: 44%"],
+  .DemoHero-lineDisplay[style*="--l: 44%"] {
+    --l: 38% !important;
+  }
+  .DemoHero-cta {
+    left: 65%;
   }
 }
 
 @media (max-width: 768px) {
   .DemoHero-hero {
     height: 100svh;
-    min-height: 560px;
+    min-height: 640px;
   }
-  .DemoHero-frame {
-    padding: max(1.15rem, env(safe-area-inset-top)) max(1.15rem, env(safe-area-inset-right)) max(1.15rem, env(safe-area-inset-bottom)) max(1.15rem, env(safe-area-inset-left));
+  .DemoHero-name {
+    font-size: 13px;
+    top: 48px;
+    left: 20px;
   }
-  .DemoHero-topBar {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.4rem;
+  .DemoHero-banner {
+    font-size: 32px;
   }
-  .DemoHero-statusBadge {
-    display: none;
-  }
-  .DemoHero-lineWrap1,
-  .DemoHero-lineWrapIndent {
-    margin-left: 0;
-  }
-  .DemoHero-lineSans {
-    font-size: clamp(1.75rem, 6.8vw, 2.45rem);
-    line-height: 1.12;
-  }
-  .DemoHero-lineDisplay {
-    font-size: clamp(1.95rem, 7.8vw, 2.75rem);
-    line-height: 1.12;
-  }
-  .DemoHero-thankGod {
-    font-size: clamp(1.25rem, 5vw, 1.65rem);
-  }
-  .DemoHero-actionRow {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.75rem;
-    width: 100%;
-  }
-  .DemoHero-scrambleText {
-    font-size: clamp(1.1rem, 4.5vw, 1.35rem);
-  }
+  .DemoHero-banner p:nth-child(1) { --ml: 20px; --mt: 110px; }
+  .DemoHero-banner p:nth-child(2) { --ml: 50px; --mt: 156px; }
+  .DemoHero-banner p:nth-child(3) { --ml: 50px; --mt: 202px; }
+  .DemoHero-banner p:nth-child(4) { --ml: 20px; --mt: 256px; }
+  .DemoHero-banner p:nth-child(5) { --ml: 20px; --mt: 298px; font-size: 24px; }
+
   .DemoHero-cta {
-    width: 100%;
-    margin-left: 0;
+    top: 360px;
+    left: 20px;
+    right: 20px;
+    transform: none;
   }
   .DemoHero-ctaInner {
+    color: #05070a;
+    background: #fff;
+    border-radius: 66px;
     width: 100%;
-    justify-content: center;
-    height: 46px;
+    height: 56px;
+    padding: 0 24px;
+    font-size: 18px;
   }
-  .DemoHero-bottomBar {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.75rem;
+  .DemoHero-tagline {
+    font-size: 13px;
+    line-height: 1.45;
   }
-  .DemoHero-colLeft,
-  .DemoHero-colRight {
-    max-width: 100%;
-    text-align: left;
+  .DemoHero-taglineLeft {
+    width: calc(100% - 40px);
+    top: 445px;
+    left: 20px;
   }
-  .DemoHero-colTextRight {
-    text-align: left;
+  .DemoHero-taglineRight {
+    width: calc(100% - 40px);
+    top: 515px;
+    left: 20px;
   }
-}
-
-@media (max-width: 480px) {
-  .DemoHero-lineSans {
-    font-size: clamp(1.6rem, 6.5vw, 2.1rem);
+  .DemoHero-bottomFade {
+    height: 340px;
+    top: auto;
+    bottom: 0;
   }
-  .DemoHero-lineDisplay {
-    font-size: clamp(1.8rem, 7.4vw, 2.35rem);
+  .DemoHero-bottomHighlight {
+    height: 108px;
+    top: auto;
+    bottom: 0;
   }
 }
 /* ==========================================================================
