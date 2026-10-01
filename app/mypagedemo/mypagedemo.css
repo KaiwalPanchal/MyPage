@@ -360,73 +360,22 @@
 /* Top Header Bar */
 .DemoHero-topBar {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   width: 100%;
-  gap: 1.5rem;
-}
-
-.DemoHero-identity {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
 }
 
 .DemoHero-name {
   font-family: var(--font-sans);
   font-weight: 400;
-  font-size: 0.85rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
+  font-size: clamp(0.85rem, 1.1vw, 1rem);
+  letter-spacing: 0.12em;
   color: var(--text-headline);
   overflow: hidden;
   display: inline-flex;
   line-height: 1.2;
   margin: 0;
-}
-
-.DemoHero-coordBadge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  font-family: var(--font-sans);
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  color: #64748b;
-  text-transform: uppercase;
-}
-
-.DemoHero-pulseDot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #38bdf8;
-  box-shadow: 0 0 10px #38bdf8;
-  animation: DemoHero-pulse 2.5s infinite ease-in-out;
-}
-
-.DemoHero-statusBadge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-family: var(--font-sans);
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
-  color: #94a3b8;
-  text-transform: uppercase;
-  background: rgba(18, 24, 34, 0.55);
-  border: 1px solid rgba(148, 163, 184, 0.18);
-  padding: 0.35rem 0.85rem;
-  border-radius: 9999px;
-  backdrop-filter: blur(12px);
-}
-
-.DemoHero-statusDot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #38bdf8;
-  box-shadow: 0 0 10px #38bdf8;
+  user-select: none;
 }
 
 /* Master Typographic Stage (Vertically Centered) */

@@ -194,22 +194,11 @@ export default function DemoHero({ theme = "cyan", isReady = true }: DemoHeroPro
 
       {/* Hero Outer Frame (Anchors edges & perfectly centers content) */}
       <div className="DemoHero-frame">
-        {/* Top Header Bar */}
+        {/* Top Header Bar: Just name in top left */}
         <header className="DemoHero-topBar">
-          <div className="DemoHero-identity">
-            <p className="DemoHero-name" data-split="true" aria-hidden="true">
-              KAIWAL PANCHAL
-            </p>
-            <span className="DemoHero-coordBadge" data-fade="true">
-              <span className="DemoHero-pulseDot" />
-              <span>SF • 37.77° N, 122.41° W</span>
-            </span>
-          </div>
-
-          <div className="DemoHero-statusBadge" data-fade="true">
-            <span className="DemoHero-statusDot" />
-            <span className="DemoHero-statusText">AVAILABLE FOR HIGH-IMPACT SYSTEMS</span>
-          </div>
+          <p className="DemoHero-name" data-split="true" aria-hidden="true">
+            kaiwal panchal
+          </p>
         </header>
 
         {/* Centerpiece: Sculptural Editorial Typographic Cascade */}
