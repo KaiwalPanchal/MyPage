@@ -9,12 +9,20 @@ interface DemoHeroProps {
   isReady?: boolean;
 }
 
+const FONT_OPTIONS = [
+  { id: "syne", label: "Syne (Modern Architectural Sans)", className: "font-syne" },
+  { id: "manier", label: "Manier (Editorial Serif)", className: "font-manier" },
+  { id: "cormorant", label: "Cormorant (Haute Couture Serif)", className: "font-cormorant" },
+  { id: "lausanne", label: "Lausanne (Precision Swiss Sans)", className: "font-lausanne" },
+];
+
 export default function DemoHero({ theme = "cyan", isReady = true }: DemoHeroProps) {
   const heroRef = useRef<HTMLElement | null>(null);
   const heroFlareRef = useRef<HTMLDivElement | null>(null);
   const scrambleRef = useRef<HTMLParagraphElement | null>(null);
   const ctaRef = useRef<HTMLAnchorElement | null>(null);
   const [isScrambling, setIsScrambling] = useState(false);
+  const [fontIdx, setFontIdx] = useState(0);
 
   const triggerScramble = (duration: number = 0.9) => {
     const scrambleEl = scrambleRef.current;
@@ -167,81 +175,72 @@ export default function DemoHero({ theme = "cyan", isReady = true }: DemoHeroPro
       <div className="DemoHero-bottomFade" />
       <div className="DemoHero-bottomHighlight" />
 
-      {/* Name in top left — kstoimenov nameplate style */}
-      <p className="DemoHero-name" data-split="true" aria-hidden="true">
+      {/* Name in top left — interactive font switcher on click */}
+      <p
+        className={`DemoHero-name ${FONT_OPTIONS[fontIdx].className}`}
+        data-split="true"
+        aria-hidden="true"
+        onClick={() => setFontIdx((prev) => (prev + 1) % FONT_OPTIONS.length)}
+        title={`Click to cycle font: ${FONT_OPTIONS[fontIdx].label}`}
+        data-cursor-label="FONT"
+      >
         kaiwal panchal
       </p>
 
-      {/* Banner — kstoimenov absolute lines over shader */}
-      <div className="DemoHero-banner" aria-hidden="true">
+      {/* Hero Center Stage — centered by height & width relative to screen */}
+      <div className="DemoHero-stage" aria-hidden="true">
         {/* Line 1 — sans, left */}
-        <p
-          className="DemoHero-lineSans"
-          data-split="true"
-          style={{ "--l": "18%", "--t": "clamp(6.8rem, 16vh, 10.5rem)" } as React.CSSProperties}
-        >
+        <p className="DemoHero-lineSans" data-split="true">
           Infinite agents. Infinite tokens.
         </p>
 
-        {/* Line 2 — display italic, indented right */}
-        <p
-          className="DemoHero-lineDisplay"
-          data-split="true"
-          style={{ "--l": "44%", "--t": "clamp(10.2rem, 24vh, 16rem)" } as React.CSSProperties}
-        >
-          Eventually, one builds
-        </p>
+        {/* Lines 2 & 3 — indented block relative to the centered stage */}
+        <div className="DemoHero-indentGroup">
+          <p className="DemoHero-lineDisplay" data-split="true">
+            Eventually, one builds
+          </p>
+          <p className="DemoHero-lineDisplay" data-split="true">
+            something great.
+          </p>
+        </div>
 
-        {/* Line 3 — display italic, same indent axis as Line 2 */}
-        <p
-          className="DemoHero-lineDisplay"
-          data-split="true"
-          style={{ "--l": "44%", "--t": "clamp(13.6rem, 32vh, 21.5rem)" } as React.CSSProperties}
-        >
-          something great.
-        </p>
-
-        {/* Line 4 — sans, left-aligned under Line 1 */}
-        <p
-          className="DemoHero-lineSans"
-          data-split="true"
-          style={{ "--l": "18%", "--t": "clamp(17.6rem, 41.5vh, 28rem)" } as React.CSSProperties}
-        >
-          Thank God
-        </p>
-
-        {/* Line 5 — scramble word, left-aligned under Thank God */}
-        <p
-          ref={scrambleRef}
-          className="DemoHero-lineSans DemoHero-scrambleWord"
-          data-scramble="true"
-          style={{ "--l": "18%", "--t": "clamp(21.2rem, 50vh, 34rem)" } as React.CSSProperties}
-          onMouseEnter={() => triggerScramble(0.5)}
-          onClick={() => triggerScramble(0.5)}
-          data-cursor-label="SCRAMBLE"
-        >
-          I DON&apos;T NEED INFINITY
-        </p>
+        {/* Lines 4 & 5 + CTA lockup */}
+        <div className="DemoHero-conclusionGroup">
+          <p className="DemoHero-lineSans" data-split="true">
+            Thank God
+          </p>
+          <div className="DemoHero-infinityRow">
+            <p
+              ref={scrambleRef}
+              className="DemoHero-lineSans DemoHero-scrambleWord"
+              data-scramble="true"
+              onMouseEnter={() => triggerScramble(0.5)}
+              onClick={() => triggerScramble(0.5)}
+              data-cursor-label="SCRAMBLE"
+            >
+              I DON&apos;T NEED INFINITY
+            </p>
+            <a
+              ref={ctaRef}
+              className="DemoHero-cta"
+              href="mailto:kaiwalextra@gmail.com"
+              data-cursor-label="CONTACT"
+            >
+              <span className="DemoHero-ctaInner">Initialize Contact</span>
+            </a>
+          </div>
+        </div>
       </div>
 
-      {/* CTA pill — kstoimenov large oval button adjacent to Line 5 */}
-      <a
-        ref={ctaRef}
-        className="DemoHero-cta"
-        href="mailto:kaiwalextra@gmail.com"
-        data-cursor-label="CONTACT"
-      >
-        <span className="DemoHero-ctaInner">Initialize Contact</span>
-      </a>
-
-      {/* Dual bottom editorial taglines — kstoimenov balance */}
-      <p className="DemoHero-tagline DemoHero-taglineLeft" data-subsplit="true">
-        Forward Deployed &amp; Applied AI Engineer building intelligent systems at Sylvr
-      </p>
-
-      <p className="DemoHero-tagline DemoHero-taglineRight" data-subsplit="true">
-        Suspiciously obsessed with making things work.
-      </p>
+      {/* Dual bottom editorial taglines — balanced in bottom bar */}
+      <div className="DemoHero-bottomBar">
+        <p className="DemoHero-tagline DemoHero-taglineLeft" data-subsplit="true">
+          Forward Deployed &amp; Applied AI Engineer building intelligent systems at Sylvr
+        </p>
+        <p className="DemoHero-tagline DemoHero-taglineRight" data-subsplit="true">
+          Suspiciously obsessed with making things work.
+        </p>
+      </div>
     </section>
   );
 }

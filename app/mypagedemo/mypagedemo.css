@@ -53,6 +53,22 @@
   font-weight: 400;
   font-style: italic;
 }
+@font-face {
+  font-family: 'Syne';
+  src: url(/MyPage/fonts/Syne-Bold.woff2) format("woff2"),
+       url(/fonts/Syne-Bold.woff2) format("woff2");
+  font-display: swap;
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  src: url(/MyPage/fonts/CormorantGaramond-SemiBold.woff2) format("woff2"),
+       url(/fonts/CormorantGaramond-SemiBold.woff2) format("woff2");
+  font-display: swap;
+  font-weight: 600;
+  font-style: normal;
+}
 
 :root {
   --bg: #05070a;
@@ -85,6 +101,7 @@
   --font-sans: "lausanne", "lausanne Fallback", system-ui, -apple-system, sans-serif;
   --font-display: "manier", "manier Fallback", Georgia, serif;
   --font-serif: "Instrument Serif", "manier", Georgia, serif;
+  --font-name: "Syne", "manier", var(--font-sans);
 }
 
 [data-mypage-theme="green"] {
@@ -289,7 +306,7 @@
 }
 
 /* ==========================================================================
-   Hero Section (Full Viewport Height & Editorial Typographic Composition)
+   Hero Section (Centered Stage & Precision Fluid Editorial Composition)
    ========================================================================== */
 .DemoHero-hero {
   background: var(--bg);
@@ -299,6 +316,9 @@
   height: 100vh;
   position: relative;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .DemoHero-shader {
@@ -307,6 +327,7 @@
   display: block;
   position: absolute;
   inset: 0;
+  pointer-events: none;
 }
 
 .DemoHero-bottomHighlight {
@@ -318,7 +339,7 @@
   left: 0;
   right: 0;
   pointer-events: none;
-  z-index: 1;
+  z-index: 2;
 }
 
 .DemoHero-bottomFade {
@@ -330,20 +351,20 @@
     color-mix(in srgb, var(--bg) 8%, transparent) 62%,
     transparent 100%
   );
-  height: clamp(10rem, 22vh, 18rem);
+  height: clamp(8rem, 18vh, 14rem);
   position: absolute;
   bottom: 0;
   top: auto;
   left: 0;
   right: 0;
   pointer-events: none;
-  z-index: 1;
+  z-index: 2;
 }
 
 /* Entrance Radial Gradient Bloom (Frosted Silver) */
 .DemoHero-entranceFlare {
   position: absolute;
-  top: 35%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: clamp(500px, 85vw, 1100px);
@@ -363,70 +384,121 @@
   filter: blur(40px);
 }
 
-/* Name in top left — bespoke signature nameplate with editorial serif */
+/* Name in top left — clean architectural signature */
 .DemoHero-name {
   position: absolute;
-  top: clamp(2rem, 4.5vh, 3.5rem);
-  left: 18%;
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 400;
-  font-size: clamp(1.6rem, 2.5vw, 2.6rem);
-  line-height: 1.25;
-  letter-spacing: -0.01em;
+  top: clamp(1.75rem, 3.8vh, 3rem);
+  left: clamp(1.5rem, 4vw, 4.5rem);
+  font-family: var(--font-name, "Syne", sans-serif);
+  font-weight: 700;
+  font-size: clamp(1.15rem, 1.55vw, 1.7rem);
+  letter-spacing: -0.02em;
+  text-transform: lowercase;
   color: var(--text-headline);
   overflow: hidden;
   pointer-events: auto;
+  cursor: pointer;
   z-index: 10;
   margin: 0;
-  padding-bottom: 0.25em;
-  transition: color 0.3s ease, text-shadow 0.3s ease;
+  padding-bottom: 0.15em;
+  transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.2s ease;
   user-select: none;
 }
 
 .DemoHero-name:hover {
   color: #ffffff;
-  text-shadow: 0 0 24px rgba(255, 255, 255, 0.45);
+  text-shadow: 0 0 24px rgba(255, 255, 255, 0.5);
+  transform: translateY(-1px);
 }
 
-/* Floating banner: fills hero, text lines float absolutely over shader */
-.DemoHero-banner {
+.font-syne {
+  font-family: 'Syne', sans-serif !important;
+  font-weight: 700 !important;
+  font-style: normal !important;
+  letter-spacing: -0.02em !important;
+}
+.font-manier {
+  font-family: var(--font-display) !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+  letter-spacing: 0.02em !important;
+}
+.font-cormorant {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-weight: 600 !important;
+  font-style: normal !important;
+  letter-spacing: 0.04em !important;
+}
+.font-lausanne {
+  font-family: var(--font-sans) !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+}
+
+/* Hero Center Stage: Center of text box is exact center of screen */
+.DemoHero-stage {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  width: max-content;
+  max-width: min(92vw, 84rem);
   color: var(--text-headline);
-  white-space: nowrap;
-  font-size: clamp(2.4rem, 3.8vw, 5.25rem);
-  line-height: 1.15;
-  position: absolute;
-  inset: 0;
+  font-size: clamp(1.85rem, 3.2vw, 4.25rem);
+  line-height: 1.14;
   pointer-events: none;
+  user-select: none;
 }
 
-/* lineSans / lineDisplay - positioned via --l / --t CSS custom props */
+/* Shared typography lines */
 .DemoHero-lineSans {
-  left: var(--ml, var(--l));
-  top: var(--mt, var(--t));
   font-family: var(--font-sans);
   font-weight: 300;
-  position: absolute;
+  margin: 0;
+  white-space: nowrap;
   overflow: hidden;
-  padding-bottom: 0.1em;
+  padding-bottom: 0.08em;
 }
 
 .DemoHero-lineDisplay {
-  left: var(--ml, var(--l));
-  top: var(--mt, var(--t));
   font-family: var(--font-display);
   font-style: italic;
   font-weight: 400;
-  position: absolute;
+  margin: 0;
+  white-space: nowrap;
   overflow: hidden;
-  padding-bottom: 0.15em;
+  padding-bottom: 0.12em;
 }
 
-/* Scramble - clickable interactive line */
+/* Indented lines (Eventually, one builds / something great.) */
+.DemoHero-indentGroup {
+  display: flex;
+  flex-direction: column;
+  padding-left: clamp(2.5rem, 11vw, 9.5rem);
+}
+
+/* Pause and conclusion block (Thank God / I DON'T NEED INFINITY + CTA) */
+.DemoHero-conclusionGroup {
+  display: flex;
+  flex-direction: column;
+  margin-top: clamp(0.75rem, 2vh, 1.8rem);
+}
+
+/* Infinity row: Scramble word and CTA button aligned side-by-side */
+.DemoHero-infinityRow {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.25rem, 2.5vw, 3.5rem);
+  white-space: nowrap;
+  margin-top: 0.1em;
+}
+
+/* Scramble Word */
 .DemoHero-scrambleWord {
   cursor: pointer;
   pointer-events: auto;
-  user-select: none;
   letter-spacing: 0.02em;
   transition: opacity 0.15s;
 }
@@ -435,28 +507,24 @@
   opacity: 0.85;
 }
 
-/* CTA pill — oval pill button aligned alongside Line 5 */
+/* CTA pill button */
 .DemoHero-cta {
   display: inline-flex;
-  position: absolute;
-  top: clamp(21.2rem, 50vh, 34rem);
-  left: clamp(58%, 62vw, 68%);
-  transform: translateY(-50%);
-  z-index: 10;
   text-decoration: none;
+  pointer-events: auto;
+  flex-shrink: 0;
 }
 
 .DemoHero-ctaInner {
-  width: clamp(12rem, 14vw, 15rem);
   color: var(--text-headline);
   white-space: nowrap;
   background: transparent;
   border: 0.09375rem solid rgba(255, 255, 255, 0.85);
-  border-radius: 4.125rem;
+  border-radius: 9999px;
   justify-content: center;
   align-items: center;
-  padding: clamp(0.85rem, 1.3vh, 1.35rem) clamp(1.2rem, 1.5vw, 1.8rem);
-  font-size: clamp(1.1rem, 1.25vw, 1.35rem);
+  padding: clamp(0.65rem, 1.1vh, 1.15rem) clamp(1.25rem, 1.75vw, 2.2rem);
+  font-size: clamp(0.95rem, 1.1vw, 1.35rem);
   font-weight: 300;
   transition: background 0.3s, color 0.3s, transform 0.16s cubic-bezier(0.22, 1, 0.36, 1);
   display: flex;
@@ -471,42 +539,52 @@
   transform: scale(0.97);
 }
 
-/* Taglines — bottom balanced columns pinned above viewport fold */
+/* Bottom Bar: Dual columns pinned at bottom left and bottom right */
+.DemoHero-bottomBar {
+  position: absolute;
+  bottom: clamp(1.75rem, 3.8vh, 3rem);
+  left: clamp(1.5rem, 4vw, 4.5rem);
+  right: clamp(1.5rem, 4vw, 4.5rem);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  pointer-events: none;
+  z-index: 5;
+}
+
 .DemoHero-tagline {
-  text-align: left;
   color: var(--text-headline);
   opacity: 0.7;
-  will-change: filter, opacity;
-  font-size: clamp(0.92rem, 1.05vw, 1.125rem);
+  font-size: clamp(0.85rem, 0.95vw, 1.05rem);
   font-weight: 300;
   line-height: 1.55;
-  position: absolute;
-  bottom: clamp(1.8rem, 5vh, 3.8rem);
-  top: auto;
+  margin: 0;
+  will-change: filter, opacity;
 }
 
 .DemoHero-taglineLeft {
+  max-width: clamp(18rem, 24vw, 27rem);
   text-wrap: balance;
-  width: clamp(18rem, 24vw, 26rem);
-  left: 18%;
+  text-align: left;
 }
 
 .DemoHero-taglineRight {
-  width: clamp(15rem, 20vw, 22rem);
-  left: 56%;
+  max-width: clamp(14rem, 20vw, 22rem);
+  text-align: right;
+  text-wrap: balance;
 }
 
 /* Responsive Breakpoints */
 @media (max-width: 1024px) {
-  .DemoHero-banner {
-    font-size: clamp(2.1rem, 3.6vw, 3.6rem);
+  .DemoHero-stage {
+    font-size: clamp(1.6rem, 3.2vw, 3.2rem);
+    max-width: 94vw;
   }
-  .DemoHero-lineSans[style*="--l: 44%"],
-  .DemoHero-lineDisplay[style*="--l: 44%"] {
-    --l: 36% !important;
+  .DemoHero-indentGroup {
+    padding-left: clamp(1.5rem, 7vw, 5rem);
   }
-  .DemoHero-cta {
-    left: 64%;
+  .DemoHero-infinityRow {
+    gap: clamp(1rem, 2vw, 2rem);
   }
 }
 
@@ -514,62 +592,47 @@
   .DemoHero-hero {
     height: 100svh;
     min-height: 640px;
+    align-items: flex-start;
+    padding-top: 5rem;
   }
   .DemoHero-name {
-    font-size: 1.45rem;
-    top: 24px;
-    left: 20px;
-    padding-bottom: 4px;
+    top: 1.25rem;
+    left: 1.25rem;
+    font-size: 1.15rem;
   }
-  .DemoHero-banner {
-    font-size: clamp(24px, 6.2vw, 32px);
+  .DemoHero-stage {
+    width: calc(100% - 2.5rem);
+    max-width: none;
+    font-size: clamp(1.35rem, 5.5vw, 2rem);
   }
-  .DemoHero-banner p:nth-child(1) { --ml: 20px; --mt: 86px; }
-  .DemoHero-banner p:nth-child(2) { --ml: 45px; --mt: 130px; }
-  .DemoHero-banner p:nth-child(3) { --ml: 45px; --mt: 174px; }
-  .DemoHero-banner p:nth-child(4) { --ml: 20px; --mt: 226px; }
-  .DemoHero-banner p:nth-child(5) { --ml: 20px; --mt: 268px; font-size: clamp(19px, 5.2vw, 24px); }
-
+  .DemoHero-indentGroup {
+    padding-left: clamp(1rem, 6vw, 2.5rem);
+  }
+  .DemoHero-infinityRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+    margin-top: 0.35em;
+  }
   .DemoHero-cta {
-    top: 326px;
-    left: 20px;
-    right: 20px;
-    transform: none;
+    width: 100%;
   }
   .DemoHero-ctaInner {
-    color: #05070a;
-    background: #fff;
-    border-radius: 66px;
     width: 100%;
-    height: 52px;
-    padding: 0 20px;
-    font-size: 17px;
+    height: 50px;
+    font-size: 1rem;
+    padding: 0 1.5rem;
   }
-  .DemoHero-tagline {
-    font-size: 13px;
-    line-height: 1.45;
-    position: absolute;
-    bottom: auto;
-  }
-  .DemoHero-taglineLeft {
-    width: calc(100% - 40px);
-    top: 405px;
-    left: 20px;
+  .DemoHero-bottomBar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+    left: 1.25rem;
+    right: 1.25rem;
+    bottom: 1.25rem;
   }
   .DemoHero-taglineRight {
-    width: calc(100% - 40px);
-    top: 475px;
-    left: 20px;
-  }
-  .DemoHero-bottomFade {
-    height: 280px;
-    top: auto;
-    bottom: 0;
-  }
-  .DemoHero-bottomHighlight {
-    height: 90px;
-    top: auto;
-    bottom: 0;
+    text-align: left;
   }
 }
 /* ==========================================================================
