@@ -276,7 +276,6 @@ export default function DemoFooter() {
             <a href="#about">About</a>
             <a href="#works">Works</a>
             <a href="#blog">My 2 Cents</a>
-            <Link href="/archive">Archive</Link>
           </nav>
           {/* Secret Abyss Coordinate Glyph & Circle Hiding Spot */}
           <FooterHiddenGlyph />
