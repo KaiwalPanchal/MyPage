@@ -548,7 +548,7 @@
 /* Bottom Bar: taglines placed at kstoimenov's 23.5% / 60.57% anchors, centered text */
 .DemoHero-bottomBar {
   position: absolute;
-  bottom: clamp(1.75rem, 6vh, 4.5rem);
+  bottom: clamp(3.5rem, 11vh, 8rem);
   left: 0;
   right: 0;
   pointer-events: none;
