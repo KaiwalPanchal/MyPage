@@ -1,4 +1,4 @@
-﻿/* /mypagedemo Scoped Design System & Typography */
+/* /mypagedemo Scoped Design System & Typography */
 /* Theme: Frosted Metallic Silver with a subtle hint of ice-blue */
 
 @font-face {
@@ -272,15 +272,17 @@
 }
 
 /* ==========================================================================
-   Hero Section (Refined Proportions & Responsive Typography)
+   Hero Section (Sculptural Responsive Typography & Editorial Cascade)
    ========================================================================== */
 .DemoHero-hero {
   background: var(--bg);
   isolation: isolate;
-  height: 67.5rem;
-  min-height: 100svh;
+  height: 100svh;
+  min-height: 580px;
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .DemoHero-shader {
@@ -299,6 +301,7 @@
   left: 0;
   right: 0;
   pointer-events: none;
+  z-index: 2;
 }
 
 .DemoHero-bottomFade {
@@ -315,6 +318,7 @@
   left: 0;
   right: 0;
   pointer-events: none;
+  z-index: 2;
 }
 
 /* Entrance Radial Gradient Bloom (Frosted Silver) */
@@ -340,185 +344,447 @@
   filter: blur(40px);
 }
 
-.DemoHero-centerBlock {
+/* Full Viewport Frame with Architectural Edge Framing */
+.DemoHero-frame {
   position: relative;
+  z-index: 5;
   width: 100%;
-  max-width: 88rem;
-  margin: 0 auto;
-  padding: 0 2rem;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
+  padding: clamp(1.2rem, 3.2vh, 2.5rem) clamp(1.25rem, 4vw, 4rem);
+  pointer-events: none;
 }
 
-/* Name nameplate - top left, always visible */
+/* Top Meta Bar */
+.DemoHero-topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  gap: 1.5rem;
+}
+
+.DemoHero-identity {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
 .DemoHero-name {
-  position: absolute;
-  top: 4rem;
-  left: 10%;
   font-family: var(--font-sans);
-  font-weight: 300;
-  font-size: 0.875rem;
-  letter-spacing: 0.18em;
+  font-weight: 400;
+  font-size: 0.85rem;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--text-headline);
   overflow: hidden;
-  pointer-events: none;
+  display: inline-flex;
+  line-height: 1.2;
+  margin: 0;
 }
 
-/* kstoimenov pattern: banner fills hero, lines float absolutely - no scrim, no panel */
-.DemoHero-banner {
-  color: var(--text-headline);
-  white-space: nowrap;
-  font-size: 6.25rem;
-  line-height: normal;
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
+.DemoHero-coordBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: #64748b;
+  text-transform: uppercase;
 }
 
-/* lineSans / lineDisplay - positioned via --l / --t CSS custom props */
+.DemoHero-pulseDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 10px #38bdf8;
+  animation: DemoHero-pulse 2.5s infinite ease-in-out;
+}
+
+.DemoHero-topRole {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+  gap: 0.2rem;
+}
+
+.DemoHero-topRoleTitle {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  color: var(--silver);
+}
+
+.DemoHero-topRoleSub {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  color: #64748b;
+}
+
+/* Master Typographic Sculpture Stage (Vertically Centered) */
+.DemoHero-stage {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  max-width: 90rem;
+  margin: 0 auto;
+  padding: 0.5rem 0;
+}
+
+.DemoHero-composition {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.2rem, 0.8vh, 0.75rem);
+  width: 100%;
+}
+
+/* Line Wrappers with Masked Character Revelations */
+.DemoHero-lineWrap {
+  overflow: hidden;
+  padding-bottom: 0.15em;
+  margin-bottom: -0.15em;
+  width: fit-content;
+  max-width: 100%;
+}
+
+.DemoHero-lineWrap1 {
+  margin-left: 0;
+}
+
+.DemoHero-lineWrap2 {
+  margin-left: clamp(2rem, 7vw, 8.5rem);
+}
+
+.DemoHero-lineWrap3 {
+  margin-left: clamp(4rem, 14vw, 17rem);
+}
+
+/* Swiss Grotesque Sans Headline */
 .DemoHero-lineSans {
-  left: var(--ml, var(--l));
-  top: var(--mt, var(--t));
   font-family: var(--font-sans);
   font-weight: 300;
-  position: absolute;
-  overflow: hidden;
+  font-size: clamp(2.25rem, 4.4vw, 5.25rem);
+  letter-spacing: -0.028em;
+  line-height: 1.05;
+  margin: 0;
+  background: linear-gradient(175deg, #ffffff 0%, #f1f5f9 45%, #cbd5e1 80%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 4px 24px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 40px rgba(196, 211, 226, 0.12));
+  user-select: none;
 }
 
+/* High-Contrast Editorial Display Serif Italic */
 .DemoHero-lineDisplay {
-  left: var(--ml, var(--l));
-  top: var(--mt, var(--t));
   font-family: var(--font-display);
   font-style: italic;
   font-weight: 400;
-  position: absolute;
-  overflow: hidden;
-}
-
-/* Scramble - uppercase, clickable */
-.DemoHero-scrambleWord {
-  cursor: pointer;
-  pointer-events: auto;
+  font-size: clamp(2.45rem, 4.8vw, 5.75rem);
+  letter-spacing: -0.018em;
+  line-height: 1.05;
+  margin: 0;
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 40%, #e2e8f0 70%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 4px 24px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 35px rgba(226, 232, 240, 0.16));
   user-select: none;
-  letter-spacing: 0.02em;
-  transition: opacity 0.15s;
 }
 
-.DemoHero-scrambleWord:hover {
-  opacity: 0.85;
+.DemoHero-word {
+  display: inline-block;
+  white-space: nowrap;
+  vertical-align: baseline;
+  overflow: hidden;
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
 }
 
-/* CTA pill */
+.DemoHero-space {
+  display: inline-block;
+}
+
+.DemoHero-char {
+  display: inline-block;
+  will-change: transform, opacity;
+  transform: translateY(115%);
+  opacity: 0;
+}
+
+/* Harmonic Foundation Row (Kicker + Scramble + CTA) */
+.DemoHero-actionRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: clamp(0.75rem, 1.8vw, 1.75rem);
+  margin-left: clamp(1rem, 3.5vw, 4rem);
+  margin-top: clamp(1.2rem, 2.4vh, 2.25rem);
+  pointer-events: auto;
+  width: fit-content;
+  max-width: 100%;
+}
+
+/* Kicker Tag */
+.DemoHero-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: 9999px;
+  background: rgba(18, 24, 34, 0.7);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  backdrop-filter: blur(12px);
+  font-family: var(--font-sans);
+  font-size: clamp(0.72rem, 0.95vw, 0.85rem);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: #94a3b8;
+  user-select: none;
+}
+
+.DemoHero-kickerPrefix {
+  color: #38bdf8;
+  font-weight: 600;
+}
+
+.DemoHero-kickerText {
+  color: #cbd5e1;
+}
+
+/* Interactive Cryptographic Scramble Word */
+.DemoHero-scrambleText {
+  font-family: var(--font-sans);
+  font-size: clamp(1.15rem, 2.1vw, 1.85rem);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #ffffff;
+  cursor: pointer;
+  user-select: none;
+  padding: 0.2rem 0;
+  border-bottom: 2px solid rgba(56, 189, 248, 0.45);
+  transition: border-color 0.25s, text-shadow 0.25s, transform 0.25s;
+  white-space: nowrap;
+}
+
+.DemoHero-scrambleText:hover {
+  border-color: #38bdf8;
+  text-shadow: 0 0 24px rgba(56, 189, 248, 0.8);
+}
+
+/* Magnetic Frosted Glass Action Pill CTA */
 .DemoHero-cta {
   display: inline-flex;
-  position: absolute;
-  top: 43.5rem;
-  left: 72%;
-  transform: translate(-50%);
-  z-index: 10;
   text-decoration: none;
+  pointer-events: auto;
+  margin-left: 0.25rem;
 }
 
 .DemoHero-ctaInner {
-  width: 13rem;
-  color: var(--text-headline);
-  white-space: nowrap;
-  background: transparent;
-  border: 0.09375rem solid rgba(255, 255, 255, 0.85);
-  border-radius: 4.125rem;
-  justify-content: center;
+  display: inline-flex;
   align-items: center;
-  padding: 1.5rem 1.5rem 1.375rem;
-  font-size: 1.25rem;
-  font-weight: 300;
-  transition: background 0.3s, color 0.3s, transform 0.16s cubic-bezier(0.22, 1, 0.36, 1);
-  display: flex;
-  gap: 0.5rem;
+  gap: 0.55rem;
+  padding: clamp(0.65rem, 1.2vh, 0.85rem) clamp(1.2rem, 1.8vw, 1.65rem);
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(16px);
+  color: #f8fafc;
+  font-family: var(--font-sans);
+  font-size: clamp(0.82rem, 1vw, 0.95rem);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  transition:
+    background 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .DemoHero-cta:hover .DemoHero-ctaInner {
+  background: #ffffff;
   color: #05070a;
-  background: #fff;
-  border-color: #fff;
+  border-color: #ffffff;
+  box-shadow: 0 0 35px rgba(255, 255, 255, 0.45), 0 8px 24px rgba(0, 0, 0, 0.45);
+  transform: translateY(-2px);
+}
+
+.DemoHero-ctaArrow {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.DemoHero-cta:hover .DemoHero-ctaArrow {
+  transform: translate(2px, -2px);
 }
 
 .DemoHero-cta:active .DemoHero-ctaInner {
   transform: scale(0.97);
 }
 
-/* Taglines - bottom corners */
-.DemoHero-tagline {
-  text-align: left;
-  color: var(--text-headline);
-  opacity: 0.7;
-  will-change: filter, opacity;
-  font-size: 1.05rem;
-  font-weight: 300;
-  line-height: 1.6;
-  position: absolute;
-  top: 53rem;
+/* Bottom Meta Bar */
+.DemoHero-bottomBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+  gap: 1.5rem;
 }
 
-.DemoHero-taglineLeft {
-  text-wrap: balance;
-  width: 22rem;
-  left: 23.5%;
+.DemoHero-telemetry {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
+  color: #64748b;
+  text-transform: uppercase;
+  font-weight: 400;
 }
 
-.DemoHero-taglineRight {
-  width: 18rem;
-  left: 60%;
+.DemoHero-telemetryIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  color: #94a3b8;
+  font-size: 0.75rem;
+  animation: DemoHero-bounce 2.2s infinite ease-in-out;
+}
+
+.DemoHero-philosophyQuote {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(0.9rem, 1.1vw, 1.05rem);
+  color: var(--silver);
+  letter-spacing: 0.01em;
+}
+
+@keyframes DemoHero-pulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes DemoHero-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1024px) {
+  .DemoHero-lineWrap2 {
+    margin-left: clamp(1rem, 3.5vw, 3rem);
+  }
+  .DemoHero-lineWrap3 {
+    margin-left: clamp(2rem, 6vw, 5.5rem);
+  }
+  .DemoHero-actionRow {
+    margin-left: 0;
+  }
 }
 
 @media (max-width: 768px) {
   .DemoHero-hero {
     height: 100svh;
-    min-height: 640px;
+    min-height: 540px;
   }
-  .DemoHero-name {
-    font-size: 11px;
-    top: 56px;
-    left: 16px;
+  .DemoHero-frame {
+    padding: max(1.15rem, env(safe-area-inset-top)) max(1.15rem, env(safe-area-inset-right)) max(1.15rem, env(safe-area-inset-bottom)) max(1.15rem, env(safe-area-inset-left));
   }
-  .DemoHero-banner {
-    font-size: 36px;
+  .DemoHero-topBar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
   }
-  .DemoHero-banner p:nth-child(1) { --ml: 16px;             --mt: 148px; }
-  .DemoHero-banner p:nth-child(2) { --ml: calc(50% - 70px); --mt: 196px; }
-  .DemoHero-banner p:nth-child(3) { --ml: calc(50% - 40px); --mt: 246px; }
-  .DemoHero-banner p:nth-child(4) { --ml: 16px;             --mt: 246px; }
-
+  .DemoHero-topRole {
+    align-items: flex-start;
+    text-align: left;
+  }
+  .DemoHero-topRoleSub {
+    display: none;
+  }
+  .DemoHero-lineWrap1,
+  .DemoHero-lineWrap2,
+  .DemoHero-lineWrap3 {
+    margin-left: 0;
+  }
+  .DemoHero-lineSans {
+    font-size: clamp(1.75rem, 6.8vw, 2.45rem);
+    line-height: 1.12;
+  }
+  .DemoHero-lineDisplay {
+    font-size: clamp(1.95rem, 7.8vw, 2.75rem);
+    line-height: 1.12;
+  }
+  .DemoHero-actionRow {
+    margin-left: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    width: 100%;
+    margin-top: 1rem;
+  }
+  .DemoHero-scrambleText {
+    font-size: clamp(1.1rem, 4.5vw, 1.35rem);
+  }
   .DemoHero-cta {
-    top: 360px;
-    left: 16px;
-    right: 16px;
-    transform: none;
+    width: 100%;
+    margin-left: 0;
   }
   .DemoHero-ctaInner {
-    color: #05070a;
-    background: #fff;
-    border-radius: 66px;
     width: 100%;
-    height: 60px;
-    padding: 0 24px;
-    font-size: 18px;
+    justify-content: center;
+    height: 46px;
   }
-  .DemoHero-tagline {
-    font-size: 13px;
-    line-height: 1.45;
+  .DemoHero-bottomBar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.45rem;
   }
-  .DemoHero-taglineLeft {
-    width: 210px;
-    top: 490px;
-    left: 16px;
+  .DemoHero-telemetry {
+    font-size: 0.68rem;
   }
-  .DemoHero-taglineRight {
-    width: 160px;
-    top: 560px;
-    right: 16px;
-    left: auto;
+  .DemoHero-philosophyQuote {
+    font-size: 0.82rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .DemoHero-kicker {
+    font-size: 0.7rem;
+    padding: 0.3rem 0.65rem;
+  }
+  .DemoHero-lineSans {
+    font-size: clamp(1.6rem, 6.5vw, 2.1rem);
+  }
+  .DemoHero-lineDisplay {
+    font-size: clamp(1.8rem, 7.4vw, 2.35rem);
   }
 }
 /* ==========================================================================
