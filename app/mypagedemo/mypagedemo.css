@@ -555,10 +555,13 @@
   top: clamp(1.75rem, 3.8vh, 3rem);
   right: clamp(1.5rem, 4vw, 4.5rem);
   width: auto;
-  max-width: clamp(18rem, 28vw, 32rem);
+  max-width: clamp(20rem, 32vw, 38rem);
   text-align: right;
   z-index: 10;
   pointer-events: none;
+  font-size: clamp(1.15rem, 1.45vw, 1.65rem);
+  line-height: 1.35;
+  letter-spacing: -0.01em;
 }
 
 /* CTA row: Tagline on left, button to the right */
@@ -670,8 +673,10 @@
     left: 1.25rem;
     right: 1.25rem;
     width: auto;
-    max-width: 21rem;
+    max-width: 22rem;
     text-align: left;
+    font-size: 1.05rem;
+    line-height: 1.35;
   }
   .DemoHero-ctaCluster {
     flex-direction: column;
