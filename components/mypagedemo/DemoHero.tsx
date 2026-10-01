@@ -10,10 +10,10 @@ interface DemoHeroProps {
 }
 
 const FONT_OPTIONS = [
+  { id: "lausanne", label: "TWK Lausanne (Precision Swiss Sans)", className: "font-lausanne" },
   { id: "syne", label: "Syne (Modern Architectural Sans)", className: "font-syne" },
   { id: "manier", label: "Manier (Editorial Serif)", className: "font-manier" },
   { id: "cormorant", label: "Cormorant (Haute Couture Serif)", className: "font-cormorant" },
-  { id: "lausanne", label: "Lausanne (Precision Swiss Sans)", className: "font-lausanne" },
 ];
 
 export default function DemoHero({ theme = "cyan", isReady = true }: DemoHeroProps) {

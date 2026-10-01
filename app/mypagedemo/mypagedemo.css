@@ -384,15 +384,15 @@
   filter: blur(40px);
 }
 
-/* Name in top left — clean architectural signature */
+/* Name in top left — clean architectural signature (TWK Lausanne tracked sans) */
 .DemoHero-name {
   position: absolute;
   top: clamp(1.75rem, 3.8vh, 3rem);
   left: clamp(1.5rem, 4vw, 4.5rem);
-  font-family: var(--font-name, "Syne", sans-serif);
-  font-weight: 700;
-  font-size: clamp(1.15rem, 1.55vw, 1.7rem);
-  letter-spacing: -0.02em;
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: clamp(1.05rem, 1.35vw, 1.45rem);
+  letter-spacing: 0.16em;
   text-transform: lowercase;
   color: var(--text-headline);
   overflow: hidden;
@@ -401,40 +401,44 @@
   z-index: 10;
   margin: 0;
   padding-bottom: 0.15em;
-  transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.2s ease;
+  transition: color 0.3s ease, letter-spacing 0.3s ease, text-shadow 0.3s ease, transform 0.2s ease;
   user-select: none;
 }
 
 .DemoHero-name:hover {
   color: #ffffff;
-  text-shadow: 0 0 24px rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.22em;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.45);
   transform: translateY(-1px);
 }
 
+.font-lausanne {
+  font-family: var(--font-sans) !important;
+  font-weight: 300 !important;
+  font-style: normal !important;
+  letter-spacing: 0.16em !important;
+  text-transform: lowercase !important;
+}
 .font-syne {
   font-family: 'Syne', sans-serif !important;
   font-weight: 700 !important;
   font-style: normal !important;
   letter-spacing: -0.02em !important;
+  text-transform: lowercase !important;
 }
 .font-manier {
   font-family: var(--font-display) !important;
   font-weight: 400 !important;
   font-style: normal !important;
   letter-spacing: 0.02em !important;
+  text-transform: lowercase !important;
 }
 .font-cormorant {
   font-family: 'Cormorant Garamond', Georgia, serif !important;
   font-weight: 600 !important;
   font-style: normal !important;
   letter-spacing: 0.04em !important;
-}
-.font-lausanne {
-  font-family: var(--font-sans) !important;
-  font-weight: 400 !important;
-  font-style: normal !important;
-  letter-spacing: 0.14em !important;
-  text-transform: uppercase !important;
+  text-transform: lowercase !important;
 }
 
 /* Hero Center Stage: Center of text box is exact center of screen */
