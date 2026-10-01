@@ -213,7 +213,7 @@ export default function DemoHero({ theme = "cyan", isReady = true }: DemoHeroPro
   return (
     <section className="DemoHero-hero" id="home" ref={heroRef}>
       <h1 className="sr-only">
-        Kaiwal Panchal — Applied AI &amp; Forward Deployed Engineer. Hey, I’m Kaiwal. I like computers, weird ideas, and making the two interact.
+        Kaiwal Panchal — Lead Engineer at Sylvr. Hey, I’m Kaiwal. I like computers, weird ideas, and making the two interact.
       </h1>
 
       {/* Living Fluted Caustic Glass Wave Shader */}
@@ -235,7 +235,7 @@ export default function DemoHero({ theme = "cyan", isReady = true }: DemoHeroPro
         data-subsplit="true"
         style={{ opacity: isReady ? undefined : 0 }}
       >
-        Forward Deployed &amp; Applied AI Engineer building intelligent systems at Sylvr
+        Lead Engineer at Sylvr
       </p>
 
       {/* Hero Center Stage — centered by height & width relative to screen */}
