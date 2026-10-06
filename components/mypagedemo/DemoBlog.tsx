@@ -85,7 +85,12 @@ export default function DemoBlog({ posts = DEFAULT_POSTS }: { posts?: BlogPostIt
             </p>
           </div>
           <Link href="/blog" className="DemoBlog-viewAll" data-cursor-label="ALL">
-            <span>View all publications</span>
+            <span className="DemoProjects-rollText">
+              <span className="DemoProjects-rollInner">
+                <span className="DemoProjects-rollPrimary">View all publications</span>
+                <span className="DemoProjects-rollDup" aria-hidden="true">View all publications</span>
+              </span>
+            </span>
             <svg
               width="16"
               height="16"
@@ -95,6 +100,8 @@ export default function DemoBlog({ posts = DEFAULT_POSTS }: { posts?: BlogPostIt
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
+              className="DemoProjects-arrowIcon"
+              aria-hidden="true"
             >
               <line x1="7" y1="17" x2="17" y2="7" />
               <polyline points="7 7 17 7 17 17" />

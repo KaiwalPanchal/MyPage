@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import DemoCursor from "@/components/mypagedemo/DemoCursor";
 import DemoHero from "@/components/mypagedemo/DemoHero";
 import DemoAbout from "@/components/mypagedemo/DemoAbout";
+import DemoProjects from "@/components/mypagedemo/DemoProjects";
 import DemoExperience from "@/components/mypagedemo/DemoExperience";
 import DemoBlog from "@/components/mypagedemo/DemoBlog";
 import DemoParallaxQuote from "@/components/mypagedemo/DemoParallaxQuote";
@@ -27,6 +28,9 @@ export default function PortfolioView() {
 
           {/* Effect 2: Word-by-Word Scroll Opacity Reading Flow + Builder Narrative + AI Glyphs + Telemetry Rail */}
           <DemoAbout />
+
+          {/* Effect 3: Selected Frontend Works & Web Platforms (kstoimenov Design Language: Airvon, Sylvr, MyPage) */}
+          <DemoProjects />
 
           {/* Vertical Job Experience Stack with Hairline Dividers, Sliding Text & Silver Grain Highlights */}
           <DemoExperience />

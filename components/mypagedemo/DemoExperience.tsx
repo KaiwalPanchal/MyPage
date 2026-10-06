@@ -69,7 +69,7 @@ export default function DemoExperience() {
     <section
       ref={sectionRef}
       className={`DemoExp-section ${inView ? "DemoMetrics-inView" : ""}`}
-      id="works"
+      id="experience"
     >
       {/* Section Header with Hairline Divider (aligned to container) */}
       <div className="DemoExp-headerWrap">
