@@ -69,6 +69,9 @@ export default function TheCircle() {
   const handleCircleClick = () => {
     setIsPoked(true);
     setTimeout(() => setIsPoked(false), 300);
+    if (state.isMinimized) {
+      toggleMinimize();
+    }
     pokeCircle();
   };
 

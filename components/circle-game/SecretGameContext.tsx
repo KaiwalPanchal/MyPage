@@ -86,6 +86,12 @@ export function SecretGameProvider({ children }: { children: React.ReactNode }) 
           ...parsed,
           visitCount: (parsed.visitCount || 1) + 1,
         }));
+      } else if (typeof window !== "undefined" && window.innerWidth <= 768) {
+        // On mobile devices for first-time visitors, start minimized so HUD does not obstruct reading flow
+        setState((prev) => ({
+          ...prev,
+          isMinimized: true,
+        }));
       }
     } catch {
       // Local storage unavailable
@@ -205,6 +211,10 @@ export function SecretGameProvider({ children }: { children: React.ReactNode }) 
   useEffect(() => {
     if (!isLoaded) return;
 
+    const isMobile = typeof window !== "undefined" && window.innerWidth <= 768;
+    // On mobile devices, don't popup unsolicited dialogue while minimized
+    if (isMobile && state.isMinimized) return;
+
     const timer = setTimeout(() => {
       if (!state.hasMet) {
         sayMessage(
@@ -237,7 +247,7 @@ export function SecretGameProvider({ children }: { children: React.ReactNode }) 
               },
             },
           ],
-          0
+          isMobile ? 8000 : 0
         );
       } else if (state.visitCount > 1) {
         if (state.foundSecretRoom) {
@@ -249,7 +259,7 @@ export function SecretGameProvider({ children }: { children: React.ReactNode }) 
     }, 2800);
 
     return () => clearTimeout(timer);
-  }, [isLoaded, state.hasMet, state.visitCount, state.foundSecretRoom, sayMessage]);
+  }, [isLoaded, state.hasMet, state.visitCount, state.foundSecretRoom, state.isMinimized, sayMessage]);
 
   // DevTools console easter egg injection
   useEffect(() => {

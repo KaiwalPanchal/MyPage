@@ -569,49 +569,63 @@
 @media (max-width: 768px) {
   .DemoHero-hero {
     height: 100svh;
-    min-height: 640px;
+    min-height: 580px;
     align-items: flex-start;
-    padding-top: 8.5rem;
+    padding-top: 8rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  .DemoHero-entranceFlare {
+    width: 90vw;
+    height: 50vh;
   }
   .DemoHero-name {
-    top: 1.25rem;
-    left: 1.25rem;
+    top: 1.5rem;
+    left: 1.5rem;
     font-size: 1.15rem;
   }
+  .DemoHero-logo {
+    top: 1.5rem;
+    left: 1.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+  .DemoHero-taglineTop {
+    top: 4.75rem;
+    left: 1.5rem;
+    right: 1.5rem;
+    width: auto;
+    max-width: 22rem;
+    text-align: left;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: var(--text-large);
+  }
   .DemoHero-stage {
-    width: calc(100% - 2.5rem);
+    width: 100%;
     max-width: none;
-    font-size: clamp(1.35rem, 5.5vw, 2rem);
+    font-size: clamp(1.4rem, 6.2vw, 2.1rem);
+    line-height: 1.18;
+  }
+  .DemoHero-lineSans {
+    padding-bottom: 0.05em;
+  }
+  .DemoHero-lineDisplay {
+    padding-bottom: 0.08em;
   }
   .DemoHero-agentsRow,
   .DemoHero-infinityRow,
   .DemoHero-ctaRow {
     flex-direction: column;
     align-items: flex-start;
-    gap: 1.25rem;
+    gap: 1.15rem;
     margin-top: 0.35em;
   }
+  .DemoHero-conclusionGroup {
+    margin-top: clamp(0.75rem, 2.5vh, 1.5rem);
+  }
   .DemoHero-ctaRow {
-    margin-top: 2rem;
-  }
-  .DemoHero-cta {
-    width: fit-content;
-  }
-  .DemoHero-ctaInner {
-    width: auto;
-    height: 46px;
-    font-size: 0.95rem;
-    padding: 0 1.5rem;
-  }
-  .DemoHero-taglineTop {
-    top: 4.6rem;
-    left: 1.25rem;
-    right: 1.25rem;
-    width: auto;
-    max-width: 22rem;
-    text-align: left;
-    font-size: 1.05rem;
-    line-height: 1.35;
+    margin-top: 1.75rem;
   }
   .DemoHero-ctaCluster {
     flex-direction: column;
@@ -619,18 +633,24 @@
   }
   .DemoHero-taglineCta {
     position: static;
-    margin-top: 0.75rem;
+    margin-top: 0;
     max-width: 100%;
+    font-size: 0.95rem;
+    line-height: 1.45;
   }
-  .DemoHero-logo {
-    top: clamp(1.25rem, 2.5vh, 2rem);
-    left: clamp(1.25rem, 4vw, 2rem);
-    width: 2.75rem;
-    height: 2.75rem;
+  .DemoHero-cta {
+    width: fit-content;
+  }
+  .DemoHero-ctaInner {
+    width: auto;
+    height: 48px;
+    min-height: 48px;
+    font-size: 0.95rem;
+    padding: 0 1.6rem;
   }
   .DemoHero-lineDisplay,
   .DemoHero-infinityRow {
-    margin-left: calc(var(--ml, 0) * 0.45);
+    margin-left: calc(var(--ml, 0) * 0.4);
   }
 }
 /* ==========================================================================
@@ -787,21 +807,26 @@
 
 @media (max-width: 768px) {
   .DemoAbout-about {
-    gap: 1rem;
-    padding: 4.5rem 1.25rem;
+    gap: 1.25rem;
+    padding: 5rem 1.5rem;
   }
   .DemoAbout-paragraph {
-    font-size: clamp(1.15rem, 4.8vw, 1.45rem);
-    line-height: 1.55;
+    font-size: clamp(1.05rem, 4.2vw, 1.3rem);
+    line-height: 1.6;
+  }
+  .DemoAbout-paragraph + .DemoAbout-paragraph {
+    margin-top: 1.4em;
   }
   .DemoAbout-lead {
-    font-size: clamp(2rem, 9vw, 2.6rem) !important;
+    font-size: clamp(1.5rem, 6.5vw, 2.2rem) !important;
+    line-height: 1.35 !important;
   }
   .DemoAbout-inlineGlyph {
     width: 1.35rem;
     height: 1.35rem;
-    margin: 0 0.25em;
+    margin: 0 0.3em;
     border-radius: 0.35rem;
+    vertical-align: -0.18em;
   }
   .DemoAbout-rail {
     display: none;
@@ -1059,42 +1084,81 @@
 }
 
 @media (max-width: 768px) {
+  .DemoExp-section {
+    padding: 5rem 0;
+  }
   .DemoExp-header {
-    max-width: calc(100% - 2rem);
+    max-width: calc(100% - 3rem);
     flex-direction: column;
     align-items: flex-start;
     gap: 0.75rem;
+    padding-bottom: 1.5rem;
+  }
+  .DemoExp-title {
+    font-size: clamp(2.2rem, 7vw, 3rem);
   }
   .DemoExp-sub {
     text-align: left;
     max-width: 100%;
     font-size: 0.95rem;
+    line-height: 1.55;
   }
   .DemoExp-rowInner {
-    max-width: calc(100% - 2rem);
+    max-width: calc(100% - 3rem);
     position: relative;
     grid-template-columns: 1fr;
-    gap: 1.25rem;
-    padding: 2.25rem 0 2rem;
+    gap: 1.15rem;
+    padding: 2rem 0 1.75rem;
   }
   .DemoExp-arrowWrap {
     position: absolute;
-    top: 2.25rem;
+    top: 2rem;
     right: 0;
-    width: 2rem;
-    height: 2rem;
+    width: 2.25rem;
+    height: 2.25rem;
   }
   .DemoExp-arrowIcon {
-    width: 0.95rem;
-    height: 0.95rem;
+    width: 1rem;
+    height: 1rem;
+  }
+  .DemoExp-yearCol {
+    gap: 0.35rem;
+  }
+  .DemoExp-year {
+    font-size: 1.35rem;
+  }
+  .DemoExp-currentBadge {
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+  }
+  .DemoExp-mainCol {
+    gap: 0.85rem;
+    padding-right: 2.75rem;
+  }
+  .DemoExp-role {
+    font-size: clamp(1.35rem, 5.2vw, 1.8rem);
+    line-height: 1.25;
+    gap: 0.5rem;
+  }
+  .DemoExp-company {
+    font-size: clamp(1.25rem, 4.8vw, 1.65rem);
+  }
+  .DemoExp-desc {
+    font-size: 0.95rem;
+    line-height: 1.6;
   }
   .DemoExp-techCol {
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.75rem;
+    gap: 0.6rem;
   }
   .DemoExp-badgeGroup {
     justify-content: flex-start;
+    gap: 0.35rem;
+  }
+  .DemoExp-techBadge {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.65rem;
   }
 }
 
@@ -1538,6 +1602,66 @@
   }
 }
 
+@media (max-width: 768px) {
+  .DemoBlog-section {
+    padding: 5rem 0;
+  }
+  .DemoBlog-inner {
+    padding: 0 1.5rem;
+    gap: 2.5rem;
+  }
+  .DemoBlog-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+    padding-bottom: 1.5rem;
+  }
+  .DemoBlog-title {
+    font-size: clamp(2.2rem, 7vw, 3rem);
+  }
+  .DemoBlog-subtitle {
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+  .DemoBlog-card {
+    padding: 2.5rem 1.5rem 2rem;
+    gap: 2rem;
+  }
+  .DemoBlog-indexRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  .DemoBlog-indexNum {
+    font-size: clamp(3.2rem, 12vw, 4.2rem);
+  }
+  .DemoBlog-valueLabel {
+    left: 5rem;
+    top: 0.25rem;
+    font-size: 0.75rem;
+  }
+  .DemoBlog-metaRight {
+    font-size: 0.82rem;
+  }
+  .DemoBlog-cardTitle {
+    font-size: clamp(1.35rem, 5.5vw, 1.8rem);
+    line-height: 1.3;
+  }
+  .DemoBlog-cardExcerpt {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  .DemoBlog-cardFooter {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+  .DemoBlog-readMore {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
 /* ==========================================================================
    Effect 4: Parallax Typography & Floating Ornaments
    ========================================================================== */
@@ -1638,7 +1762,7 @@
 @media (max-width: 768px) {
   .DemoQuote-quote {
     height: auto;
-    padding: 4.5rem 1.25rem 5.5rem;
+    padding: 5rem 1.5rem 5.5rem;
   }
   .DemoQuote-content {
     width: 100%;
@@ -1671,10 +1795,11 @@
     top: auto !important;
     left: auto !important;
     transform: none !important;
-    padding: 0.4rem 0.85rem;
+    padding: 0.45rem 0.95rem;
     font-size: 0.8rem;
     box-shadow: none;
     background: rgba(18, 24, 34, 0.5);
+    min-height: 38px;
   }
   .DemoQuote-badgeIcon {
     width: 1rem;
@@ -1700,6 +1825,13 @@
   top: 0;
   left: 0;
   right: 0;
+}
+
+@media (max-width: 768px) {
+  .DemoReveal-reveal,
+  .DemoReveal-inner {
+    height: 15rem;
+  }
 }
 
 .DemoReveal-inner canvas {
@@ -2164,9 +2296,31 @@
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .DemoFooter-footer {
-    padding: 5rem 1.25rem 3rem;
+    padding: 5rem 1.5rem 3.5rem;
+  }
+  .DemoFooter-inner {
+    gap: 3rem;
+  }
+  .DemoFooter-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+  .DemoFooter-heading {
+    font-size: clamp(2.4rem, 8vw, 3.5rem);
+  }
+  .DemoFooter-mission {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  .DemoFooter-contact {
+    width: 100%;
+    justify-content: center;
+    min-height: 48px;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
   }
   .DemoFooter-grid {
     grid-template-columns: 1fr;
@@ -2176,31 +2330,79 @@
     border-left: 1px solid var(--stroke);
     border-bottom: 1px solid var(--stroke);
     border-top: none;
-    padding: 2.5rem 1.25rem 2rem;
-    gap: 2rem;
+    padding: 2.5rem 1.5rem 2rem;
+    gap: 1.75rem;
   }
   .DemoFooter-card:first-child {
     border-top: 1px solid var(--stroke);
   }
-  .DemoFooter-header {
-    flex-direction: column;
+  .DemoFooter-indexRow {
     align-items: flex-start;
   }
-  .DemoFooter-contact {
+  .DemoFooter-indexNum {
+    font-size: clamp(3.2rem, 12vw, 4.2rem);
+  }
+  .DemoFooter-valueLabel {
+    left: 5rem;
+    top: 0.25rem;
+    font-size: 0.75rem;
+  }
+  .DemoFooter-cardIconWrap {
+    width: 26px;
+    height: 26px;
+  }
+  .DemoFooter-cardTitle {
+    font-size: clamp(1.35rem, 5vw, 1.75rem);
+  }
+  .DemoFooter-cardHandle {
+    font-size: 0.85rem;
+  }
+  .DemoFooter-cardExcerpt {
+    font-size: 0.92rem;
+    line-height: 1.55;
+  }
+  .DemoFooter-cardFooter {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.15rem;
+  }
+  .DemoFooter-tagGroup {
+    gap: 0.35rem;
+  }
+  .DemoFooter-techTag {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.6rem;
+  }
+  .DemoFooter-readMore {
     width: 100%;
-    justify-content: center;
+    justify-content: space-between;
+    font-size: 0.88rem;
   }
   .DemoFooter-bottom {
     flex-direction: column;
     align-items: flex-start;
-    gap: 1rem;
+    gap: 1.25rem;
+    padding-top: 1.25rem;
+  }
+  .DemoFooter-copyright {
+    font-size: 0.88rem;
   }
   .DemoFooter-legal {
+    display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 0.5rem 1.25rem;
+  }
+  .DemoFooter-legal a {
+    font-size: 0.92rem;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
   }
   .DemoFooter-logoBtn {
     align-self: center;
+    margin-top: 0.5rem;
+    width: 3.25rem;
+    height: 3.25rem;
   }
 }
 

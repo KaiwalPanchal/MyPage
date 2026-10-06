@@ -1143,15 +1143,78 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .CircleGame-hud {
-    bottom: 16px;
-    right: 16px;
+    bottom: 14px;
+    right: 14px;
+    gap: 8px;
+    z-index: 9999;
   }
   .CircleGame-dialogue {
-    max-width: 260px;
+    max-width: min(290px, calc(100vw - 28px));
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: rgba(8, 12, 22, 0.96);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.75), 0 0 16px rgba(56, 189, 248, 0.15);
+  }
+  .CircleGame-dialogueHeader {
+    margin-bottom: 6px;
+  }
+  .CircleGame-dialogueClose {
+    min-width: 32px;
+    min-height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+  }
+  .CircleGame-dialogueText {
+    font-size: 12px;
+    line-height: 1.45;
+  }
+  .CircleGame-choices {
+    margin-top: 8px;
+    gap: 6px;
+  }
+  .CircleGame-choiceBtn {
+    font-size: 11px;
+    padding: 4px 8px;
+  }
+  .CircleGame-orb {
+    width: 40px;
+    height: 40px;
+  }
+  .CircleGame-ringSvg {
+    inset: -2px;
+    width: 44px;
+    height: 44px;
+  }
+  .CircleGame-core {
+    width: 16px;
+    height: 16px;
+  }
+  .CircleGame-pupil {
+    width: 6px;
+    height: 6px;
+  }
+  .CircleGame-dock {
+    padding: 2px 4px;
+    gap: 3px;
+    border-radius: 16px;
+  }
+  .CircleGame-dockBtn {
+    padding: 3px 6px;
+    font-size: 10px;
+  }
+  .CircleQuest-modal {
+    padding: 18px 16px;
+    max-width: calc(100vw - 24px);
+    border-radius: 14px;
+    gap: 14px;
   }
   .SecretRoom-container {
-    padding: 20px;
-    height: 95vh;
+    padding: 16px;
+    height: 94vh;
+    border-radius: 14px;
+    gap: 14px;
   }
   .SecretRoom-header {
     flex-direction: column;
@@ -1162,5 +1225,8 @@
     flex-wrap: nowrap;
     overflow-x: auto;
     padding-bottom: 8px;
+  }
+  .SecretRoom-grid {
+    grid-template-columns: 1fr;
   }
 }
