@@ -569,88 +569,126 @@
 @media (max-width: 768px) {
   .DemoHero-hero {
     height: 100svh;
-    min-height: 580px;
-    align-items: flex-start;
-    padding-top: 8rem;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    min-height: 560px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: max(1.25rem, env(safe-area-inset-top)) 1.25rem max(1.25rem, env(safe-area-inset-bottom));
+    position: relative;
+    overflow: hidden;
   }
   .DemoHero-entranceFlare {
     width: 90vw;
     height: 50vh;
   }
   .DemoHero-name {
-    top: 1.5rem;
-    left: 1.5rem;
-    font-size: 1.15rem;
+    display: none;
   }
   .DemoHero-logo {
-    top: 1.5rem;
-    left: 1.5rem;
+    position: absolute;
+    top: max(1.5rem, calc(env(safe-area-inset-top) + 0.5rem));
+    left: max(1.25rem, calc(env(safe-area-inset-left) + 0.5rem));
     width: 2.5rem;
     height: 2.5rem;
+    z-index: 10;
   }
   .DemoHero-taglineTop {
-    top: 4.75rem;
-    left: 1.5rem;
-    right: 1.5rem;
+    position: absolute;
+    top: max(1.6rem, calc(env(safe-area-inset-top) + 0.5rem));
+    right: max(1.25rem, calc(env(safe-area-inset-right) + 0.5rem));
+    left: auto;
+    text-align: right;
     width: auto;
-    max-width: 22rem;
-    text-align: left;
-    font-size: 0.95rem;
-    line-height: 1.4;
-    color: var(--text-large);
+    max-width: 12.5rem;
+    font-size: clamp(0.72rem, 2.7vw, 0.82rem);
+    line-height: 1.35;
+    color: var(--text-body);
+    z-index: 10;
+    pointer-events: none;
   }
   .DemoHero-stage {
+    position: relative;
+    z-index: 5;
     width: 100%;
-    max-width: none;
-    font-size: clamp(1.4rem, 6.2vw, 2.1rem);
-    line-height: 1.18;
+    max-width: 360px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-size: clamp(1.4rem, 6.2vw, 1.95rem);
+    line-height: 1.22;
   }
   .DemoHero-lineSans {
+    text-align: center;
+    width: 100%;
     padding-bottom: 0.05em;
   }
+  .DemoHero-indentGroup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
   .DemoHero-lineDisplay {
+    margin-left: 0;
+    text-align: center;
+    width: 100%;
     padding-bottom: 0.08em;
   }
-  .DemoHero-agentsRow,
-  .DemoHero-infinityRow,
-  .DemoHero-ctaRow {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1.15rem;
-    margin-top: 0.35em;
-  }
   .DemoHero-conclusionGroup {
-    margin-top: clamp(0.75rem, 2.5vh, 1.5rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 1.15rem;
+  }
+  .DemoHero-infinityRow {
+    margin-left: 0;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
   }
   .DemoHero-ctaRow {
-    margin-top: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    margin-top: 2rem;
+    gap: 1.15rem;
   }
   .DemoHero-ctaCluster {
     flex-direction: column;
+    align-items: center;
     width: 100%;
   }
   .DemoHero-taglineCta {
     position: static;
     margin-top: 0;
-    max-width: 100%;
+    text-align: center;
+    width: 100%;
+    max-width: 22rem;
     font-size: 0.95rem;
     line-height: 1.45;
+    color: var(--text-large);
   }
   .DemoHero-cta {
     width: fit-content;
+    margin: 0 auto;
+    display: inline-flex;
+    justify-content: center;
   }
   .DemoHero-ctaInner {
     width: auto;
-    height: 48px;
-    min-height: 48px;
+    min-width: 200px;
+    height: 50px;
+    min-height: 50px;
     font-size: 0.95rem;
-    padding: 0 1.6rem;
-  }
-  .DemoHero-lineDisplay,
-  .DemoHero-infinityRow {
-    margin-left: calc(var(--ml, 0) * 0.4);
+    padding: 0 2rem;
+    justify-content: center;
+    align-items: center;
   }
 }
 /* ==========================================================================

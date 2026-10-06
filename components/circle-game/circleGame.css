@@ -1143,8 +1143,8 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .CircleGame-hud {
-    bottom: 14px;
-    right: 14px;
+    bottom: max(14px, calc(env(safe-area-inset-bottom) + 8px));
+    right: max(14px, calc(env(safe-area-inset-right) + 8px));
     gap: 8px;
     z-index: 9999;
   }
