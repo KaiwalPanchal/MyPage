@@ -29,8 +29,9 @@ export default function PortfolioView() {
           {/* Effect 2: Word-by-Word Scroll Opacity Reading Flow + Builder Narrative + AI Glyphs + Telemetry Rail */}
           <DemoAbout />
 
-          {/* Effect 3: Selected Frontend Works & Web Platforms (kstoimenov Design Language: Airvon, Sylvr, MyPage) */}
+          {/* Effect 3: Selected Frontend Works & Web Platforms (Commented out per user preference)
           <DemoProjects />
+          */}
 
           {/* Vertical Job Experience Stack with Hairline Dividers, Sliding Text & Silver Grain Highlights */}
           <DemoExperience />
